@@ -5,16 +5,20 @@ Reviewed on September 12, 2026, using the production static export served by Clo
 ## Build and browser checks
 
 - ESLint, strict TypeScript checking, and the production Next.js build passed.
-- Sixteen Playwright checks cover both routes at 320, 390, 768, 1024, and 1440 pixels; image loading and text clipping; desktop dropdowns; mobile navigation; FAQ expansion; consultation demo behavior; focus containment, Escape, and focus restoration; reduced motion; metadata; and static 404 handling.
+- Sixteen Playwright checks cover both routes at 320, 390, 768, 1024, and 1440 pixels; image loading and text clipping; service-heading hierarchy; desktop dropdowns; mobile navigation; FAQ expansion; consultation demo behavior; focus containment, Escape, and focus restoration; reduced motion; metadata; and static 404 handling.
 - Automated axe checks passed on the Maya page and FAQ dialog for WCAG A/AA criteria. Automated checks do not constitute a complete accessibility certification.
 - The clone was compared manually with the reference at 390, 768, and 1440 pixels, including section proportions, image crops, mobile order, and the reference's 799px hamburger breakpoint.
 - Redesign copy, FAQ answers, dialog text, footer credentials, and location were checked against the supplied profile. The supplied portrait and both office photographs are included.
+
+A second spacing and layout pass measured section and content bounds at all five widths. Maya keeps 6vw mobile gutters (19.2px at 320 and 23.4px at 390), with no accidental section gaps, overlaps, or horizontal overflow. That pass corrected the mobile service-title cascade, contained the clone footer email at 768, and aligned the clone's approach and banner focal points with the reference. The clone's full-page height is within 0.1% of the reference at 390; at 1440, its individual section boundaries are within one pixel. Tablet height differences are caused primarily by the documented font substitutions changing line wraps.
 
 ## Public deployment checks
 
 The Pages deployment was verified at [the redesign](https://grow-my-therapy-suryansh.pages.dev/) and [the clone](https://grow-my-therapy-suryansh.pages.dev/original/) on September 12, 2026. Both returned HTTP 200 on direct requests and refreshes. All page images loaded; the clone returned its noindex header. All 13 visible desktop FAQ and consultation triggers opened the expected dialog and restored focus after Escape. Public mobile navigation, FAQ transitions, automated accessibility, metadata, and the missing-page route passed three additional Playwright checks. The favicon, robots file, sitemap, image response headers, and HTTP 404 were also verified.
 
 The [GitHub repository](https://github.com/suryanshishere/grow-my-therapy) is public and contains the source on `main`. Cloudflare uses Direct Upload; automatic deployments are not enabled.
+
+All 27 external links retained by the reference clone returned HTTP 200 during the final link audit.
 
 ## Mobile performance
 

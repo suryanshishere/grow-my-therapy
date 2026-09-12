@@ -17,11 +17,16 @@ for (const route of ["/", "/original/"]) {
       }
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
       // Catch content hidden by the overflow clip used for intentional edge photos.
-      const clippedText = await page.locator("main h1, main h2, main h3, main p").evaluateAll(elements => elements.filter(element => {
+      const clippedText = await page.locator("main h1, main h2, main h3, main p, footer h2, footer p, footer a").evaluateAll(elements => elements.filter(element => {
         const bounds = element.getBoundingClientRect();
         return bounds.left < -1 || bounds.right > window.innerWidth + 1;
       }).map(element => element.textContent));
       expect(clippedText).toEqual([]);
+      const mismatchedServiceTitles = await page.locator(".service-card h3 > .service-title-link").evaluateAll(elements => elements.filter(element => {
+        const heading = element.parentElement;
+        return heading && Math.abs(parseFloat(getComputedStyle(element).fontSize) - parseFloat(getComputedStyle(heading).fontSize)) > 0.5;
+      }).map(element => element.textContent));
+      expect(mismatchedServiceTitles).toEqual([]);
       expect(errors).toEqual([]);
     });
   }

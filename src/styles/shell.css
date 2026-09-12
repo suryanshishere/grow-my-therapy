@@ -154,6 +154,11 @@
   .theme-original .footer-grid p, .theme-original .footer-links > a { font-size: 12px; line-height: 23px; }
   .theme-original .footer-grid h2 { font-size: 12px; }
 }
+@media (min-width: 768px) and (max-width: 900px) {
+  .theme-original .footer-grid > .footer-links:not(.footer-methods) { grid-column: 10 / 14; }
+  .theme-original .footer-methods { grid-column: 14 / 18; }
+  .theme-original .footer-location { grid-column: 18 / 25; }
+}
 @media (min-width: 768px) {
   .homepage--original .bridge-section { min-height: 66vh; align-content: center; }
 }
