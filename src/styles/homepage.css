@@ -30,7 +30,8 @@
   letter-spacing: .12em;
   text-transform: uppercase;
 }
-.homepage .script-accent {
+/* Scoped to the shell, not the homepage, so the contact page's heading picks it up too. */
+.site-shell .script-accent {
   color: var(--color-accent);
   font-family: var(--font-script);
   font-weight: 400;
@@ -118,9 +119,9 @@
 .service-image { height: calc(11 * var(--grid-row) + 10 * var(--grid-gap)); flex-shrink: 0; }
 .service-copy { padding-top: 46px; }
 .service-copy > p { margin-top: 27px; }
-.homepage .service-title-link { font: inherit; letter-spacing: inherit; text-transform: none; padding: 0; text-align: left; justify-content: flex-start; }
-.homepage .service-title-link::after { display: none; }
-.homepage .service-title-link:hover { color: var(--color-accent); }
+.homepage .service-title-link { font: inherit; letter-spacing: inherit; text-transform: none; padding: 0; text-align: left; justify-content: flex-start; color: var(--color-strong); }
+.homepage .service-title-link::after, .homepage .service-title-link::before { display: none; }
+.homepage--maya .service-title-link:hover { color: var(--color-accent); }
 
 .statement-section {
   grid-template-rows: repeat(10, minmax(var(--grid-row), auto));
@@ -157,12 +158,14 @@
 .expertise-list li { display: flex; align-items: center; min-height: 65px; border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 14%, transparent); }
 .expertise-list .expertise-column-end { border-bottom: 0; }
 .expertise-list li > span, .homepage .expertise-link { font-size: 15px; line-height: 1.8; font-weight: 400; letter-spacing: .12em; text-transform: uppercase; padding: 12px 0; text-align: left; }
-.homepage .expertise-link::after { display: none; }
-.homepage .expertise-link:hover { color: var(--color-accent); }
+.homepage .expertise-link::after, .homepage .expertise-link::before { display: none; }
+.homepage--maya .expertise-link:hover { color: var(--color-accent); }
 
 .approach-section {
   grid-template-rows: repeat(24, minmax(var(--grid-row), auto));
   background: var(--color-sand);
+  /* The reference sets this band in its darker ink; Maya's token matches her body ink. */
+  color: var(--color-strong);
 }
 .approach-eyebrow { grid-area: 4 / 3 / 6 / 15; align-self: center; }
 .approach-heading { grid-area: 8 / 3 / 10 / 20; align-self: center; }
@@ -309,6 +312,10 @@
   .homepage--original { font-size: calc(15px + .12vw); }
   .homepage--original .hero-section { padding-top: calc(75px + 2.8vw); }
   .homepage--original .hero-copy { grid-column-end: 24; }
+  /* Cormorant sets ~11% narrower than the source's Beaufort Pro, so "on" would ride up
+     onto line one. Trimming the measure restores the reference's line breaks while the
+     heading still reflows naturally at every width. */
+  .homepage--original .hero-copy h1 { max-width: 95.5%; }
   .homepage--original .hero-eyebrow { grid-column-end: 20; }
   .theme-original .homepage .eyebrow { font-size: 15px; }
   .homepage--original .services-section { padding-bottom: calc(6.6vw + 25px); }

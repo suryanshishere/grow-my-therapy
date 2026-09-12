@@ -22,11 +22,20 @@
 .dropdown-links { position: absolute; top: 100%; left: -20px; min-width: 215px; padding: 17px 20px; background: var(--color-background); box-shadow: 0 10px 20px #23383f10; border: 1px solid #23383f15; }
 .dropdown-links a { display: block; padding: 10px 0; text-decoration: none; white-space: nowrap; }
 .dropdown-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
-.desktop-navigation .action-oval { font-size: 14px; padding: 15px 33px; text-transform: none; white-space: nowrap; min-height: 47px; }
+.desktop-navigation .action-oval { font-size: 14px; padding: 15px 33px; text-transform: none; white-space: nowrap; min-height: 47px; text-align: center; }
 .desktop-navigation > .action-oval { border: 1px solid currentColor; border-radius: 100%; }
 .theme-maya .desktop-navigation .action-oval { padding: 14px 24px; font-size: 11px; }
-.menu-toggle { display: none; width: 44px; height: 44px; padding: 10px 4px; border: 0; background: transparent; align-items: center; justify-content: center; flex-direction: column; gap: 8px; }
-.menu-toggle span { display: block; width: 28px; height: 1px; background: currentColor; }
+/* Three 1px bars on a 35px box, matching the source's tripleLineHamburger. The buns
+   rotate into an X and the patty scales away, so the same control opens and closes. */
+.menu-toggle { display: none; width: 47px; height: 44px; padding: 0; border: 0; background: transparent; align-items: center; justify-content: center; }
+.burger-box { position: relative; display: block; width: 35px; height: 35px; }
+.burger-box span { position: absolute; left: 0; top: 50%; display: block; width: 35px; height: 1px; background: currentColor; transition: transform .25s cubic-bezier(.2, .6, .3, 1), width .25s cubic-bezier(.2, .6, .3, 1); }
+.burger-box span:nth-child(1) { transform: translateY(-9.5px); }
+.burger-box span:nth-child(2) { transform: translateY(0); }
+.burger-box span:nth-child(3) { transform: translateY(9.5px); }
+.menu-toggle--open .burger-box span:nth-child(1) { width: 28px; transform: translate(3.5px) rotate(-135deg); }
+.menu-toggle--open .burger-box span:nth-child(2) { transform: scale(0); }
+.menu-toggle--open .burger-box span:nth-child(3) { width: 28px; transform: translate(3.5px) rotate(135deg); }
 .practice-footer { background: var(--color-paper); padding: 80px 5vw 90px; }
 .footer-grid { display: grid; grid-template-columns: 1.5fr .7fr 1fr 1.15fr; gap: 55px; max-width: 1620px; margin: auto; }
 .footer-grid h2 { font-family: var(--font-body); font-size: 13px; text-transform: uppercase; letter-spacing: .12em; font-weight: 400; margin: 9px 0 27px; }
@@ -41,6 +50,31 @@
 .footer-links .footer-action::after { display: none; }
 .footer-location > .action-link { font-size: 11px; margin-top: 23px; }
 .site-colophon { min-height: 54px; padding: 17px 5vw; display: flex; justify-content: space-between; align-items: center; gap: 24px; font-size: 10px; line-height: 1.6; background: var(--color-accent); color: var(--color-ink); }
+.theme-original .site-colophon { display: block; color: #fff; }
+.version-switch {
+  position: fixed;
+  right: 14px;
+  bottom: 14px;
+  z-index: 30;
+  padding: 9px 15px;
+  border: 1px solid color-mix(in srgb, var(--color-ink) 22%, transparent);
+  border-radius: 100px;
+  background: color-mix(in srgb, var(--color-paper) 88%, transparent);
+  backdrop-filter: blur(6px);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .06em;
+  line-height: 1;
+  text-decoration: none;
+  transition: background-color .2s, border-color .2s;
+}
+.version-switch:hover { background: var(--color-paper); border-color: color-mix(in srgb, var(--color-ink) 45%, transparent); }
+@media (max-width: 767px) {
+  /* Kept small on phones so it stays clear of the contact form's full-width controls. */
+  .version-switch { right: 10px; bottom: 10px; padding: 7px 11px; font-size: 9.5px; letter-spacing: .04em; }
+}
 .theme-maya .site-colophon { background: var(--color-primary); color: var(--color-background); }
 .site-colophon a { text-decoration: none; }
 .site-colophon a:hover { text-decoration: underline; text-underline-offset: 4px; }
@@ -122,11 +156,39 @@
 }
 
 /* The reference route keeps the source site's navigation and four-column footer. */
-.theme-original .desktop-navigation { font-size: 13.272px; gap: 2.5vw; text-transform: uppercase; letter-spacing: .1em; }
+.theme-original .desktop-navigation { font-size: 13.272px; gap: 2.5vw; text-transform: uppercase; letter-spacing: .1em; font-weight: 400; line-height: 23.89px; text-align: right; }
 .theme-original .nav-dropdown > button { text-transform: uppercase; }
 .theme-original .nav-dropdown > button svg { display: none; }
-.theme-original .dropdown-links { left: 0; padding: 0; border: 0; box-shadow: none; }
+/* The source hangs each panel off the right edge of its folder title, overshooting it
+   by 13.272px, and right-aligns the items. */
+.theme-original .dropdown-links { left: auto; right: -13.272px; text-align: right; padding: 0; border: 0; box-shadow: none; }
 .theme-original .dropdown-links a { padding: .75em 1em; }
+
+/* The source draws the rule under a text link as a zero-height ::after whose right
+   edge travels left on hover, wiping it away right-to-left over 1s. Maya keeps the
+   scaleX wipe defined in homepage.css. */
+.theme-original .action-link::after {
+  width: auto;
+  right: 0;
+  height: 0;
+  background: transparent;
+  border-bottom: 1px solid var(--color-rule);
+  transform: none;
+  transition: right 1s;
+}
+.theme-original .action-link:hover::after { right: 100%; transform: none; }
+/* Nav links, service titles and expertise links have no hover response on the source. */
+.theme-original .desktop-navigation > a:not(.action-oval):hover,
+.theme-original .desktop-navigation > button:hover { text-decoration: none; }
+/* The oval keeps its dark outline through the fill change, and retimes to the source's .1s linear. */
+.theme-original .action-oval { transition: background-color .1s linear, color .1s linear; }
+.theme-original .action-oval:hover { background: var(--color-ink); color: var(--color-background); border-color: var(--color-ink); }
+/* Only the band's headings, copy and link take the darker ink; its eyebrow stays at the
+   body ink, as the source has it. */
+.theme-original .approach-eyebrow { color: var(--color-ink); }
+/* The approach band sits in the darker ink and lifts to the body ink on hover. */
+.theme-original .approach-section .action-link { transition: color .1s linear; }
+.theme-original .approach-section .action-link:hover { color: var(--color-ink); }
 .theme-original .desktop-navigation .action-oval { font-size: 12.408px; text-transform: uppercase; padding: 15px 19.5px; }
 .theme-original .practice-footer { padding: 65px 5vw 117px; }
 .theme-original .footer-grid { grid-template-columns: repeat(24, minmax(0, 1fr)); column-gap: 11px; max-width: 1800px; }
@@ -145,6 +207,9 @@
 .theme-original .site-colophon { min-height: 50px; padding: 11px 6.8vw; font-size: 15px; font-weight: 300; line-height: 27px; }
 .theme-original .site-colophon > a { font-size: 11px; }
 .theme-original .homepage .eyebrow { font-size: 15px; font-weight: 400; letter-spacing: .12em; }
+/* Allura sets far narrower than the source's Printed Moments at the same size, so the
+   clone scales it up to land on the reference's measured word widths. */
+.theme-original .script-accent { font-size: 1.5em; }
 .theme-original .homepage .service-title-link { font: inherit; text-transform: none; letter-spacing: inherit; padding: 0; text-align: left; }
 .theme-original .homepage .expertise-link { font-size: 15px; text-align: left; }
 
@@ -171,17 +236,90 @@
   .theme-original .footer-grid > .footer-links, .theme-original .footer-location { width: 74.3%; justify-self: center; }
   .theme-original .footer-location { grid-row: 3; }
   .theme-original .footer-methods { grid-row: 4; }
-  .theme-original .site-colophon { font-size: 13px; line-height: 24px; gap: 5px; padding: 9px 6vw; }
-  .theme-original .homepage .eyebrow, .theme-original .homepage .expertise-link { font-size: 15px; }
+  .theme-original .site-colophon { font-size: 14.41px; line-height: 25.94px; gap: 5px; padding: 7.5px 6vw; min-height: 0; }
+  /* .expertise-link only covers the linked items; the three without an href render
+     through `li > span` and were being left at the 14px redesign size. */
+  .theme-original .homepage .eyebrow,
+  .theme-original .homepage .expertise-link,
+  .theme-original .expertise-list li > span { font-size: 15px; }
+  .theme-original .homepage .action-link:not(.service-title-link):not(.expertise-link),
+  .theme-original .homepage .action-oval { font-size: 13.48px; }
 }
 
 @media (min-width: 800px) {
-  .theme-original .site-header { height: calc(75px + 2.8vw); }
+  .theme-original { --header-height: calc(75px + 2.8vw); }
+  .theme-original .site-header { height: var(--header-height); }
 }
 @media (max-width: 799px) {
-  .theme-original .site-header { height: calc(12vw + min(75px, 17.94vw)); }
+  .theme-original { --header-height: calc(12vw + min(75px, 17.94vw)); }
+  .theme-original .site-header { height: var(--header-height); }
   .theme-original .header-inner { padding-inline: 6vw; }
   .theme-original .site-header .original-brand { width: min(257px, 61.45vw); }
   .theme-original .desktop-navigation { display: none; }
   .theme-original .menu-toggle { display: flex; }
+}
+
+/* The source's overlay navigation: a fixed sheet inset below the header, fading in while
+   the burger morphs above it. Folders step sideways rather than expanding in place. */
+/* Rendered from inside .site-header, whose z-index:20 forms the stacking context that
+   lifts the whole header above the page. Sitting at -1 inside that context puts the sheet
+   over the page but under the logo and the morphing burger, as the source does. */
+.overlay-menu {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  padding-top: var(--header-height);
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility .6s cubic-bezier(.4, 0, .2, 1), opacity .4s cubic-bezier(.4, 0, .2, 1);
+}
+.overlay-menu--open { visibility: visible; opacity: 1; }
+.overlay-menu-bg { position: absolute; inset: 0; background: var(--color-background); }
+.overlay-menu-nav { position: relative; display: grid; height: 100%; }
+/* The source centres the link list in the space above a fixed-height CTA block, which
+   lands the first row at 256px and the button at 756px on a 390x844 screen. */
+.overlay-panel {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding-inline: 19.5px;
+  transition: transform .4s cubic-bezier(.4, 0, .2, 1), opacity .3s cubic-bezier(.4, 0, .2, 1);
+}
+.overlay-panel--active { transform: translateX(0); opacity: 1; }
+.overlay-panel--stepped { transform: translateX(-28vw); opacity: 0; pointer-events: none; }
+.overlay-panel--incoming { transform: translateX(28vw); opacity: 0; pointer-events: none; }
+.overlay-list { flex: 1 1 auto; display: flex; flex-direction: column; align-items: flex-start; justify-content: safe center; min-height: 0; overflow-y: auto; }
+.overlay-item {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  margin-block: 19.5px;
+  padding: 0 19.5px;
+  border: 0;
+  background: none;
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 33.15px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: .058em;
+  text-align: left;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.overlay-item--back { color: color-mix(in srgb, var(--color-ink) 55%, transparent); padding-inline: 10px; }
+.overlay-chevron { display: inline-block; width: 1em; height: 1em; flex: 0 0 auto; }
+.overlay-chevron svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; }
+.overlay-chevron--forward { margin-left: .15em; transform: rotate(-90deg); }
+.overlay-chevron--back { margin-right: .15em; transform: rotate(90deg); }
+.overlay-cta { display: flex; align-items: center; height: 88px; flex: 0 0 auto; padding-left: 3.5px; }
+.overlay-list > * { flex: 0 0 auto; }
+.overlay-cta .action-oval { min-width: 210px; font-size: 13.48px; padding: 15px 19.5px; border: 1px solid var(--color-ink); letter-spacing: .12em; }
+@media (min-width: 800px) { .overlay-menu { display: none; } }
+@media (max-height: 700px) {
+  .overlay-menu-nav { overflow-y: auto; }
+  .overlay-item { margin-block: 12px; font-size: 28px; }
+  .overlay-cta { height: 70px; }
 }

@@ -9,7 +9,7 @@ A responsive homepage study and therapist website redesign, built for Grow My Th
 - [Public GitHub repository](https://github.com/suryanshishere/grow-my-therapy)
 - Verified submission links are recorded in [the submission checklist](docs/submission-checklist.md).
 
-Dr. Maya Reynolds is fictional. Consultation controls open an informational demo dialog; this website does not collect personal information, book appointments, or send messages.
+Dr. Maya Reynolds is fictional. Consultation controls open an informational demo dialog, and the cloned booking form validates in the browser and then states that nothing was sent. This website does not collect personal information, book appointments, or send messages.
 
 ## Run locally
 
@@ -35,7 +35,9 @@ The production export is written to `out/`. The preview serves it on `http://loc
 
 - `src/components/homepage.tsx` renders the shared section layout; content is defined in `src/content/original.ts` and `src/content/maya.ts` using `HomepageContent`.
 - `src/app/globals.css` defines scoped theme tokens. `src/styles/homepage.css` contains the shared reference composition; `maya.css` applies redesign typography and office styling.
-- `src/components/interactions.tsx` handles desktop dropdowns, the mobile menu, FAQs, and consultation dialogs. Native dialogs include explicit Tab cycling, Escape dismissal, backdrop dismissal, scroll locking, and focus restoration.
+- `src/components/interactions.tsx` handles desktop dropdowns, both mobile menus, FAQs, and consultation dialogs. Native dialogs include explicit Tab cycling, Escape dismissal, backdrop dismissal, scroll locking, and focus restoration.
+- The two routes use different mobile menus on purpose. Maya opens a native dialog with an accordion. The clone reproduces the reference's full-screen sheet: a three-bar burger that morphs into a close control in place, a sheet that fades in beneath the header so the logo stays put, and folders that step sideways to a panel headed by **Back** rather than expanding inline. Because a modal `<dialog>` is promoted to the top layer and would cover the header, the clone's sheet is an ordinary fixed panel that reuses the same focus trap, Escape handling, scroll lock, and focus restoration, and marks the rest of the page `inert` while open.
+- `/original/contact/` recreates the reference booking page, including its two-column layout and all eleven intake controls. The form has no `action`, makes no network request, and stores nothing; submitting a valid form replaces it with a notice explaining that it is a demonstration.
 - `Photo` uses a checked-in image manifest to choose real responsive image variants, with lazy loading and explicit dimensions. Above-the-fold photography loads eagerly.
 - Section links navigate to services, Maya’s biography, modalities, and office. Links outside the reference clone point to the original website.
 
@@ -56,7 +58,9 @@ The redesign keeps the reference’s section order, rectangular photos, generous
 | Ink | `#23383F` | Body copy |
 | White | `#FCFCFA` | Services, office, supporting sections |
 
-Fraunces and DM Sans provide the redesign’s typography. The clone uses **Cormorant Garamond, Allura, and Mulish** as the approved open-font substitutes for Beaufort Pro, Printed Moments, and Muli. Font families are the documented exception to exact visual matching; letterforms and some line wrapping differ. The clone intentionally retains the original pale teal accent, whose text contrast is lower than the redesign’s. Fonts are bundled through Fontsource under their included open licenses.
+The clone reproduces the reference's interaction layer as well as its composition: its text-link rule wipes away right to left over one second, its oval button changes only fill and label colour, and its navigation links, service titles and expertise links deliberately do not respond to hover. Neither site animates content on scroll. The reference also runs two inks — `#2B2B2B` for most copy and pure black in the approach band and on service-card titles — which the clone now matches.
+
+Fraunces and DM Sans provide the redesign’s typography. The clone uses **Cormorant Garamond, Allura, and Mulish** as the approved open-font substitutes for Beaufort Pro, Printed Moments, and Muli. Font families are the documented exception to exact visual matching; letterforms differ. Because Allura sets far narrower than the reference's Printed Moments, the clone scales its script accents up so the words match the reference's measured widths, and trims the hero heading's measure so its line breaks match at every width. The clone intentionally retains the original pale teal accent, whose text contrast is lower than the redesign’s. Fonts are bundled through Fontsource under their included open licenses.
 
 - [Reference homepage](https://www.conejovalleycounseling.com/home)
 - [Dr. Maya Reynolds’ supplied profile](https://docs.google.com/document/d/1-IJVKEjuqV9CTd9QH16UNHJ7SQfdiweS4oAIZ8vmgHU/edit)
@@ -74,7 +78,7 @@ Optimized WebP assets and their size manifest are committed, so builds do not ne
 npm run test:e2e
 ```
 
-Tests use installed Google Chrome. They cover both routes at 320, 390, 768, 1024, and 1440 pixels; missing images and clipped text; menu and dropdown navigation; dialog focus, dismissal and demo behavior; FAQ expansion; WCAG AA automated checks on the redesign; metadata; reduced motion; and static 404 handling. The original’s known accent contrast is documented above rather than represented as WCAG compliant.
+Tests use installed Google Chrome. They cover both routes at 320, 390, 768, 1024, and 1440 pixels; missing images and clipped text; menu and dropdown navigation; dialog focus, dismissal and demo behavior; FAQ expansion; WCAG AA automated checks on the redesign and the cloned contact page; metadata; reduced motion; and static 404 handling. Clone-specific checks cover the burger morph and folder stepping, dropdown right alignment, the absence of hover tinting, the white colophon, every booking control resolving to `/original/contact/`, and a form submission that produces no POST, PUT, or PATCH request. The original’s known accent contrast is documented above rather than represented as WCAG compliant.
 
 See the [validation record](docs/validation.md) for the completed checks and mobile Lighthouse measurements: 92 for the redesign and 84 for the clone in local simulated mobile tests.
 

@@ -26,8 +26,12 @@ img { display: block; max-width: 100%; }
   --font-body: "Mulish Variable", sans-serif;
   --color-background: #f6f4ee;
   --color-paper: #fff;
-  --color-sand: #e3d9cb;
+  --color-sand: #e3d9ca;
   --color-ink: #2b2b2b;
+  /* The reference runs two inks: #2b2b2b for most copy, pure black in the
+     approach section and on service-card titles. */
+  --color-strong: #000;
+  --color-rule: #515151;
   --color-primary: #2b2b2b;
   --color-accent: #86b3b3;
   --color-muted: #575752;
@@ -40,12 +44,14 @@ img { display: block; max-width: 100%; }
   --color-paper: #fcfcfa;
   --color-sand: #dce7e8;
   --color-ink: #23383f;
+  --color-strong: #23383f;
+  --color-rule: currentColor;
   --color-primary: #234c5a;
   --color-accent: #927047;
   --color-muted: #4f656b;
 }
 .site-shell { font-family: var(--font-body); color: var(--color-ink); background: var(--color-paper); }
-.skip-link { position: fixed; top: 12px; left: 12px; z-index: 200; background: #234c5a; color: #fff; padding: 14px 22px; transform: translateY(-160%); }
+.skip-link { position: fixed; top: 12px; left: 12px; z-index: 200; background: var(--color-ink, #234c5a); color: var(--color-paper, #fff); padding: 14px 22px; transform: translateY(-160%); }
 .skip-link:focus { transform: translateY(0); }
 [id] { scroll-margin-top: 36px; }
 @media (prefers-reduced-motion: reduce) {

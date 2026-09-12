@@ -2,6 +2,8 @@ import type { Theme } from "./types";
 
 export type NavigationItem = { label: string; href?: string; dialog?: "faq" | "consultation"; children?: NavigationItem[] };
 const reference = "https://www.conejovalleycounseling.com";
+/** The clone hosts its own recreation of the reference booking page. */
+export const contactHref = "/original/contact/";
 export const navigation: Record<Theme, NavigationItem[]> = {
   maya: [
     { label: "About", href: "#about" },

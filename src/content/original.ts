@@ -1,6 +1,7 @@
 import type { HomepageContent } from "./types";
 
 const reference = "https://www.conejovalleycounseling.com";
+const contactHref = "/original/contact/";
 const href = (path: string) => `${reference}${path}`;
 const image = (name: string, alt: string, position = "50% 50%") => ({ src: `/images/original-${name}.webp`, alt, position });
 
@@ -9,7 +10,7 @@ export const originalContent: HomepageContent = {
     eyebrow: "Online & in-person counseling in Newbury Park & across CA",
     title: [{ text: "Rebuild your foundation on solid ground and finally begin to " }, { text: "thrive", accent: true }, { text: "." }],
     description: "Specialized therapy for adults, couples, teens, and children to reflect, heal, and grow.",
-    action: { label: "Book an appointment", href: href("/contact") },
+    action: { label: "Book an Appointment", href: contactHref },
     image: image("hero", "A family enjoying a peaceful afternoon together at the beach"),
     sideImage: image("hero-side", "A child exploring the water's edge", "87.3% 56%"),
   },
@@ -76,7 +77,7 @@ export const originalContent: HomepageContent = {
     title: [{ text: "Find a therapist who is the right fit for " }, { text: "you", accent: true }, { text: "." }],
     body: "Coming to therapy is a courageous decision, and connecting with the right kind of therapist makes all the difference. We understand that your journey is personal, and we're here to support you with care and understanding every step of the way. Each member of our team brings dedicated expertise and a commitment to support you in your struggles. We want you to feel prioritized, understood, and empowered.",
     prompt: "Click the button below to schedule an appointment.",
-    action: { label: "Book now", href: href("/contact") },
+    action: { label: "Book now", href: contactHref },
     smallImage: image("closing-one", "A person picking up seashells in the sand"),
     largeImage: image("closing-two", "An adult and child discovering shells on the beach", "62.9% 52.8%"),
   },

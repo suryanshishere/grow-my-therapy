@@ -37,3 +37,9 @@ Dr. Maya Reynolds is the imaginary therapist specified in the internship assignm
 ## Final source check
 
 Before submission, compare every visible redesign claim with the supplied profile, including button text, FAQs, dialogs, footer, metadata, and alternative text. Remove any inherited reference name, contact detail, location, or service claim from the redesign. Confirm that any credential shown is explicitly present in the profile; the assignment's use of “Dr.” must not be expanded into unsupported qualifications.
+
+## Cloned contact page
+
+`/original/contact/` reproduces the reference practice's intake form for the clone route only. Its field labels, helper sentences, and select options are copied verbatim from `https://www.conejovalleycounseling.com/contact` so the study matches the source, and they are held in `src/content/contact.ts`.
+
+The clinician list names real people at a real practice. It is reproduced solely to match the reference and carries no claim about their availability. The form is inert: it has no `action`, issues no request, and retains nothing a visitor types. A completed submission is replaced by a notice that says so and points to the real practice's own contact page.

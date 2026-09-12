@@ -117,3 +117,146 @@ test("source fidelity, SEO metadata, reduced motion, and static 404", async ({ p
   expect(response?.status()).toBe(404);
   await expect(page.getByRole("link", { name: "Back to the homepage" })).toBeVisible();
 });
+
+test("clone burger morphs to a close control and steps through folder panels", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/original/");
+  const burger = page.getByRole("button", { name: "Open navigation menu" });
+  const logo = page.locator(".site-header .original-brand");
+  await expect(logo).toBeVisible();
+  await burger.click();
+
+  // The source keeps its logo in place and turns the burger itself into the close control.
+  await expect(logo).toBeVisible();
+  const toggle = page.getByRole("button", { name: "Close navigation menu" });
+  await expect(toggle).toHaveAttribute("aria-expanded", "true");
+  expect(await page.locator(".burger-box span").first().evaluate(element => getComputedStyle(element).transform)).toContain("matrix");
+  expect(await page.evaluate(() => getComputedStyle(document.body).overflow)).toBe("hidden");
+
+  const root = page.locator(".overlay-panel--active");
+  await expect(root.getByRole("button", { name: "Our Team" })).toBeVisible();
+  await expect(root.getByRole("link", { name: "Contact" })).toBeVisible();
+
+  await root.getByRole("button", { name: "Our Team" }).click();
+  const folder = page.locator(".overlay-panel--active");
+  await expect(folder.getByRole("link", { name: "Jennifer Anderson, LMFT" })).toBeVisible();
+  await expect(folder.getByRole("link")).toHaveCount(9);
+  await expect(folder.getByRole("button", { name: "Back" })).toBeVisible();
+
+  await folder.getByRole("button", { name: "Back" }).click();
+  await expect(page.locator(".overlay-panel--active").getByRole("button", { name: "Our Team" })).toBeVisible();
+
+  await page.keyboard.press("Escape");
+  await expect(burger).toBeFocused();
+  await expect(burger).toHaveAttribute("aria-expanded", "false");
+  expect(await page.evaluate(() => getComputedStyle(document.body).overflow)).not.toBe("hidden");
+});
+
+test("clone dropdowns hang off the right of their folder title and nothing tints on hover", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/original/");
+  const title = page.getByRole("button", { name: "Our Team", exact: true });
+  await title.hover();
+  const panel = page.locator("#nav-our-team");
+  await expect(panel).toBeVisible();
+  const offset = await panel.evaluate((element, right) => element.getBoundingClientRect().right - right, await title.evaluate(element => element.getBoundingClientRect().right));
+  expect(offset).toBeGreaterThan(8);
+  expect(offset).toBeLessThan(20);
+  expect(await panel.evaluate(element => getComputedStyle(element).textAlign)).toBe("right");
+
+  // The source leaves nav links, service titles and expertise links untouched on hover.
+  for (const selector of [".desktop-navigation > a", ".service-title-link", ".expertise-link"]) {
+    const target = page.locator(selector).first();
+    await target.scrollIntoViewIfNeeded();
+    const before = await target.evaluate(element => getComputedStyle(element).color);
+    await target.hover();
+    await page.waitForTimeout(400);
+    expect(await target.evaluate(element => getComputedStyle(element).color), selector).toBe(before);
+  }
+});
+
+test("clone colophon is white on the teal strip and carries only the source credits", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/original/");
+  const colophon = page.locator(".site-colophon");
+  expect(await colophon.evaluate(element => getComputedStyle(element).color)).toBe("rgb(255, 255, 255)");
+  expect(await colophon.evaluate(element => getComputedStyle(element).backgroundColor)).toBe("rgb(134, 179, 179)");
+  await expect(colophon).toContainText("Website by Walker Strategy Co.");
+  await expect(colophon.getByRole("link", { name: /redesign/i })).toHaveCount(0);
+  await expect(page.getByRole("link", { name: /redesign/i })).toBeVisible();
+});
+
+test("every booking control opens the cloned contact page", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/original/");
+  for (const name of ["Book an Appointment", "Book now"]) {
+    await expect(page.getByRole("link", { name })).toHaveAttribute("href", "/original/contact/");
+  }
+  await expect(page.getByRole("navigation", { name: "Main navigation" }).getByRole("link", { name: "Contact" })).toHaveAttribute("href", "/original/contact/");
+  await page.getByRole("link", { name: "Book an Appointment" }).click();
+  await expect(page).toHaveURL(/\/original\/contact\/$/);
+  await expect(page.locator("h1")).toHaveText("Get in touch.");
+});
+
+test("cloned intake form carries every source field and never transmits a submission", async ({ page }) => {
+  const sent: string[] = [];
+  // Anything that would carry a submission body; the preview server itself issues
+  // non-GET navigation requests, so those are not evidence of a transmission.
+  page.on("request", request => {
+    if (["POST", "PUT", "PATCH"].includes(request.method())) sent.push(`${request.method()} ${request.url()}`);
+  });
+  await page.setViewportSize({ width: 1440, height: 1200 });
+  await page.goto("/original/contact/");
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
+
+  const form = page.locator("form.contact-form");
+  await expect(form).toHaveCount(1);
+  expect(await form.getAttribute("action")).toBeNull();
+  await expect(form.locator("input, select, textarea")).toHaveCount(11);
+  for (const label of [
+    "First Name", "Last Name", "Email", "Phone",
+    "Are you looking for telehealth or in-person therapy?",
+    "How did you hear about our practice?",
+    "Please provide the name of your insurance company:",
+    "What are the presenting issues?",
+    "If the counseling is for a minor, please provide their age:",
+    "Are you interested in working with a particular clinician?",
+    "We see clients the same day and time each week. Please provide some consistent days and times that work for you:",
+  ]) {
+    await expect(form.getByText(label, { exact: false }).first(), label).toBeVisible();
+  }
+  await expect(form.getByText("If you do not plan to use insurance", { exact: false })).toBeVisible();
+  await expect(form.getByText("Note: Please do not provide any personal information in this form.")).toBeVisible();
+  await expect(form.locator('select[name="clinician"] option')).toHaveCount(12);
+
+  // An empty submit reports the first missing field rather than sending anything.
+  await form.getByRole("button", { name: "Submit" }).click();
+  await expect(form.getByText("First Name is required.")).toBeVisible();
+  await expect(form.locator('input[name="first-name"]')).toBeFocused();
+
+  await form.locator('input[name="first-name"]').fill("Sam");
+  await form.locator('input[name="last-name"]').fill("Rivera");
+  await form.locator('input[name="email"]').fill("sam@example.com");
+  await form.locator('input[name="phone"]').fill("805 555 0100");
+  await form.locator('select[name="format"]').selectOption("Telehealth");
+  await form.locator('select[name="referral"]').selectOption("Google search");
+  await form.locator('input[name="insurance"]').fill("None");
+  await form.locator('textarea[name="issues"]').fill("Looking for support with stress.");
+  await form.locator('select[name="clinician"]').selectOption("None");
+  await form.locator('input[name="availability"]').fill("Tuesday mornings");
+  await form.getByRole("button", { name: "Submit" }).click();
+
+  const notice = page.getByRole("status");
+  await expect(notice).toContainText("This is a demonstration form.");
+  await expect(notice).toContainText("Nothing was sent and no information was stored.");
+  expect(sent).toEqual([]);
+});
+
+test("cloned contact page meets automated WCAG AA checks", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1200 });
+  await page.goto("/original/contact/");
+  await page.evaluate(() => document.fonts.ready);
+  const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
+  // The clone keeps the source's pale teal accent, whose contrast is documented in the README.
+  expect(results.violations.filter(violation => violation.id !== "color-contrast")).toEqual([]);
+});

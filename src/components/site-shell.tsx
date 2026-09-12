@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Action, DialogProvider, HeaderNavigation } from "./interactions";
+import { contactHref } from "@/content/navigation";
 import { Photo } from "./photo";
 import type { Theme } from "@/content/types";
 
@@ -37,7 +38,7 @@ export function SiteShell({ theme, children }: { theme: Theme; children: ReactNo
             {!original && <p className="footer-credential">Dr. Maya Reynolds, PsyD<br />Licensed Clinical Psychologist</p>}
           </div>
           <div className="footer-links"><h2>{original ? "Navigate" : "Explore"}</h2>
-            {original ? <><Link href="/original/">Home</Link><a href="https://www.conejovalleycounseling.com/therapists-newbury-park">About</a><a href="https://www.conejovalleycounseling.com/faqs">FAQs</a><a href="https://www.conejovalleycounseling.com/contact">Contact</a></> : <><a href="#about">Meet Maya</a><a href="#services">Services</a><a href="#office">Our office</a><Action dialog="faq" className="footer-action">FAQs</Action></>}
+            {original ? <><Link href="/original/">Home</Link><a href="https://www.conejovalleycounseling.com/therapists-newbury-park">About</a><a href="https://www.conejovalleycounseling.com/faqs">FAQs</a><Link href={contactHref}>Contact</Link></> : <><a href="#about">Meet Maya</a><a href="#services">Services</a><a href="#office">Our office</a><Action dialog="faq" className="footer-action">FAQs</Action></>}
           </div>
           <div className="footer-links footer-methods"><h2>{original ? "Our team" : "My approach"}</h2>
             {original ? originalFooterTeam.map(([name, path]) => <a key={path} href={`https://www.conejovalleycounseling.com/${path}`}>{name}</a>) : <><a href="#method-1">CBT</a><a href="#method-2">EMDR</a><a href="#method-3">Mindfulness</a><a href="#method-4">Body-oriented therapy</a></>}
@@ -50,8 +51,11 @@ export function SiteShell({ theme, children }: { theme: Theme; children: ReactNo
       </footer>
       <div className="site-colophon">
         <p>{original ? <><a href="https://www.conejovalleycounseling.com/terms">Terms</a> | <a href="https://www.conejovalleycounseling.com/privacy-policy">Privacy Policy</a> | <a href="https://www.conejovalleycounseling.com/disclaimer">Disclaimer</a> | Website by <a href="https://walkerstrategyco.com">Walker Strategy Co.</a></> : "© 2026 Dr. Maya Reynolds · Fictional practice · Internship concept"}</p>
-        <Link href={original ? "/" : "/original/"}>{original ? "View Maya’s redesign" : "View the original clone"}<span aria-hidden="true"> ↗</span></Link>
+        {!original && <Link href="/original/">View the original clone<span aria-hidden="true"> ↗</span></Link>}
       </div>
+      {/* The reference strip carries nothing but its own credits, so the switch between the
+          two assignment versions sits outside the cloned page chrome. */}
+      {original && <Link href="/" className="version-switch">View Maya’s redesign<span aria-hidden="true"> ↗</span></Link>}
     </DialogProvider>
   </div>;
 }
