@@ -4,9 +4,9 @@ A responsive homepage study and therapist website redesign, built for Grow My Th
 
 ## View the project
 
-- Redesign: `/`
-- Reference clone: `/original/`
-- Publishing targets: Cloudflare Pages project `grow-my-therapy-suryansh` and public GitHub repository `suryanshishere/grow-my-therapy`.
+- [Live redesign](https://grow-my-therapy-suryansh.pages.dev/)
+- [Reference clone](https://grow-my-therapy-suryansh.pages.dev/original/)
+- [Public GitHub repository](https://github.com/suryanshishere/grow-my-therapy)
 - Verified submission links are recorded in [the submission checklist](docs/submission-checklist.md).
 
 Dr. Maya Reynolds is fictional. Consultation controls open an informational demo dialog; this website does not collect personal information, book appointments, or send messages.

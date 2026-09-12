@@ -1,6 +1,6 @@
 # Five-minute client walkthrough
 
-Use the published redesign at `/`. Speak to Dr. Maya as a client reviewing her first website draft. The spoken copy is approximately 620 words; rehearse at a calm pace and use the marked pauses to land at five minutes. Screen directions are not spoken. The reference clone at `/original` is available for the evaluator; keep this client presentation focused on Maya's website.
+Use the [published redesign](https://grow-my-therapy-suryansh.pages.dev/). Speak to Dr. Maya as a client reviewing her first website draft. The spoken copy is approximately 620 words; rehearse at a calm pace and use the marked pauses to land at five minutes. Screen directions are not spoken. The reference clone at `/original` is available for the evaluator; keep this client presentation focused on Maya's website.
 
 ## 0:00–0:35 — Introduce the draft
 

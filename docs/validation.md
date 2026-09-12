@@ -10,6 +10,12 @@ Reviewed on September 12, 2026, using the production static export served by Clo
 - The clone was compared manually with the reference at 390, 768, and 1440 pixels, including section proportions, image crops, mobile order, and the reference's 799px hamburger breakpoint.
 - Redesign copy, FAQ answers, dialog text, footer credentials, and location were checked against the supplied profile. The supplied portrait and both office photographs are included.
 
+## Public deployment checks
+
+The Pages deployment was verified at [the redesign](https://grow-my-therapy-suryansh.pages.dev/) and [the clone](https://grow-my-therapy-suryansh.pages.dev/original/) on September 12, 2026. Both returned HTTP 200 on direct requests and refreshes. All page images loaded; the clone returned its noindex header. All 13 visible desktop FAQ and consultation triggers opened the expected dialog and restored focus after Escape. Public mobile navigation, FAQ transitions, automated accessibility, metadata, and the missing-page route passed three additional Playwright checks. The favicon, robots file, sitemap, image response headers, and HTTP 404 were also verified.
+
+The [GitHub repository](https://github.com/suryanshishere/grow-my-therapy) is public and contains the source on `main`. Cloudflare uses Direct Upload; automatic deployments are not enabled.
+
 ## Mobile performance
 
 Lighthouse 13.4.1, simulated mobile Slow 4G and 4× CPU slowdown, with an empty browser cache against the local production Pages preview:
