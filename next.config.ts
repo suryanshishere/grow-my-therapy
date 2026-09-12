@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   images: { unoptimized: true },
   poweredByHeader: false,
   turbopack: { root: process.cwd() },
+  experimental: { inlineCss: true },
 };
 
 export default nextConfig;

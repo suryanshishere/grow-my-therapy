@@ -41,6 +41,8 @@ The production export is written to `out/`. The preview serves it on `http://loc
 
 The application uses Next.js App Router, React, TypeScript, Tailwind CSS 4, and CSS grids. Static export is configured with `output: "export"`, `trailingSlash: true`, and `images.unoptimized: true`. There is no backend, database, appointment integration, or runtime image service.
 
+Next.js's experimental `inlineCss` option serves the small stylesheet with the initial HTML. In the local mobile Lighthouse comparison, this removed three blocking CSS requests and reduced the redesign's LCP from 3.72s to 1.46s. The tradeoff is about 29 KiB more initial transfer and no independent stylesheet caching on first loads.
+
 ## Design and sources
 
 The redesign keeps the reference’s section order, rectangular photos, generous whitespace, thin underlines, and oval buttons. The one added homepage section is **Our Office**, immediately after Maya’s biography. FAQs retain their header/footer entry points and open in a dialog instead of adding another page section.
@@ -83,7 +85,7 @@ npx wrangler whoami
 # If authentication is needed: npx wrangler login
 
 # Once per new project:
-npx wrangler pages project create grow-my-therapy-suryansh --production-branch main
+npx wrangler pages project create grow-my-therapy-suryansh --production-branch main --force
 
 npm run lint
 npm run typecheck
@@ -92,6 +94,8 @@ npm run deploy
 ```
 
 `wrangler.jsonc` identifies the Pages project and `out/` directory. This is a **Direct Upload** project. GitHub stores the source; pushes do not deploy automatically. Run the build and deploy commands for updates. No custom domain or paid service is required. Confirm the URL returned by Wrangler before sharing it.
+
+The installed Wrangler 4.131.1 uses `--force` for this one-time project creation to select Pages instead of delegating to Workers. The project is already created; subsequent deployments use `npm run deploy` without that flag.
 
 The redesign includes a title, description, canonical URL, Open Graph metadata, descriptive headings, and local service terms. `/original/` is marked `noindex` in page metadata and response headers. `public/_headers` supplies static response headers and immutable caching for hashed framework assets.
 
