@@ -76,6 +76,8 @@ npm run test:e2e
 
 Tests use installed Google Chrome. They cover both routes at 320, 390, 768, 1024, and 1440 pixels; missing images and clipped text; menu and dropdown navigation; dialog focus, dismissal and demo behavior; FAQ expansion; WCAG AA automated checks on the redesign; metadata; reduced motion; and static 404 handling. The original’s known accent contrast is documented above rather than represented as WCAG compliant.
 
+See the [validation record](docs/validation.md) for the completed checks and mobile Lighthouse measurements: 92 for the redesign and 84 for the clone in local simulated mobile tests.
+
 `node scripts/capture-site.mjs http://localhost:8787` captures desktop/mobile screenshots into ignored `.artifacts/` for visual review. Screenshot comparisons are manual because the approved font substitutes have different letterforms. Test traces and reports remain in ignored output directories.
 
 ## Publish on Cloudflare Pages
