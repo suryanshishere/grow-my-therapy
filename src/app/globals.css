@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: "DM Sans Variable", sans-serif;
+  --font-serif: "Fraunces Variable", Georgia, serif;
+  --color-ocean: #234c5a;
+  --color-mist: #dce7e8;
+  --color-sand: #f3eee5;
+  --color-bronze: #927047;
+}
+
+:root { color-scheme: light; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #fcfcfa; color: #23383f; }
+button, a, input, summary { -webkit-tap-highlight-color: transparent; }
+button, summary { cursor: pointer; }
+a { color: inherit; }
+button { font: inherit; }
+img { display: block; max-width: 100%; }
+::selection { background: #dce7e8; color: #234c5a; }
+:focus-visible { outline: 2px solid currentColor; outline-offset: 7px; }
+.site-shell { min-height: 100vh; overflow: clip; }
+.theme-original {
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-script: "Allura", cursive;
+  --font-body: "Mulish Variable", sans-serif;
+  --color-background: #f6f4ee;
+  --color-paper: #fff;
+  --color-sand: #e3d9cb;
+  --color-ink: #2b2b2b;
+  --color-primary: #2b2b2b;
+  --color-accent: #86b3b3;
+  --color-muted: #575752;
+}
+.theme-maya {
+  --font-display: "Fraunces Variable", Georgia, serif;
+  --font-script: "Fraunces Variable", Georgia, serif;
+  --font-body: "DM Sans Variable", sans-serif;
+  --color-background: #f3eee5;
+  --color-paper: #fcfcfa;
+  --color-sand: #dce7e8;
+  --color-ink: #23383f;
+  --color-primary: #234c5a;
+  --color-accent: #927047;
+  --color-muted: #4f656b;
+}
+.site-shell { font-family: var(--font-body); color: var(--color-ink); background: var(--color-paper); }
+.skip-link { position: fixed; top: 12px; left: 12px; z-index: 200; background: #234c5a; color: #fff; padding: 14px 22px; transform: translateY(-160%); }
+.skip-link:focus { transform: translateY(0); }
+[id] { scroll-margin-top: 36px; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}

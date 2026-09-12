@@ -1,0 +1,15 @@
+node_modules/
+.next/
+out/
+.wrangler/
+.artifacts/
+.asset-source/
+test-results/
+playwright-report/
+*.tsbuildinfo
+.env*
+.dev.vars*
+!.env.example
+*.log
+.DS_Store
+Thumbs.db
