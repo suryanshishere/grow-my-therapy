@@ -4,8 +4,8 @@
   background: var(--color-background);
   padding: calc(var(--header-height, 115px) + 95px) 0 100px;
   --contact-container: min(1188px, 90vw);
-  font-size: clamp(15px, 1.1617vw, 19px);
-  line-height: 1.8;
+  font-size: var(--normal-size);
+  line-height: var(--body-line-height);
   font-weight: 300;
 }
 .contact-page-grid {
@@ -19,9 +19,9 @@
 .contact-page h1 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(41px, 4.162vw, 76px);
-  font-weight: 400;
-  line-height: 1.255;
+  font-size: var(--h1-size);
+  font-weight: 300;
+  line-height: var(--h1-line-height);
   letter-spacing: -.01em;
 }
 .contact-page-lead { margin: 34px 0 0; max-width: 27em; }
@@ -52,14 +52,14 @@
   display: block;
   padding: 0;
   font-family: var(--font-body);
-  font-size: 16.73px;
+  font-size: var(--normal-size);
   font-weight: 300;
-  line-height: 1.8;
+  line-height: var(--body-line-height);
   color: var(--color-ink);
 }
-.field-label--sub { font-size: 13.27px; line-height: 1.6; }
-.field-required { font-size: 13.27px; color: color-mix(in srgb, var(--color-ink) 70%, transparent); }
-.field-helper { margin: 0 0 4px; font-size: 13.27px; line-height: 1.5; color: color-mix(in srgb, var(--color-ink) 70%, transparent); }
+.field-label--sub { font-size: var(--small-size); line-height: 1.6; }
+.field-required { font-size: var(--small-size); color: color-mix(in srgb, var(--color-ink) 70%, transparent); }
+.field-helper { margin: 0 0 4px; font-size: var(--small-size); line-height: 1.5; color: color-mix(in srgb, var(--color-ink) 70%, transparent); }
 .contact-form :where(input, select, textarea) {
   width: 100%;
   margin-top: 4px;
@@ -90,7 +90,7 @@
 .contact-form select:has(option:checked:not([value=""])) { color: var(--color-ink); }
 .contact-form :where(input, select, textarea):focus-visible { outline: 2px solid var(--color-ink); outline-offset: 2px; }
 .contact-form .is-invalid { border-color: #8c2f2f; }
-.field-error { margin: 6px 0 0; font-size: 13.27px; line-height: 1.5; color: #8c2f2f; }
+.field-error { margin: 6px 0 0; font-size: var(--small-size); line-height: 1.5; color: #8c2f2f; }
 .contact-page .form-submit {
   display: inline-flex;
   position: relative;
@@ -101,7 +101,7 @@
   background: transparent;
   color: var(--color-ink);
   font-family: var(--font-body);
-  font-size: 13.48px;
+  font-size: var(--button-size);
   font-weight: 400;
   letter-spacing: .12em;
   text-transform: uppercase;
@@ -112,9 +112,9 @@
 .form-notice h2 {
   margin: 0 0 18px;
   font-family: var(--font-display);
-  font-size: clamp(29px, 2.722vw, 49px);
-  font-weight: 400;
-  line-height: 1.32;
+  font-size: var(--h3-size);
+  font-weight: 300;
+  line-height: var(--h3-line-height);
 }
 .form-notice p { margin: 0 0 15px; }
 .form-notice a { color: inherit; }
@@ -132,5 +132,4 @@
   .contact-page-rule { margin-top: 46px; }
   .contact-page-details { margin-top: 34px; }
   .contact-page-form { margin-top: 40px; }
-  .field-label { font-size: 16px; }
 }

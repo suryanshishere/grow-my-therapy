@@ -1,5 +1,24 @@
 # Validation record
 
+## Sunlit Studio revision — September 13, 2026
+
+The redesigned Maya homepage is verified locally at `http://127.0.0.1:8787/`, using the production static export served by Wrangler Pages. This revision has not been deployed; the public deployment notes below describe the preceding release.
+
+- ESLint, strict TypeScript checking, and the final Next.js production build passed. An initial build exposed a malformed, automatically generated `.next/dev/types/validator.ts`; removing that generated cache file allowed a clean rebuild. No application type errors remained.
+- All **27 Playwright tests passed**, with no failures or skipped tests. Coverage includes both homepage routes at 320, 390, 768, 1024, and 1440px; the cloned contact form; image loading; text bounds; navigation; FAQ expansion; session information; keyboard focus; metadata; and static 404 behavior.
+- Automated axe checks passed on Maya's homepage and FAQ dialog and on the cloned contact page. The olive, stone, plum, and light text/button combinations were also checked for contrast. Automated checks are not a complete accessibility certification.
+- The suite verifies the original section order with Our Office as the only addition, three services, four modalities, the supplied portrait and both office photographs, and exclusion of the previous coastal photography from Maya's homepage.
+- A dedicated regression test covers direct and nested mobile-menu anchors with reduced motion enabled. Dialog closure now restores keyboard focus without scrolling away from the selected section. Normal menu, Escape, focus-containment, and focus-restoration behavior also pass.
+- Client navigation from the clone to Maya and back preserves the clone's colors, fonts, and geometry. The original homepage/content/routes and the pre-existing changes to homepage, shell, and contact CSS match the pre-redesign working-tree snapshot. The image preparation pass verified that all 45 original and supplied image files remained byte-identical.
+- Final desktop, tablet, and mobile screenshots were reviewed for type hierarchy, paragraph readability, image crops, and section rhythm. All five widths recorded zero horizontal overflow, clipped text, broken images, or browser errors. Desktop main prose is 17px; mobile main prose is 16px. The office compositions stack on phones.
+- Every factual claim in the homepage, FAQs, session dialog, footer, image descriptions, and metadata was checked against the provided profile. The malformed street address remains omitted. No fees, availability, testimonials, contact information, or treatment guarantees were added.
+
+Final screenshots are stored as `.artifacts/sunlit-<width>.png`, with separate hero and section views. `.artifacts/sunlit-layout.json` contains the measured layout results, and the Playwright HTML report contains the 27-test run. The unfocused skip link was confirmed to remain above the viewport during ordinary scrolling and to become visible on keyboard focus; standalone section captures suppress its offscreen rendering artifact only while taking the screenshot.
+
+The Lighthouse figures below belong to the previous redesign. No new Lighthouse score or public deployment verification is claimed for this local revision.
+
+## Earlier release record
+
 Reviewed on September 12, 2026, using the production static export served by Cloudflare's local Pages preview.
 
 ## Build and browser checks

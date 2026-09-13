@@ -452,5 +452,127 @@
         "width": 1500
       }
     ]
+  },
+  "/images/maya-studio-intro.webp": {
+    "width": 1600,
+    "height": 1067,
+    "sources": [
+      {
+        "src": "/images/maya-studio-intro-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/images/maya-studio-intro-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/images/maya-studio-intro.webp",
+        "width": 1600
+      }
+    ]
+  },
+  "/images/maya-studio-anxiety.webp": {
+    "width": 1200,
+    "height": 1800,
+    "sources": [
+      {
+        "src": "/images/maya-studio-anxiety-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/images/maya-studio-anxiety-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/images/maya-studio-anxiety.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/images/maya-studio-trauma.webp": {
+    "width": 1200,
+    "height": 2132,
+    "sources": [
+      {
+        "src": "/images/maya-studio-trauma-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/images/maya-studio-trauma-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/images/maya-studio-trauma.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/images/maya-studio-burnout.webp": {
+    "width": 1200,
+    "height": 1799,
+    "sources": [
+      {
+        "src": "/images/maya-studio-burnout-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/images/maya-studio-burnout-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/images/maya-studio-burnout.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/images/maya-studio-statement.webp": {
+    "width": 1600,
+    "height": 1067,
+    "sources": [
+      {
+        "src": "/images/maya-studio-statement-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/images/maya-studio-statement-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/images/maya-studio-statement.webp",
+        "width": 1600
+      }
+    ]
+  },
+  "/images/maya-studio-bridge.webp": {
+    "width": 1600,
+    "height": 2133,
+    "sources": [
+      {
+        "src": "/images/maya-studio-bridge-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/images/maya-studio-bridge-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/images/maya-studio-bridge.webp",
+        "width": 1600
+      }
+    ]
+  },
+  "/images/maya-studio-closing.webp": {
+    "width": 960,
+    "height": 1280,
+    "sources": [
+      {
+        "src": "/images/maya-studio-closing-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/images/maya-studio-closing.webp",
+        "width": 960
+      }
+    ]
   }
 }

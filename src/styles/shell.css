@@ -156,12 +156,12 @@
 }
 
 /* The reference route keeps the source site's navigation and four-column footer. */
-.theme-original .desktop-navigation { font-size: 13.272px; gap: 2.5vw; text-transform: uppercase; letter-spacing: .1em; font-weight: 400; line-height: 23.89px; text-align: right; }
+.theme-original .desktop-navigation { font-size: var(--small-size); gap: 2.5vw; text-transform: uppercase; letter-spacing: .1em; font-weight: 400; line-height: var(--body-line-height); text-align: right; }
 .theme-original .nav-dropdown > button { text-transform: uppercase; }
 .theme-original .nav-dropdown > button svg { display: none; }
-/* The source hangs each panel off the right edge of its folder title, overshooting it
-   by 13.272px, and right-aligns the items. */
-.theme-original .dropdown-links { left: auto; right: -13.272px; text-align: right; padding: 0; border: 0; box-shadow: none; }
+/* The source hangs each panel off the right edge of its folder title, overshooting it by
+   one small-text step, and right-aligns the items. */
+.theme-original .dropdown-links { left: auto; right: calc(var(--small-size) * -1); text-align: right; padding: 0; border: 0; box-shadow: none; }
 .theme-original .dropdown-links a { padding: .75em 1em; }
 
 /* The source draws the rule under a text link as a zero-height ::after whose right
@@ -189,7 +189,7 @@
 /* The approach band sits in the darker ink and lifts to the body ink on hover. */
 .theme-original .approach-section .action-link { transition: color .1s linear; }
 .theme-original .approach-section .action-link:hover { color: var(--color-ink); }
-.theme-original .desktop-navigation .action-oval { font-size: 12.408px; text-transform: uppercase; padding: 15px 19.5px; }
+.theme-original .desktop-navigation .action-oval { font-size: var(--button-size); line-height: normal; text-transform: uppercase; padding: 15px 19.5px; }
 .theme-original .practice-footer { padding: 65px 5vw 117px; }
 .theme-original .footer-grid { grid-template-columns: repeat(24, minmax(0, 1fr)); column-gap: 11px; max-width: 1800px; }
 .theme-original .footer-brand-column { grid-column: 1 / 9; }
@@ -197,27 +197,32 @@
 .theme-original .footer-methods { grid-column: 15 / 20; }
 .theme-original .footer-location { grid-column: 20 / 25; }
 .theme-original .footer-grid .original-brand { width: min(370px, 100%); }
-.theme-original .footer-brand-column > p { padding-inline: 6%; max-width: none; margin-top: 8px; font-size: clamp(15px, 1.1617vw, 19px); line-height: 1.8; }
-.theme-original .footer-grid h2 { font-size: 15px; line-height: 27px; margin: 0 0 15px; }
-.theme-original .footer-grid p, .theme-original .footer-links > a { font-size: 15px; font-weight: 300; line-height: 27px; }
+.theme-original .footer-grid .footer-brand-column > p { padding-inline: 6%; max-width: none; margin-top: 8px; font-size: var(--normal-size); line-height: var(--body-line-height); }
+/* The source's footer column headings are large text with the same tracked uppercase run
+   its eyebrows use. */
+.theme-original .footer-grid h2 { font-size: var(--large-size); line-height: var(--body-line-height); margin: 0 0 15px; }
+/* The source's footer sets its lists, address and credits strip at .9em of its normal
+   text, while the column headings stay at the large-text size. */
+.theme-original .footer-grid p, .theme-original .footer-links > a { font-size: calc(var(--normal-size) * .9); font-weight: 300; line-height: var(--body-line-height); }
 .theme-original .footer-links > a { margin-bottom: 0; }
 .theme-original .footer-location a { text-decoration: none; }
 .theme-original .footer-location a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .theme-original .original-service-area { margin-top: 15px; }
-.theme-original .site-colophon { min-height: 50px; padding: 11px 6.8vw; font-size: 15px; font-weight: 300; line-height: 27px; }
+.theme-original .site-colophon { min-height: 50px; padding: 11px 6.8vw; font-size: calc(var(--normal-size) * .9); font-weight: 300; line-height: var(--body-line-height); }
 .theme-original .site-colophon > a { font-size: 11px; }
-.theme-original .homepage .eyebrow { font-size: 15px; font-weight: 400; letter-spacing: .12em; }
-/* Allura sets far narrower than the source's Printed Moments at the same size, so the
-   clone scales it up to land on the reference's measured word widths. */
-.theme-original .script-accent { font-size: 1.5em; }
+.theme-original .homepage .eyebrow { font-size: var(--large-size); font-weight: 400; letter-spacing: .12em; }
+/* The source sets its script accent at 1em of the surrounding heading. Petit Formal
+   Script runs a measured 2.6% wide against Printed Moments across the six accent words,
+   so it needs only that trim rather than a scale-up. */
+.theme-original .script-accent { font-size: .975em; }
 .theme-original .homepage .service-title-link { font: inherit; text-transform: none; letter-spacing: inherit; padding: 0; text-align: left; }
-.theme-original .homepage .expertise-link { font-size: 15px; text-align: left; }
+.theme-original .homepage .expertise-link { font-size: var(--large-size); text-align: left; }
 
 @media (min-width: 768px) and (max-width: 1100px) {
-  .theme-original .desktop-navigation { font-size: 12px; gap: 17px; }
-  .theme-original .desktop-navigation .action-oval { font-size: 11px; padding-inline: 15px; }
-  .theme-original .footer-grid p, .theme-original .footer-links > a { font-size: 12px; line-height: 23px; }
-  .theme-original .footer-grid h2 { font-size: 12px; }
+  /* The source's small text and button sizes hit their max(..., V * 1rem) floor across
+     this range, so they hold rather than shrinking; only the gap tightens. */
+  .theme-original .desktop-navigation { gap: 17px; }
+  .theme-original .desktop-navigation .action-oval { padding-inline: 15px; }
 }
 @media (min-width: 768px) and (max-width: 900px) {
   .theme-original .footer-grid > .footer-links:not(.footer-methods) { grid-column: 10 / 14; }
@@ -236,14 +241,14 @@
   .theme-original .footer-grid > .footer-links, .theme-original .footer-location { width: 74.3%; justify-self: center; }
   .theme-original .footer-location { grid-row: 3; }
   .theme-original .footer-methods { grid-row: 4; }
-  .theme-original .site-colophon { font-size: 14.41px; line-height: 25.94px; gap: 5px; padding: 7.5px 6vw; min-height: 0; }
+  .theme-original .site-colophon { gap: 5px; padding: 7.5px 6vw; min-height: 0; }
   /* .expertise-link only covers the linked items; the three without an href render
-     through `li > span` and were being left at the 14px redesign size. */
+     through `li > span` and were being left at the redesign size. */
   .theme-original .homepage .eyebrow,
   .theme-original .homepage .expertise-link,
-  .theme-original .expertise-list li > span { font-size: 15px; }
+  .theme-original .expertise-list li > span { font-size: var(--large-size); }
   .theme-original .homepage .action-link:not(.service-title-link):not(.expertise-link),
-  .theme-original .homepage .action-oval { font-size: 13.48px; }
+  .theme-original .homepage .action-oval { font-size: var(--button-size); }
 }
 
 @media (min-width: 800px) {
@@ -295,31 +300,36 @@
   align-items: center;
   gap: 0;
   width: 100%;
-  margin-block: 19.5px;
-  padding: 0 19.5px;
+  margin-block: 5vw;
+  padding: 0 5vw;
   border: 0;
   background: none;
   color: var(--color-ink);
   font-family: var(--font-body);
-  font-size: 33.15px;
+  /* The source sizes its overlay rows off the short viewport edge and inherits their
+     tracking from the surrounding normal text, not from the row's own size. */
+  font-size: 8.5vmin;
   font-weight: 400;
   line-height: 1;
-  letter-spacing: .058em;
+  letter-spacing: calc(var(--normal-size) * .12);
   text-align: left;
   text-transform: uppercase;
   text-decoration: none;
 }
-.overlay-item--back { color: color-mix(in srgb, var(--color-ink) 55%, transparent); padding-inline: 10px; }
+.overlay-item--back { color: color-mix(in srgb, var(--color-ink) 55%, transparent); padding-inline: 2.56vw; }
 .overlay-chevron { display: inline-block; width: 1em; height: 1em; flex: 0 0 auto; }
 .overlay-chevron svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; }
 .overlay-chevron--forward { margin-left: .15em; transform: rotate(-90deg); }
 .overlay-chevron--back { margin-right: .15em; transform: rotate(90deg); }
 .overlay-cta { display: flex; align-items: center; height: 88px; flex: 0 0 auto; padding-left: 3.5px; }
 .overlay-list > * { flex: 0 0 auto; }
-.overlay-cta .action-oval { min-width: 210px; font-size: 13.48px; padding: 15px 19.5px; border: 1px solid var(--color-ink); letter-spacing: .12em; }
+.overlay-cta .action-oval { min-width: 210px; font-size: var(--button-size); padding: 15px 19.5px; border: 1px solid var(--color-ink); letter-spacing: .12em; }
+@media (min-width: 576px) { .overlay-item { font-size: 6.6vmin; } }
+@media (min-width: 768px) { .overlay-item { font-size: 6vmin; } }
 @media (min-width: 800px) { .overlay-menu { display: none; } }
 @media (max-height: 700px) {
   .overlay-menu-nav { overflow-y: auto; }
-  .overlay-item { margin-block: 12px; font-size: 28px; }
+  /* 8.5vmin already shrinks the rows on a short viewport; only the rhythm needs help. */
+  .overlay-item { margin-block: 12px; }
   .overlay-cta { height: 70px; }
 }

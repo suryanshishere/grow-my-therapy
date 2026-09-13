@@ -1,15 +1,103 @@
 [
-  {"file":"quiet-ocean.jpg","name":"maya-hero","author":"gi gi","source":"https://www.pexels.com/photo/tranquil-blue-horizon-over-the-open-sea-31744632/","download":"https://images.pexels.com/photos/31744632/pexels-photo-31744632.jpeg?auto=compress&cs=tinysrgb&w=2200","license":"https://www.pexels.com/license/"},
-  {"file":"california-shore.jpg","name":"maya-hero-side","author":"Valerie (@leracherry)","source":"https://unsplash.com/photos/sandy-beach-with-waves-crashing-under-a-hazy-sky-ZbneaDVW0uY","download":"https://images.unsplash.com/photo-1755488216528-189bc42da19c?w=2200&q=90&fit=max","license":"https://unsplash.com/license"},
-  {"file":"dune-grass.jpg","name":"maya-intro","author":"Kristīne Kozaka","source":"https://unsplash.com/photos/grasses-on-sand-dunes-overlooking-the-ocean-7b5n_DbfUXY","download":"https://images.unsplash.com/photo-1759036170366-f824a26292a0?w=2000&q=90&fit=max","license":"https://unsplash.com/license"},
-  {"file":"deep-ocean.jpg","name":"maya-anxiety","author":"Nothing Ahead","source":"https://www.pexels.com/photo/blue-wavy-sea-20585987/","download":"https://images.pexels.com/photos/20585987/pexels-photo-20585987.jpeg?auto=compress&cs=tinysrgb&w=2200","license":"https://www.pexels.com/license/"},
-  {"file":"dune-path.jpg","name":"maya-trauma","author":"maarten van asten","source":"https://www.pexels.com/photo/sandy-path-through-coastal-dunes-under-blue-sky-32660464/","download":"https://images.pexels.com/photos/32660464/pexels-photo-32660464.jpeg?auto=compress&cs=tinysrgb&w=2000","license":"https://www.pexels.com/license/"},
-  {"file":"eucalyptus.jpg","name":"maya-burnout","author":"Annie Spratt","source":"https://unsplash.com/photos/green-leaf-hX_hf2lPpUU","download":"https://images.unsplash.com/photo-1533038590840-1cde6e668a91?w=2000&q=90&fit=max","license":"https://unsplash.com/license"},
-  {"file":"aerial-surf.jpg","name":"maya-banner","author":"Joshua Brown","source":"https://unsplash.com/photos/an-aerial-view-of-a-body-of-water-F0AA2IzvdO4","download":"https://images.unsplash.com/photo-1534559904216-6237e788b585?w=2200&q=90&fit=max","license":"https://unsplash.com/license"},
-  {"file":"coastal-cove.jpg","name":"maya-transition","author":"Vinu T","source":"https://unsplash.com/photos/coastal-cliffs-meet-the-ocean-and-lush-hills--nlLLhs5xcw","download":"https://images.unsplash.com/photo-1750259401110-e6056a454d3c?w=2200&q=90&fit=max","license":"https://unsplash.com/license"},
-  {"file":"sunset-foam.jpg","name":"maya-closing-one","author":"Brooke Balentine","source":"https://unsplash.com/photos/gentle-waves-wash-onto-a-sandy-beach-at-sunset--boxOd85nPU","download":"https://images.unsplash.com/photo-1768622180477-5043d6dcdfcc?w=2200&q=90&fit=max","license":"https://unsplash.com/license"},
-  {"file":"quiet-ocean.jpg","name":"maya-closing-two","author":"gi gi","source":"https://www.pexels.com/photo/tranquil-blue-horizon-over-the-open-sea-31744632/","download":"https://images.pexels.com/photos/31744632/pexels-photo-31744632.jpeg?auto=compress&cs=tinysrgb&w=2200","license":"https://www.pexels.com/license/","note":"Reuse the calm horizon as an intentional closing visual echo; crop may emphasize sky."},
-  {"file":"maya-portrait.png","name":"maya-portrait","author":"Assignment-provided asset","source":"https://drive.google.com/file/d/1koVGhvD8mkiRXRukqrklo0HbB48p9PIa/view","license":"Supplied for this assignment; no broader reuse license asserted."},
-  {"file":"maya-office-one.png","name":"maya-office-one","author":"Assignment-provided asset","source":"https://drive.google.com/file/d/1DwpoQD0VWsfGsl4J1CwtSb3Wxy5ePVJW/view","license":"Supplied for this assignment; no broader reuse license asserted."},
-  {"file":"maya-office-two.png","name":"maya-office-two","author":"Assignment-provided asset","source":"https://drive.google.com/file/d/1EqlCJsSNzGI93VgaQULRIwoFP2xiFioy/view","license":"Supplied for this assignment; no broader reuse license asserted."}
+  {
+    "file": "maya-studio-intro-pexels-31213668.jpg",
+    "name": "maya-studio-intro",
+    "author": "Alpha En",
+    "source": "https://www.pexels.com/photo/modern-sunlit-home-office-desk-setup-31213668/",
+    "download": "https://images.pexels.com/photos/31213668/pexels-photo-31213668.jpeg?auto=compress&cs=tinysrgb&w=2200",
+    "license": "https://www.pexels.com/license/",
+    "purpose": "A quiet work setting connects with the professionals, creatives, and entrepreneurs named in the profile; it is atmospheric imagery, not the practice office.",
+    "maxWidth": 1600,
+    "quality": 80
+  },
+  {
+    "file": "maya-studio-anxiety-pexels-32796350.jpg",
+    "name": "maya-studio-anxiety",
+    "author": "Nothing Ahead",
+    "source": "https://www.pexels.com/photo/sunlit-shadows-on-a-minimalist-wall-32796350/",
+    "download": "https://images.pexels.com/photos/32796350/pexels-photo-32796350.jpeg?auto=compress&cs=tinysrgb&w=2200",
+    "license": "https://www.pexels.com/license/",
+    "purpose": "Soft daylight and repeated shadows create a simple, grounded visual beside anxiety and panic support.",
+    "maxWidth": 1200,
+    "quality": 80
+  },
+  {
+    "file": "maya-studio-trauma-pexels-33588111.jpg",
+    "name": "maya-studio-trauma",
+    "author": "Rahime Gül",
+    "source": "https://www.pexels.com/photo/open-stone-archway-in-sunlit-garden-pathway-33588111/",
+    "download": "https://images.pexels.com/photos/33588111/pexels-photo-33588111.jpeg?auto=compress&cs=tinysrgb&w=2200",
+    "license": "https://www.pexels.com/license/",
+    "purpose": "A sheltered threshold and a gently turning path support carefully paced trauma work without depicting distress or making a claim about outcomes.",
+    "maxWidth": 1200,
+    "quality": 80
+  },
+  {
+    "file": "maya-studio-burnout-pexels-7657978.jpg",
+    "name": "maya-studio-burnout",
+    "author": "Cup of Couple",
+    "source": "https://www.pexels.com/photo/a-cup-of-coffee-and-notebooks-on-a-table-7657978/",
+    "download": "https://images.pexels.com/photos/7657978/pexels-photo-7657978.jpeg?auto=compress&cs=tinysrgb&w=2200",
+    "license": "https://www.pexels.com/license/",
+    "purpose": "A closed notebook and a ceramic cup suggest a pause from work; the muted plum cover ties the image to the accent palette.",
+    "maxWidth": 1200,
+    "quality": 80
+  },
+  {
+    "file": "maya-studio-statement-unsplash-81hLedo7pjk.jpg",
+    "name": "maya-studio-statement",
+    "author": "强 任 (@rendy)",
+    "source": "https://unsplash.com/photos/light-filtering-through-hanging-linen-curtains-outdoors-81hLedo7pjk",
+    "download": "https://images.unsplash.com/photo-1764422097759-1fa737c50c51?w=2200&q=90&fit=max",
+    "license": "https://unsplash.com/license",
+    "purpose": "Light filtering through tactile linen gives the statement a quiet visual pause; it is not presented as the actual office.",
+    "maxWidth": 1600,
+    "quality": 80
+  },
+  {
+    "file": "maya-studio-bridge-pexels-3255244.jpg",
+    "name": "maya-studio-bridge",
+    "author": "Jonathan Borba",
+    "source": "https://www.pexels.com/photo/opened-white-window-with-sheer-curtain-3255244/",
+    "download": "https://images.pexels.com/photos/3255244/pexels-photo-3255244.jpeg?auto=compress&cs=tinysrgb&w=2200",
+    "license": "https://www.pexels.com/license/",
+    "purpose": "A real window, natural light, and soft curtains continue the architectural visual language between office and approach details; not a photograph of the practice.",
+    "maxWidth": 1600,
+    "quality": 77
+  },
+  {
+    "file": "maya-studio-closing-pexels-20013047.jpg",
+    "name": "maya-studio-closing",
+    "author": "Lara Farber",
+    "source": "https://www.pexels.com/photo/cup-in-sunlight-and-shadow-20013047/",
+    "download": "https://images.pexels.com/photos/20013047/pexels-photo-20013047.jpeg?auto=compress&cs=tinysrgb&w=2200",
+    "license": "https://www.pexels.com/license/",
+    "purpose": "A small ceramic detail in window light provides a human everyday ending without another landscape or additional practice claim.",
+    "maxWidth": 960,
+    "quality": 80
+  },
+  {
+    "file": "maya-portrait.png",
+    "name": "maya-portrait",
+    "author": "Assignment-provided asset",
+    "source": "https://drive.google.com/file/d/1koVGhvD8mkiRXRukqrklo0HbB48p9PIa/view",
+    "license": "Supplied for this assignment; no broader reuse license asserted.",
+    "preserve": true
+  },
+  {
+    "file": "maya-office-one.png",
+    "name": "maya-office-one",
+    "author": "Assignment-provided asset",
+    "source": "https://drive.google.com/file/d/1DwpoQD0VWsfGsl4J1CwtSb3Wxy5ePVJW/view",
+    "license": "Supplied for this assignment; no broader reuse license asserted.",
+    "preserve": true
+  },
+  {
+    "file": "maya-office-two.png",
+    "name": "maya-office-two",
+    "author": "Assignment-provided asset",
+    "source": "https://drive.google.com/file/d/1EqlCJsSNzGI93VgaQULRIwoFP2xiFioy/view",
+    "license": "Supplied for this assignment; no broader reuse license asserted.",
+    "preserve": true
+  }
 ]

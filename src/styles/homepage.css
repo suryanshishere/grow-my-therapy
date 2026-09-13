@@ -307,24 +307,17 @@
   .contact-large-image { height: 69vw; max-height: 450px; width: 82.5vw; align-self: end; margin-right: -6vw; margin-top: 46px; }
 }
 
-/* Reference-only spacing compensates for the approved open-font substitutes. */
+/* Reference-only spacing. */
 @media (min-width: 768px) {
-  .homepage--original { font-size: calc(15px + .12vw); }
   .homepage--original .hero-section { padding-top: calc(75px + 2.8vw); }
   .homepage--original .hero-copy { grid-column-end: 24; }
-  /* Cormorant sets ~11% narrower than the source's Beaufort Pro, so "on" would ride up
-     onto line one. Trimming the measure restores the reference's line breaks while the
-     heading still reflows naturally at every width. */
-  .homepage--original .hero-copy h1 { max-width: 95.5%; }
   .homepage--original .hero-eyebrow { grid-column-end: 20; }
-  .theme-original .homepage .eyebrow { font-size: 15px; }
   .homepage--original .services-section { padding-bottom: calc(6.6vw + 25px); }
 }
 @media (min-width: 768px) and (max-width: 799px) {
   .homepage--original .hero-section { padding-top: calc(12vw + 75px); }
 }
 @media (max-width: 767px) {
-  .theme-original .homepage .eyebrow, .theme-original .homepage .expertise-link { font-size: 15px; }
   .homepage--original .hero-eyebrow { padding-top: 20px; margin-bottom: 31px !important; }
   .homepage--original .hero-copy > p { margin-top: 30px; }
   .homepage--original .hero-action { min-height: 59px; display: flex; align-items: center; margin: 11px 0 46px; }
@@ -346,3 +339,28 @@
   .homepage--original .specialty-card > .action-link { margin-top: 11px; min-height: 59px; }
   .homepage--original .specialty-card + .specialty-card { margin-top: 46px; }
 }
+
+/* The reference's own type scale, consumed from the tokens in globals.css. The shared
+   clamps above are Maya's scale and stay untouched, so this block sits last and carries
+   the extra `.theme-original` step it needs to outrank them inside the media queries. */
+.theme-original .homepage--original {
+  --heading-size: var(--h2-size);
+  /* Body copy runs at the source's normal text; its eyebrows and expertise rows sit a
+     step down on the large-text size, which holds flat at 15px everywhere. */
+  font-size: var(--normal-size);
+  line-height: var(--body-line-height);
+}
+/* The shared rules ask for `text-wrap: pretty`, which rebalances the last lines. The
+   source wraps greedily, so the clone opts back out or its long headings break a word
+   early. */
+.theme-original .homepage--original :is(h1, h2, h3) { font-weight: 300; text-wrap: wrap; }
+.theme-original .homepage--original h1 { font-size: var(--h1-size); line-height: var(--h1-line-height); }
+.theme-original .homepage--original h2 { line-height: var(--h2-line-height); }
+/* Our h3 carries the service and specialty card titles, which the source sets as h4. */
+.theme-original .homepage--original h3 { font-size: var(--h4-size); line-height: var(--h4-line-height); }
+.theme-original .homepage--original .small-section-heading { font-size: var(--h3-size); line-height: var(--h3-line-height); }
+.theme-original .homepage--original :is(.eyebrow, .expertise-link),
+.theme-original .homepage--original .expertise-list li > span { font-size: var(--large-size); line-height: var(--body-line-height); }
+.theme-original .homepage--original :is(.action-link, .action-oval) { font-size: var(--button-size); line-height: normal; }
+/* Card titles are links wearing their heading's type, not buttons. */
+.theme-original .homepage--original .service-title-link { font-size: inherit; line-height: inherit; }

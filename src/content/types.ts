@@ -19,7 +19,7 @@ export interface ActionContent {
   ariaLabel?: string;
 }
 
-/** Presentation content shared by the reference clone and Maya's redesign. */
+/** Presentation contract for the reference clone. */
 export interface HomepageContent {
   hero: {
     eyebrow: string;
@@ -81,3 +81,10 @@ export interface HomepageContent {
     largeImage: ImageContent;
   };
 }
+
+/** Maya has its own composition, with one opening image and one closing image. */
+export type MayaHomepageContent = Omit<HomepageContent, "hero" | "contact" | "office"> & {
+  hero: Omit<HomepageContent["hero"], "sideImage">;
+  contact: Omit<HomepageContent["contact"], "smallImage">;
+  office: NonNullable<HomepageContent["office"]>;
+};

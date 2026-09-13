@@ -21,9 +21,9 @@ img { display: block; max-width: 100%; }
 :focus-visible { outline: 2px solid currentColor; outline-offset: 7px; }
 .site-shell { min-height: 100vh; overflow: clip; }
 .theme-original {
-  --font-display: "Cormorant Garamond", Georgia, serif;
-  --font-script: "Allura", cursive;
-  --font-body: "Mulish Variable", sans-serif;
+  --font-display: "Faustina Variable", Georgia, serif;
+  --font-script: "Petit Formal Script", cursive;
+  --font-body: "Muli", sans-serif;
   --color-background: #f6f4ee;
   --color-paper: #fff;
   --color-sand: #e3d9ca;
@@ -37,18 +37,70 @@ img { display: block; max-width: 100%; }
   --color-muted: #575752;
 }
 .theme-maya {
-  --font-display: "Fraunces Variable", Georgia, serif;
-  --font-script: "Fraunces Variable", Georgia, serif;
-  --font-body: "DM Sans Variable", sans-serif;
-  --color-background: #f3eee5;
-  --color-paper: #fcfcfa;
-  --color-sand: #dce7e8;
-  --color-ink: #23383f;
-  --color-strong: #23383f;
+  --font-display: "Newsreader Variable", Georgia, serif;
+  --font-script: "Newsreader Variable", Georgia, serif;
+  --font-body: "Instrument Sans Variable", sans-serif;
+  --color-background: #e5ded2;
+  --color-paper: #f7f4ed;
+  --color-sand: #e5ded2;
+  --color-pale-plum: #e5dae1;
+  --color-ink: #292d28;
+  --color-strong: #292d28;
   --color-rule: currentColor;
-  --color-primary: #234c5a;
-  --color-accent: #927047;
-  --color-muted: #4f656b;
+  --color-primary: #303b32;
+  --color-accent: #725569;
+  --color-muted: #565e53;
+}
+/* The reference's type scale, transcribed from the Squarespace 7.1 stylesheet it runs on
+   rather than approximated. Sizes derive from a 15px root and a per-role multiplier; the
+   two branches below are the source's own media queries, so the clone tracks it at every
+   viewport instead of only at the widths that were sampled by hand.
+
+   Note the mobile branch scales with viewport HEIGHT, and the desktop branch has a
+   max(..., V * 1rem) floor that keeps small text from collapsing on narrow desktops. */
+.theme-original {
+  --base-font-size: 15px;
+  --max-page-width: 1800px;
+  --h1-value: 3.6;
+  --h2-value: 2.9;
+  --h3-value: 2.4;
+  --h4-value: 1.7;
+  --large-value: 1;
+  --normal-value: 1.1;
+  --small-value: .9;
+  --button-value: .85;
+  --body-line-height: 1.8;
+  /* 1.4em heading leading, tightened one step per size as the source does. */
+  --h1-line-height: calc(1.4 * (1 + (1 - var(--h1-value)) / 25));
+  --h2-line-height: calc(1.4 * (1 + (1 - var(--h2-value)) / 25));
+  --h3-line-height: calc(1.4 * (1 + (1 - var(--h3-value)) / 25));
+  --h4-line-height: calc(1.4 * (1 + (1 - var(--h4-value)) / 25));
+}
+@media (max-width: 767px) and (orientation: portrait) {
+  .theme-original {
+    --h1-size: calc((var(--h1-value) - 1) * var(--sqsp-step) + var(--base-font-size));
+    --h2-size: calc((var(--h2-value) - 1) * var(--sqsp-step) + var(--base-font-size));
+    --h3-size: calc((var(--h3-value) - 1) * var(--sqsp-step) + var(--base-font-size));
+    --h4-size: calc((var(--h4-value) - 1) * var(--sqsp-step) + var(--base-font-size));
+    --large-size: calc((var(--large-value) - 1) * var(--sqsp-step) + var(--base-font-size));
+    --normal-size: calc((var(--normal-value) - 1) * var(--sqsp-step) + var(--base-font-size));
+    --small-size: calc((var(--small-value) - 1) * var(--sqsp-step) + var(--base-font-size));
+    --button-size: calc((var(--button-value) - 1) * var(--sqsp-step) + var(--base-font-size));
+    --sqsp-step: calc(.012 * min(100vh, 900px));
+  }
+}
+@media (min-width: 768px), (orientation: landscape) {
+  .theme-original {
+    --h1-size: min(calc((var(--h1-value) - 1) * 1.2vw + var(--base-font-size)), max(calc((var(--h1-value) - 1) * var(--sqsp-step) + var(--base-font-size)), calc(var(--h1-value) * var(--base-font-size))));
+    --h2-size: min(calc((var(--h2-value) - 1) * 1.2vw + var(--base-font-size)), max(calc((var(--h2-value) - 1) * var(--sqsp-step) + var(--base-font-size)), calc(var(--h2-value) * var(--base-font-size))));
+    --h3-size: min(calc((var(--h3-value) - 1) * 1.2vw + var(--base-font-size)), max(calc((var(--h3-value) - 1) * var(--sqsp-step) + var(--base-font-size)), calc(var(--h3-value) * var(--base-font-size))));
+    --h4-size: min(calc((var(--h4-value) - 1) * 1.2vw + var(--base-font-size)), max(calc((var(--h4-value) - 1) * var(--sqsp-step) + var(--base-font-size)), calc(var(--h4-value) * var(--base-font-size))));
+    --large-size: min(calc((var(--large-value) - 1) * 1.2vw + var(--base-font-size)), max(calc((var(--large-value) - 1) * var(--sqsp-step) + var(--base-font-size)), calc(var(--large-value) * var(--base-font-size))));
+    --normal-size: min(calc((var(--normal-value) - 1) * 1.2vw + var(--base-font-size)), max(calc((var(--normal-value) - 1) * var(--sqsp-step) + var(--base-font-size)), calc(var(--normal-value) * var(--base-font-size))));
+    --small-size: min(calc((var(--small-value) - 1) * 1.2vw + var(--base-font-size)), max(calc((var(--small-value) - 1) * var(--sqsp-step) + var(--base-font-size)), calc(var(--small-value) * var(--base-font-size))));
+    --button-size: min(calc((var(--button-value) - 1) * 1.2vw + var(--base-font-size)), max(calc((var(--button-value) - 1) * var(--sqsp-step) + var(--base-font-size)), calc(var(--button-value) * var(--base-font-size))));
+    --sqsp-step: calc(.012 * var(--max-page-width));
+  }
 }
 .site-shell { font-family: var(--font-body); color: var(--color-ink); background: var(--color-paper); }
 .skip-link { position: fixed; top: 12px; left: 12px; z-index: 200; background: var(--color-ink, #234c5a); color: var(--color-paper, #fff); padding: 14px 22px; transform: translateY(-160%); }

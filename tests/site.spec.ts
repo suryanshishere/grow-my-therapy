@@ -22,11 +22,13 @@ for (const route of ["/", "/original/"]) {
         return bounds.left < -1 || bounds.right > window.innerWidth + 1;
       }).map(element => element.textContent));
       expect(clippedText).toEqual([]);
-      const mismatchedServiceTitles = await page.locator(".service-card h3 > .service-title-link").evaluateAll(elements => elements.filter(element => {
-        const heading = element.parentElement;
-        return heading && Math.abs(parseFloat(getComputedStyle(element).fontSize) - parseFloat(getComputedStyle(heading).fontSize)) > 0.5;
-      }).map(element => element.textContent));
-      expect(mismatchedServiceTitles).toEqual([]);
+      if (route === "/original/") {
+        const mismatchedServiceTitles = await page.locator(".service-card h3 > .service-title-link").evaluateAll(elements => elements.filter(element => {
+          const heading = element.parentElement;
+          return heading && Math.abs(parseFloat(getComputedStyle(element).fontSize) - parseFloat(getComputedStyle(heading).fontSize)) > 0.5;
+        }).map(element => element.textContent));
+        expect(mismatchedServiceTitles).toEqual([]);
+      }
       expect(errors).toEqual([]);
     });
   }
@@ -35,7 +37,7 @@ for (const route of ["/", "/original/"]) {
 test("consultation is an accessible informational demo and restores focus", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/");
-  const trigger = page.getByRole("navigation", { name: "Main navigation" }).getByRole("button", { name: "Let’s connect" });
+  const trigger = page.getByRole("navigation", { name: "Main navigation" }).getByRole("button", { name: "Explore session options" });
   await trigger.click();
   const dialog = page.getByRole("dialog");
   await expect(dialog).toBeVisible();
@@ -50,13 +52,22 @@ test("consultation is an accessible informational demo and restores focus", asyn
   await expect(trigger).toBeFocused();
 });
 
-test("FAQs expand and the consultation dialog closes on the backdrop", async ({ page }) => {
+test("profile-based FAQs expand and the dialog closes on the backdrop", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/");
   await page.getByRole("navigation", { name: "Main navigation" }).getByRole("button", { name: "FAQs" }).click();
   const dialog = page.getByRole("dialog");
-  await dialog.locator("summary").filter({ hasText: "Can we meet in person or online?" }).click();
-  await expect(dialog.getByText("My practice offers in-person therapy", { exact: false })).toBeVisible();
+  await expect(dialog.getByRole("heading", { name: "Questions about therapy", exact: true })).toBeVisible();
+  await expect(dialog.locator("details")).toHaveCount(4);
+  const formats = dialog.locator("details").filter({ has: page.locator("summary", { hasText: /meet|in.person|online/i }) });
+  await formats.locator("summary").click();
+  await expect(formats.locator("p")).toBeVisible();
+  await expect(formats).toContainText(/Santa Monica/);
+  await expect(formats).toContainText(/California/);
+  const trauma = dialog.locator("details").filter({ has: page.locator("summary", { hasText: /trauma/i }) });
+  await trauma.locator("summary").click();
+  await expect(trauma.locator("p")).toBeVisible();
+  await expect(trauma).toContainText(/safe|safety|stabiliz/i);
   await page.mouse.click(5, 5);
   await expect(dialog).not.toBeVisible();
 });
@@ -74,9 +85,36 @@ test("mobile menu supports nested navigation, focus restoration, and FAQ transit
   await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
   await trigger.click();
   await page.getByRole("dialog").getByRole("button", { name: "FAQs" }).click();
-  await expect(page.getByRole("dialog")).toContainText("Before we begin.");
+  await expect(page.getByRole("dialog").getByRole("heading", { name: "Questions about therapy", exact: true })).toBeVisible();
   await page.keyboard.press("Escape");
   await expect(trigger).toBeFocused();
+});
+
+test("reduced-motion mobile menu keeps direct and nested anchor destinations in view", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  for (const destination of [
+    { label: "Our office", id: "office", folder: null },
+    { label: "Trauma", id: "service-2", folder: "Services" },
+  ]) {
+    await test.step(destination.label, async () => {
+      await page.goto("/");
+      await page.evaluate(() => document.fonts.ready);
+      const trigger = page.getByRole("button", { name: "Open navigation menu" });
+      await trigger.click();
+      const dialog = page.getByRole("dialog");
+      if (destination.folder) await dialog.locator("summary").filter({ hasText: destination.folder }).click();
+      await dialog.getByRole("link", { name: destination.label, exact: true }).click();
+      await expect(dialog).not.toBeVisible();
+      await expect(page).toHaveURL(new RegExp(`#${destination.id}$`));
+      await expect(trigger).toBeFocused();
+      // Let the queued dialog close event finish restoring focus before checking the jump.
+      await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+      const target = page.locator(`#${destination.id}`);
+      await expect(target).toBeInViewport();
+      await expect.poll(() => target.evaluate(element => Math.abs(element.getBoundingClientRect().top - 32))).toBeLessThan(2);
+    });
+  }
 });
 
 test("desktop dropdowns and every redesign anchor lead to existing content", async ({ page }) => {
@@ -103,10 +141,10 @@ test("Maya page and dialogs meet automated WCAG AA checks", async ({ page }) => 
 test("source fidelity, SEO metadata, reduced motion, and static 404", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  await expect(page.locator("h1")).toHaveText("Anxiety and trauma therapy in Santa Monica, CA");
+  await expect(page.locator("h1")).toHaveText("Therapy for anxiety, trauma & burnout in Santa Monica.");
   await expect(page.locator("#office img")).toHaveCount(2);
-  await expect(page.locator(".service-card")).toHaveCount(3);
-  await expect(page.locator(".specialty-card")).toHaveCount(4);
+  await expect(page.locator("#services article")).toHaveCount(3);
+  await expect(page.locator("#approach article")).toHaveCount(4);
   expect(await page.locator("html").evaluate(element => getComputedStyle(element).scrollBehavior)).toBe("auto");
   await expect(page.locator("body")).not.toContainText(/Conejo|Newbury|123th|free consultation|insurance/i);
   await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /Santa Monica/);
@@ -116,6 +154,75 @@ test("source fidelity, SEO metadata, reduced motion, and static 404", async ({ p
   const response = await page.goto("/this-page-does-not-exist/");
   expect(response?.status()).toBe(404);
   await expect(page.getByRole("link", { name: "Back to the homepage" })).toBeVisible();
+});
+
+test("Maya preserves the original section order with Our Office as the only addition", async ({ page }) => {
+  await page.goto("/original/");
+  const originalOrder = await page.locator("main > section").evaluateAll(sections => sections.map(section => section.getAttribute("aria-labelledby")));
+  expect(originalOrder).toEqual([
+    "hero-heading", "intro-heading", "services-heading", "statement-heading", "expertise-heading",
+    "approach-heading", "bridge-heading", "specialties-heading", "contact-heading",
+  ]);
+  await page.goto("/");
+  const redesignOrder = await page.locator("main > section").evaluateAll(sections => sections.map(section => section.getAttribute("aria-labelledby")));
+  const expected = [...originalOrder];
+  expected.splice(expected.indexOf("approach-heading") + 1, 0, "office-heading");
+  expect(redesignOrder).toEqual(expected);
+  await expect(page.locator("#office").getByRole("heading")).toHaveCount(1);
+  await expect(page.locator("main details")).toHaveCount(0);
+});
+
+test("Maya uses the supplied portrait and both office photographs with new supporting imagery", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator('#about img[src="/images/maya-portrait.webp"]')).toHaveCount(1);
+  const officeSources = await page.locator("#office img").evaluateAll(images => images.map(image => image.getAttribute("src")).sort());
+  expect(officeSources).toEqual(["/images/maya-office-one.webp", "/images/maya-office-two.webp"]);
+  const oldAssets = await page.locator("main img").evaluateAll(images => images.flatMap(image => [image.getAttribute("src") ?? "", image.getAttribute("srcset") ?? ""])
+    .filter(source => /\/images\/original-|\/images\/maya-(?:hero(?:-side)?|intro|anxiety|trauma|burnout|banner|transition|closing-one|closing-two)(?:-\d+)?\.webp/.test(source)));
+  expect(oldAssets).toEqual([]);
+});
+
+test("reduced motion keeps reveal content immediately visible without animation", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+  const reveals = page.locator("[data-reveal]");
+  expect(await reveals.count()).toBeGreaterThan(0);
+  const hiddenOrMoving = await reveals.evaluateAll(elements => elements.filter(element => {
+    const style = getComputedStyle(element);
+    return style.opacity !== "1" || style.visibility !== "visible" || style.transform !== "none" || style.animationName !== "none";
+  }).map(element => element.textContent));
+  expect(hiddenOrMoving).toEqual([]);
+  await expect(page.locator("h1")).toBeVisible();
+});
+
+test("client navigation between versions preserves each theme", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/original/");
+  await page.evaluate(() => document.fonts.ready);
+  const cloneAppearance = () => page.locator(".theme-original").evaluate(element => {
+    const style = getComputedStyle(element);
+    const heading = getComputedStyle(element.querySelector("h1")!);
+    const hero = getComputedStyle(element.querySelector("main > section")!);
+    return { color: style.color, background: hero.backgroundColor, font: heading.fontFamily, headingSize: heading.fontSize };
+  });
+  const originalAppearance = await cloneAppearance();
+  const marker = `navigation-${Date.now()}`;
+  await page.evaluate(value => { Object.assign(window, { __redesignNavigationSentinel: value }); }, marker);
+  await page.getByRole("link", { name: /View Maya.*redesign/i }).click();
+  await expect(page).toHaveURL(new URL("/", page.url()).href);
+  await expect(page.locator(".theme-maya")).toBeVisible();
+  await expect(page.locator(".theme-original")).toHaveCount(0);
+  await expect(page.locator("h1")).toHaveText("Therapy for anxiety, trauma & burnout in Santa Monica.");
+  expect(await page.evaluate(() => Reflect.get(window, "__redesignNavigationSentinel"))).toBe(marker);
+  const mayaPrimary = await page.locator(".theme-maya").evaluate(element => getComputedStyle(element).getPropertyValue("--color-primary").trim());
+  expect(mayaPrimary).not.toBe("#2b2b2b");
+  await page.getByRole("link", { name: /View the original clone/i }).click();
+  await expect(page).toHaveURL(/\/original\/$/);
+  await expect(page.locator(".theme-original")).toBeVisible();
+  await expect(page.locator(".theme-maya")).toHaveCount(0);
+  expect(await page.evaluate(() => Reflect.get(window, "__redesignNavigationSentinel"))).toBe(marker);
+  expect(await cloneAppearance()).toEqual(originalAppearance);
+  await expect(page.locator("#office")).toHaveCount(0);
 });
 
 test("clone burger morphs to a close control and steps through folder panels", async ({ page }) => {

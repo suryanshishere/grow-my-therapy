@@ -1,71 +1,75 @@
-/* Preserve the reference composition, with a quieter coastal type system. */
-.homepage--maya { font-weight: 400; font-size: clamp(14px, 1.04vw, 17px); line-height: 1.85; }
-.homepage--maya h1, .homepage--maya h2, .homepage--maya h3 { color: var(--color-primary); font-weight: 350; letter-spacing: -.042em; }
-.homepage--maya h1 { font-size: clamp(42px, 4.18vw, 74px); line-height: 1.14; text-wrap: balance; }
-.homepage--maya .keep-together { white-space: nowrap; }
-.homepage--maya .hero-copy .heading-italic { color: var(--color-accent); }
-.homepage--maya h2 { font-size: clamp(32px, 3.2vw, 57px); line-height: 1.2; }
-.homepage--maya h3 { font-size: clamp(24px, 1.96vw, 33px); letter-spacing: -.035em; line-height: 1.3; }
-.homepage--maya .eyebrow { font-size: 10px; font-weight: 500; letter-spacing: .18em; line-height: 1.8; }
-.homepage--maya .script-accent { font-style: italic; font-weight: 350; letter-spacing: -.04em; line-height: inherit; }
-.homepage--maya .hero-eyebrow { grid-column-end: 24; }
-.homepage--maya .hero-copy { grid-row-start: 6; }
-.homepage--maya .hero-copy > p { max-width: 470px; margin-top: 28px; }
-.homepage--maya .hero-action { grid-row-start: 16; }
-.homepage--maya .intro-primary-copy > .eyebrow { max-width: 225px; }
-.homepage--maya .services-heading { grid-column-end: 17; }
-.homepage--maya .service-copy { padding-top: 34px; }
-.homepage--maya .service-copy > p { margin-top: 20px; }
-.homepage--maya .statement-section h2 { color: var(--color-paper); }
-.homepage--maya .statement-shade { background: rgb(17 42 51 / 43%); }
-.homepage--maya .small-section-heading { font-size: clamp(31px, 2.7vw, 47px); line-height: 1.22; }
-.homepage--maya .expertise-section { min-height: 0; }
-.homepage--maya .expertise-link { font-size: 11px; letter-spacing: .1em; }
-.homepage--maya .approach-heading { grid-column-end: 19; }
-.homepage--maya .approach-image { grid-column-start: 20; }
-.homepage--maya .approach-primary-copy > .eyebrow { max-width: 240px; }
-.homepage--maya .office-section { background: var(--color-paper); }
-.homepage--maya .office-gallery { gap: 5.6vw; }
-.homepage--maya .office-image { aspect-ratio: 4 / 3; }
-.homepage--maya .office-image:nth-child(even) { aspect-ratio: 4 / 3; margin-top: 100px; }
-.homepage--maya .office-details { font-size: 12px; }
-.homepage--maya .office-details li { padding: 13px 0; }
-.homepage--maya .bridge-section { padding-top: 30px; }
-.homepage--maya .bridge-section h2 { align-self: center; }
-.homepage--maya .specialty-card > .action-link { font-size: 10px; }
-.homepage--maya .contact-section h2 { grid-row-end: 7; }
-.homepage--maya .contact-copy { grid-row-start: 8; }
-.homepage--maya .contact-action { grid-row-start: 14; }
-@media (min-width: 768px) and (max-width: 1100px) {
-  .homepage--maya h1 { font-size: clamp(38px, 4.1vw, 48px); }
-  .homepage--maya h2 { font-size: 34px; }
-  .homepage--maya .service-copy > p { font-size: 13px; }
-  .homepage--maya .expertise-link { font-size: 10px; letter-spacing: .07em; }
-  .homepage--maya .hero-copy { grid-row-start: 5; }
-  .homepage--maya .hero-copy > p { font-size: 13px; }
+/* Maya's shared chrome only. Page compositions live in maya-homepage.module.css.
+   Every selector is scoped so visiting Maya never restyles the reference clone. */
+.theme-maya ::selection { background: var(--color-pale-plum); color: var(--color-ink); }
+.theme-maya :focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
+.theme-maya .site-header { position: relative; height: 106px; background: var(--color-primary); color: var(--color-paper); }
+.theme-maya .header-inner { max-width: 1440px; padding-inline: 5%; gap: 28px; }
+.theme-maya .brand-name { font-family: var(--font-display); color: inherit; font-size: 31px; font-weight: 400; letter-spacing: -.025em; line-height: 1.1; }
+.theme-maya .brand-caption { font-family: var(--font-body); font-size: 12px; font-weight: 400; letter-spacing: .04em; text-transform: none; margin-top: 8px; }
+.theme-maya .desktop-navigation { font-size: 14px; gap: 25px; }
+.theme-maya .desktop-navigation > a, .theme-maya .desktop-navigation > button, .theme-maya .nav-dropdown > button { min-height: 44px; }
+.theme-maya .desktop-navigation .action-oval { background: var(--color-accent); color: var(--color-paper); border-color: var(--color-pale-plum); padding: 15px 20px; border-radius: 3px; font-size: 14px; font-weight: 500; letter-spacing: 0; }
+.theme-maya .desktop-navigation .action-oval:hover { background: #604758; border-color: var(--color-paper); }
+.theme-maya .dropdown-links { background: var(--color-paper); color: var(--color-ink); border: 1px solid #303b3226; box-shadow: 0 12px 30px #17261c26; border-radius: 3px; font-size: 14px; }
+.theme-maya .dropdown-links a { min-height: 44px; }
+.theme-maya .action-oval { border-radius: 3px; border: 1px solid var(--color-accent); background: var(--color-accent); color: var(--color-paper); font-size: 14px; font-weight: 500; letter-spacing: 0; text-transform: none; padding: 17px 22px; }
+.theme-maya .action-oval:hover { background: #604758; border-color: #604758; }
+.theme-maya .practice-footer { padding: 80px 5%; }
+.theme-maya .footer-grid { max-width: 1296px; grid-template-columns: 1.5fr .75fr 1fr 1fr; gap: 48px; }
+.theme-maya .footer-grid h2 { font-size: 12px; font-weight: 500; letter-spacing: .09em; margin: 5px 0 22px; }
+.theme-maya .footer-grid p, .theme-maya .footer-links > a, .theme-maya .footer-links > button { font-size: 14px; line-height: 1.8; }
+.theme-maya .footer-brand-column > p { max-width: 270px; margin-top: 25px; }
+.theme-maya .footer-brand-column .footer-credential { font-size: 12px; margin-top: 20px; }
+.theme-maya .footer-location > .action-link { font-size: 14px; letter-spacing: 0; text-transform: none; color: var(--color-accent); }
+.theme-maya .footer-links > a, .theme-maya .footer-links > button { padding-block: 4px; margin: 0 0 3px; }
+.theme-maya .site-colophon { padding: 22px 5%; font-size: 12px; background: var(--color-background); color: var(--color-ink); }
+.theme-maya .site-colophon a { text-decoration: underline; text-underline-offset: 4px; }
+.theme-maya .site-dialog::backdrop { background: #1a231caa; }
+.theme-maya .site-dialog { color: var(--color-ink); border-radius: 3px; }
+.theme-maya .dialog-surface { background: var(--color-paper); padding: 64px 56px 48px; }
+.theme-maya .dialog-surface > .eyebrow { font-size: 12px; letter-spacing: .08em; }
+.theme-maya .content-dialog h2 { font-size: 48px; font-weight: 400; line-height: 1.1; }
+.theme-maya .dialog-intro { font-size: 17px; line-height: 1.7; }
+.theme-maya .session-options { border-color: #303b3245; }
+.theme-maya .session-options h3 { font-size: 30px; }
+.theme-maya .session-options p { font-size: 15px; }
+.theme-maya .demo-notice { background: var(--color-background); font-size: 13px; padding: 20px 24px; }
+.theme-maya .content-dialog .action-link { font-size: 14px; letter-spacing: 0; text-transform: none; }
+.theme-maya .faq-list details { border-color: #303b3245; }
+.theme-maya .faq-list summary { font-size: 17px; padding-block: 22px; }
+.theme-maya .faq-list details p { font-size: 16px; line-height: 1.75; }
+.theme-maya .dialog-note { font-size: 12px; }
+.theme-maya .mobile-menu .dialog-surface { padding-top: 76px; }
+.theme-maya .mobile-navigation { margin-block: 30px; }
+.theme-maya .mobile-submenu { font-size: 16px; }
+.theme-maya .mobile-submenu a { min-height: 30px; }
+.theme-maya .menu-location { font-size: 13px; }
+@media (max-width: 1199px) {
+  .theme-maya .desktop-navigation { display: none; }
+  .theme-maya .menu-toggle { display: flex; }
+  .theme-maya .footer-grid { gap: 28px; grid-template-columns: 1.25fr .7fr 1fr; }
+  .theme-maya .footer-location { grid-column: 2 / 4; }
 }
 @media (max-width: 767px) {
-  .homepage--maya { font-size: 15px; }
-  .homepage--maya h1 { font-size: clamp(33px, 9.7vw, 61px); line-height: 1.13; }
-  .homepage--maya h2 { font-size: clamp(34px, 9vw, 48px); line-height: 1.2; }
-  .homepage--maya h3 { font-size: 27px; }
-  .homepage--maya .eyebrow { font-size: 9px; letter-spacing: .14em; }
-  .homepage--maya .hero-eyebrow { grid-column-end: -1; margin-bottom: 30px !important; }
-  .homepage--maya .hero-copy { grid-row-start: 2; }
-  .homepage--maya .hero-copy > p { font-size: 14px; line-height: 1.8; margin-top: 25px; }
-  .homepage--maya .hero-action { grid-row-start: 3; margin-bottom: 40px; }
-  .homepage--maya .hero-image { height: 90vw; }
-  .homepage--maya .intro-primary-copy > .eyebrow { max-width: none; }
-  .homepage--maya .services-heading { max-width: 95%; }
-  .homepage--maya .service-copy { padding-top: 27px; }
-  .homepage--maya .service-copy > p { margin-top: 18px; }
-  .homepage--maya .small-section-heading { font-size: 34px; }
-  .homepage--maya .expertise-link { font-size: 11px; }
-  .homepage--maya .approach-image { height: 105vw; max-height: 570px; }
-  .homepage--maya .office-image, .homepage--maya .office-image:nth-child(even) { margin-top: 0; aspect-ratio: 4 / 3; }
-  .homepage--maya .office-gallery { gap: 22px; }
-  .homepage--maya .bridge-section h2 { margin-top: 30px; }
-  .homepage--maya .statement-section { min-height: 520px; }
-  .homepage--maya .contact-copy { grid-row-start: auto; }
-  .homepage--maya .contact-action { grid-row-start: auto; }
+  .theme-maya .site-header { height: 104px; }
+  .theme-maya .header-inner { padding-inline: 6%; gap: 12px; }
+  .theme-maya .brand-name { font-size: 28px; }
+  .theme-maya .brand-caption { font-size: 12px; letter-spacing: 0; }
+  .theme-maya .menu-toggle { width: 40px; flex-shrink: 0; }
+  .theme-maya .burger-box, .theme-maya .burger-box span { width: 28px; }
+  .theme-maya .practice-footer { padding: 56px 6%; }
+  .theme-maya .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px 24px; }
+  .theme-maya .footer-brand-column, .theme-maya .footer-location { grid-column: 1 / -1; }
+  .theme-maya .footer-grid .brand-name { font-size: 30px; }
+  .theme-maya .site-colophon { padding: 22px 6%; gap: 13px; }
+  .theme-maya .dialog-surface { padding: 64px 25px 35px; }
+  .theme-maya .content-dialog h2 { font-size: 39px; }
+  .theme-maya .session-options { grid-template-columns: 1fr; gap: 25px; }
+  .theme-maya .faq-list summary { font-size: 16px; }
+  .theme-maya .faq-list details p { padding-right: 0; }
+  .theme-maya .mobile-menu .dialog-surface { padding-inline: 7%; }
+}
+@media (max-width: 359px) {
+  .theme-maya .brand-name { font-size: 25px; }
+  .theme-maya .brand-caption { font-size: 12px; }
 }

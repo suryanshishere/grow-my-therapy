@@ -2,6 +2,8 @@
 
 This file records the final handoff. An unchecked item has not been confirmed by this checklist. The candidate records the video and submits all three deliverables through the assignment's provided form.
 
+The Sunlit Studio redesign was validated locally on September 13, 2026. It has not been deployed or pushed as part of this revision; the public links and checked public-release items below refer to the September 12 release. See [the current validation record](validation.md) for the local build and 27 passing browser tests.
+
 ## Deliverable links
 
 | Deliverable | URL | Verification |

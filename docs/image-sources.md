@@ -1,29 +1,34 @@
 # Image sources
 
-Assets were retrieved on 12 September 2026 and are served locally from `public/images`. WebP exports preserve photographic proportions; the page applies section-specific crops. Responsive variants are generated only at or below the source width, and the checked-in image manifest lists the actual available sizes.
+Assets were retrieved and their primary source pages checked on 12 September 2026. The site serves optimized images locally from `public/images`. Responsive variants retain photographic proportions; each section applies its own display crop.
 
-## Maya redesign
+## Maya redesign: Sunlit Studio
 
-The coastal photographs establish a consistent palette of blue water, pale sky, sand, and botanical green. Stock landscapes are atmospheric illustrations, not photographs of Maya's office or claims about its view. The calm horizon returns in the closing section as a visual echo of the opening.
+The new image family uses real photography of natural light, quiet everyday work settings, tactile linen, stone, and ceramics. Olive curtains and greenery, warm walls, and the muted-plum notebook coordinate with the redesign palette. These are atmospheric illustrations of space and pause; stock interiors are not represented as Maya's practice, and no landscape is presented as its location or view.
 
-The selected Unsplash photographs are free images covered by the [Unsplash License](https://unsplash.com/license), not Unsplash+ assets. Pexels photographs are covered by the [Pexels License](https://www.pexels.com/license/). Both license pages were checked during asset selection. Credits are retained here even where attribution is optional.
+The six selected Pexels photographs are free to use under the [Pexels License](https://www.pexels.com/license/). The linen photograph's primary Unsplash page explicitly identifies it as a free photograph under the [Unsplash License](https://unsplash.com/license); it is not an Unsplash+ asset. Both license pages were checked during this selection. Photographer names and license links are retained below.
 
-| Local base filename | Subject and photographer | Source |
+| Local base filename | Subject and photographer | Source and license | Section purpose |
+| --- | --- | --- | --- |
+| `maya-studio-intro.webp` | Sunlit work desk, plants, and olive curtain — Alpha En | [Photo](https://www.pexels.com/photo/modern-sunlit-home-office-desk-setup-31213668/) · [License](https://www.pexels.com/license/) | A quiet work setting connects with the professionals, creatives, and entrepreneurs named in the profile; it is atmospheric imagery, not the practice office. |
+| `maya-studio-anxiety.webp` | Warm wall crossed by soft sunlit shadows — Nothing Ahead | [Photo](https://www.pexels.com/photo/sunlit-shadows-on-a-minimalist-wall-32796350/) · [License](https://www.pexels.com/license/) | Soft daylight and repeated shadows create a simple, grounded visual beside anxiety and panic support. |
+| `maya-studio-trauma.webp` | Ivy-lined stone threshold and sheltered path — Rahime Gül | [Photo](https://www.pexels.com/photo/open-stone-archway-in-sunlit-garden-pathway-33588111/) · [License](https://www.pexels.com/license/) | A sheltered threshold and a gently turning path support carefully paced trauma work without depicting distress or making a claim about outcomes. |
+| `maya-studio-burnout.webp` | Closed muted-plum notebook and ceramic cup — Cup of Couple | [Photo](https://www.pexels.com/photo/a-cup-of-coffee-and-notebooks-on-a-table-7657978/) · [License](https://www.pexels.com/license/) | A closed notebook and a ceramic cup suggest a pause from work; the muted plum cover ties the image to the accent palette. |
+| `maya-studio-statement.webp` | Leaf shadows through tactile linen curtains — 强 任 (@rendy) | [Photo](https://unsplash.com/photos/light-filtering-through-hanging-linen-curtains-outdoors-81hLedo7pjk) · [License](https://unsplash.com/license) | Light filtering through tactile linen gives the statement a quiet visual pause; it is not presented as the actual office. |
+| `maya-studio-bridge.webp` | Open window with sheer curtains and natural light — Jonathan Borba | [Photo](https://www.pexels.com/photo/opened-white-window-with-sheer-curtain-3255244/) · [License](https://www.pexels.com/license/) | A real window, natural light, and soft curtains continue the architectural visual language between office and approach details; not a photograph of the practice. |
+| `maya-studio-closing.webp` | Ceramic cup and saucer in window light — Lara Farber | [Photo](https://www.pexels.com/photo/cup-in-sunlight-and-shadow-20013047/) · [License](https://www.pexels.com/license/) | A small ceramic detail in window light provides a human everyday ending without another landscape or additional practice claim. |
+
+### Supplied practice images
+
+The portrait and two office photographs come directly from the profile's linked assignment assets. The first office photograph anchors the hero and reappears in Our Office; both photographs in Our Office depict the supplied space. Their existing WebP files and responsive variants are preserved without regeneration or color changes.
+
+| Local base filename | Use | Source |
 | --- | --- | --- |
-| `maya-hero.webp`, `maya-closing-two.webp` | Calm blue ocean and pale sky — gi gi | [Pexels 31744632](https://www.pexels.com/photo/tranquil-blue-horizon-over-the-open-sea-31744632/) |
-| `maya-hero-side.webp` | Hazy California shore — Valerie (@leracherry) | [Unsplash ZbneaDVW0uY](https://unsplash.com/photos/sandy-beach-with-waves-crashing-under-a-hazy-sky-ZbneaDVW0uY) |
-| `maya-intro.webp` | Dune grass above the sea — Kristīne Kozaka | [Unsplash 7b5n_DbfUXY](https://unsplash.com/photos/grasses-on-sand-dunes-overlooking-the-ocean-7b5n_DbfUXY) |
-| `maya-anxiety.webp` | Blue ocean surface — Nothing Ahead | [Pexels 20585987](https://www.pexels.com/photo/blue-wavy-sea-20585987/) |
-| `maya-trauma.webp` | Path through coastal dunes — maarten van asten | [Pexels 32660464](https://www.pexels.com/photo/sandy-path-through-coastal-dunes-under-blue-sky-32660464/) |
-| `maya-burnout.webp` | Eucalyptus leaves — Annie Spratt | [Unsplash hX_hf2lPpUU](https://unsplash.com/photos/green-leaf-hX_hf2lPpUU) |
-| `maya-banner.webp` | Aerial surf at Del Mar, California — Joshua Brown | [Unsplash F0AA2IzvdO4](https://unsplash.com/photos/an-aerial-view-of-a-body-of-water-F0AA2IzvdO4) |
-| `maya-transition.webp` | Coastal cove at Point Lobos — Vinu T | [Unsplash -nlLLhs5xcw](https://unsplash.com/photos/coastal-cliffs-meet-the-ocean-and-lush-hills--nlLLhs5xcw) |
-| `maya-closing-one.webp` | Gentle waves at sunset — Brooke Balentine | [Unsplash -boxOd85nPU](https://unsplash.com/photos/gentle-waves-wash-onto-a-sandy-beach-at-sunset--boxOd85nPU) |
-| `maya-portrait.webp` | Dr. Maya Reynolds portrait; supplied for the assignment | [Provided portrait](https://drive.google.com/file/d/1koVGhvD8mkiRXRukqrklo0HbB48p9PIa/view) |
-| `maya-office-one.webp` | Office with sofa, armchair, and natural light; supplied for the assignment | [Provided office photograph 1](https://drive.google.com/file/d/1DwpoQD0VWsfGsl4J1CwtSb3Wxy5ePVJW/view) |
-| `maya-office-two.webp` | Office seating and bookshelves; supplied for the assignment | [Provided office photograph 2](https://drive.google.com/file/d/1EqlCJsSNzGI93VgaQULRIwoFP2xiFioy/view) |
+| `maya-portrait.webp` | Dr. Maya Reynolds' biography portrait | [Provided portrait](https://drive.google.com/file/d/1koVGhvD8mkiRXRukqrklo0HbB48p9PIa/view) |
+| `maya-office-one.webp` | Hero and Our Office; sofa, armchair, and natural light | [Provided office photograph 1](https://drive.google.com/file/d/1DwpoQD0VWsfGsl4J1CwtSb3Wxy5ePVJW/view) |
+| `maya-office-two.webp` | Our Office; seating and bookshelves | [Provided office photograph 2](https://drive.google.com/file/d/1EqlCJsSNzGI93VgaQULRIwoFP2xiFioy/view) |
 
-The three supplied practice images are used for this assignment. No broader reuse license is asserted for those images.
+The three supplied practice images are used for this assignment. No broader reuse license is asserted. The earlier coastal stock images are no longer mapped to the redesigned homepage; their old output files have been retained without modification.
 
 ## Reference clone
 
@@ -48,6 +53,10 @@ All reference source paths below are relative to `https://images.squarespace-cdn
 
 ## Optimization and reproduction
 
-The source photographs are downloaded at no more than 2,500 pixels wide. The site uses compressed WebP files and precomputed responsive sizes because static Next.js export does not include a runtime image optimizer. No photo is upscaled. The supplied portrait is 1,024 × 1,536 pixels and both office photographs are 1,500 × 1,125 pixels. The reference logo retains its transparency.
+Run `node scripts/prepare-images.mjs --theme maya` to prepare only the current Maya assets. `--theme original` prepares the reference route; the default `--theme both` retains the previous both-route behavior. A theme-specific run merges records into `src/content/image-manifest.json`, preserving the other route and all existing records. No original-route images were regenerated for this redesign.
 
-Temporary downloads and inspection contact sheets in `.asset-source/` are excluded from the repository and deployment. Only the optimized web assets, source documentation, and the size manifest are part of the deliverable.
+The Maya asset configuration in `scripts/maya-assets.json` records photographer, source, license, section purpose, and the direct image URL. Fresh source filenames include the Sunlit Studio prefix and source photo identifier so an older cached coastal photograph cannot be mistaken for a replacement. Supplied assets use `preserve: true`; the script skips them when their base file, variants, and manifest record already exist.
+
+New source downloads are limited to 2,200 pixels wide. Per-image limits keep service photographs at 1,200 pixels wide, the small closing detail at 960, and larger placements at 1,600. The script adds actual available 640/960/1600 responsive sizes below each limit. The source configuration also records restrained WebP quality settings to keep texture-heavy photographs efficient. No photograph is upscaled. Orientation is honored before calculating export widths. The supplied portrait remains 1,024 × 1,536 pixels, both office photographs remain 1,500 × 1,125 pixels, and the reference logo retains transparency.
+
+Source downloads and visual inspection sheets under `.asset-source/` are excluded from the repository and deployment. The optimized web assets, documentation, and size manifest are the deliverable.

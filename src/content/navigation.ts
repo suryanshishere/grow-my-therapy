@@ -6,7 +6,7 @@ const reference = "https://www.conejovalleycounseling.com";
 export const contactHref = "/original/contact/";
 export const navigation: Record<Theme, NavigationItem[]> = {
   maya: [
-    { label: "About", href: "#about" },
+    { label: "Meet Maya", href: "#about" },
     { label: "Services", href: "#services", children: [
       { label: "Anxiety & panic", href: "#service-1" },
       { label: "Trauma", href: "#service-2" },
@@ -16,7 +16,7 @@ export const navigation: Record<Theme, NavigationItem[]> = {
       { label: "CBT", href: "#method-1" },
       { label: "EMDR", href: "#method-2" },
       { label: "Mindfulness", href: "#method-3" },
-      { label: "Body-oriented therapy", href: "#method-4" },
+      { label: "Body-oriented techniques", href: "#method-4" },
     ] },
     { label: "Our office", href: "#office" },
     { label: "FAQs", dialog: "faq" },
@@ -54,8 +54,8 @@ export const navigation: Record<Theme, NavigationItem[]> = {
 };
 
 export const faqs = [
-  { question: "Who do you work with?", answer: "I work with adults navigating anxiety, panic, trauma, and burnout. Many are thoughtful, high-achieving people, including professionals, entrepreneurs, and creatives, who feel overwhelmed or disconnected despite keeping up on the outside." },
-  { question: "Can we meet in person or online?", answer: "My practice offers in-person therapy in Santa Monica and secure telehealth for clients located in California. Both formats offer space for collaborative, thoughtful work." },
-  { question: "What is your approach to therapy?", answer: "My approach is warm, grounded, and collaborative. I integrate cognitive-behavioral therapy (CBT), EMDR, mindfulness-based practices, and body-oriented techniques. Sessions combine practical tools with room for reflection and depth." },
-  { question: "How do you approach trauma work?", answer: "Trauma work is carefully paced, with an emphasis on safety and stabilization. I work with both single-incident trauma and more complex, long-standing experiences, helping clients feel more regulated in everyday life as well as during sessions." },
+  { question: "Is this practice a fit for me?", answer: "I work with adults experiencing anxiety, panic, trauma, burnout, and perfectionism. Many are professionals, entrepreneurs, or creatives who keep functioning outwardly while feeling overwhelmed, exhausted, or disconnected. Our work makes room for both present concerns and the experiences beneath them." },
+  { question: "Where can we meet?", answer: "In-person sessions take place in my quiet, private office in Santa Monica, CA 90401. Secure telehealth is also available for adults located in California. Both formats support the same thoughtful, collaborative approach." },
+  { question: "What might our work involve?", answer: "We'll balance practical tools with space for reflection and depth. I draw on cognitive-behavioral therapy (CBT), EMDR, mindfulness-based practices, and body-oriented techniques to explore the emotional and physical sides of your experience. You're an active participant in the process." },
+  { question: "How is trauma work paced?", answer: "I work with single-incident trauma and more complex, longstanding experiences, including those rooted in childhood, relationships, or chronic stress. We move carefully, with safety and stabilization guiding the work and attention to how you're feeling in sessions and in everyday life." },
 ];

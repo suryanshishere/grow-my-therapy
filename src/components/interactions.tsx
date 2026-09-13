@@ -53,7 +53,7 @@ export function DialogProvider({ theme, children }: { theme: Theme; children: Re
         if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
         else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
       }}
-      onClose={() => { setKind(null); if (opener.current?.isConnected) opener.current.focus(); }}
+      onClose={() => { setKind(null); if (opener.current?.isConnected) opener.current.focus({ preventScroll: true }); }}
       onClick={(event) => { if (event.target === event.currentTarget) close(); }}>
       <div className="dialog-surface">
         <button type="button" className="dialog-close" onClick={close} aria-label="Close dialog"><span aria-hidden="true">×</span></button>
@@ -65,26 +65,26 @@ export function DialogProvider({ theme, children }: { theme: Theme; children: Re
               <div className="mobile-submenu">{item.children.map((child) => <MenuLink key={child.label} item={child} close={close} />)}</div>
             </details> : <MenuLink key={item.label} item={item} close={close} />)}
           </nav>
-          <Action dialog="consultation" oval>Let’s connect</Action>
-          <p className="menu-location">Santa Monica, CA · Online across California</p>
+          <Action dialog="consultation" oval>Explore session options</Action>
+          <p className="menu-location">Adult therapy in Santa Monica and online throughout California</p>
         </> : kind === "faq" ? <>
-          <p className="eyebrow">A little more clarity</p>
-          <h2 id="dialog-title">Before we begin.</h2>
+          <p className="eyebrow">Getting to know the process</p>
+          <h2 id="dialog-title">Questions about therapy</h2>
           <div className="faq-list">{faqs.map((faq) => <details key={faq.question}>
             <summary>{faq.question}<span aria-hidden="true">+</span></summary>
             <p>{faq.answer}</p>
           </details>)}</div>
-          <p className="dialog-note">This website presents a fictional therapist for a design assignment.</p>
+          <p className="dialog-note">Dr. Maya Reynolds is a fictional therapist presented as part of a design assignment.</p>
         </> : kind === "consultation" ? <>
-          <p className="eyebrow">A thoughtful next step</p>
-          <h2 id="dialog-title">A space to explore<br /><em>what you need.</em></h2>
-          <p className="dialog-intro">Therapy can be a place to slow down, make sense of what you’re carrying, and feel more connected to yourself.</p>
+          <p className="eyebrow">Ways to work together</p>
+          <h2 id="dialog-title">Explore session options</h2>
+          <p className="dialog-intro">I offer therapy for adults navigating anxiety, trauma, and burnout. Sessions combine practical tools with space for reflection, whether we meet in my office or online.</p>
           <div className="session-options">
-            <div><span className="session-marker" aria-hidden="true">↗</span><h3>In person</h3><p>A quiet, private office in<br />Santa Monica, CA 90401.</p></div>
-            <div><span className="session-marker" aria-hidden="true">↗</span><h3>Online</h3><p>Secure telehealth for adults<br />located in California.</p></div>
+            <div><h3>In Santa Monica</h3><p>A comfortable, private office with natural light.<br />Santa Monica, CA 90401.</p></div>
+            <div><h3>Across California</h3><p>Secure telehealth sessions for adults located in California.</p></div>
           </div>
-          <div className="demo-notice"><strong>About this demo</strong><p>Dr. Maya Reynolds is a fictional therapist. This is a demonstration website, and appointments cannot be booked here.</p></div>
-          <button type="button" className="action-link" onClick={close}>Back to exploring</button>
+          <div className="demo-notice"><strong>A note about this practice</strong><p>This is a design concept for Dr. Maya Reynolds, a fictional therapist. No personal information is collected, and appointments cannot be booked here.</p></div>
+          <button type="button" className="action-link" onClick={close}>Return to the page</button>
         </> : null}
       </div>
     </dialog>
@@ -206,7 +206,7 @@ export function HeaderNavigation({ theme }: { theme: Theme }) {
           {item.children.map((child) => <a key={child.label} href={child.href} onClick={() => setExpanded(null)}>{child.label}</a>)}
         </div>
       </div> : item.dialog ? <button key={item.label} type="button" aria-haspopup="dialog" onClick={() => context?.open(item.dialog!)}>{item.label}</button> : <a key={item.label} href={item.href}>{item.label}</a>)}
-      {original ? <Action href={contactHref} oval>Contact</Action> : <Action dialog="consultation" oval>Let’s connect</Action>}
+      {original ? <Action href={contactHref} oval>Contact</Action> : <Action dialog="consultation" oval>Explore session options</Action>}
     </nav>
     <button
       ref={burgerRef}
