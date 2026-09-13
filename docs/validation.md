@@ -30,4 +30,10 @@ The clone retains the source's pale teal accent, including its lower contrast. M
 
 The previously recorded Lighthouse scores belonged to an earlier design and are not presented as current measurements.
 
-Public release verification is pending synchronization of GitHub and Cloudflare Pages. Cloudflare uses Direct Upload, so pushing source alone does not publish the export. The public links and remaining candidate deliverables are tracked in [submission-checklist.md](submission-checklist.md).
+The corrected implementation was committed as `683448f` and pushed to the public GitHub repository on September 13, 2026. The tested export was deployed to Cloudflare Pages as [deployment f46cc7fd](https://f46cc7fd.grow-my-therapy-suryansh.pages.dev/).
+
+All three public routes returned HTTP 200 and their HTML matched the tested export by SHA-256: `/`, `/original/`, and `/original/contact/`. Both original routes retained `X-Robots-Tag: noindex, nofollow`.
+
+All **9 public Playwright smoke tests passed**, covering desktop and mobile layout preservation, local reference-font loading, menus, session dialog focus, FAQ accessibility, navigation between versions, cloned contact navigation, metadata, and 404 behavior.
+
+The canonical [redesign](https://grow-my-therapy-suryansh.pages.dev/), [clone](https://grow-my-therapy-suryansh.pages.dev/original/), and [repository](https://github.com/suryanshishere/grow-my-therapy) are synchronized. Cloudflare uses Direct Upload, so future source pushes still require an explicit deployment. Subsequent documentation-only commits record this verification without changing the deployed application. The Loom link and candidate submission steps remain pending in [submission-checklist.md](submission-checklist.md).

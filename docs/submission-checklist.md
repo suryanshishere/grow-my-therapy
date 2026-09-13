@@ -2,15 +2,15 @@
 
 This file records the final handoff. An unchecked item has not been confirmed by this checklist. The candidate records the video and submits all three deliverables through the assignment's provided form.
 
-The layout and font corrections are complete. Final production and public release checks are recorded in [validation.md](validation.md); the deliverable table is updated after those checks.
+The layout and font corrections are published. Lint, TypeScript, production build, 30 local browser tests, and 9 public smoke tests passed on September 13, 2026. See [validation.md](validation.md) for measured fidelity and release evidence.
 
 ## Deliverable links
 
 | Deliverable | URL | Verification |
 | --- | --- | --- |
-| Live redesign | [Open Maya's redesign](https://grow-my-therapy-suryansh.pages.dev/) | Verified public HTTP 200, direct refresh, images, and interactions on September 12, 2026. |
-| Reference clone | [Open the reference clone](https://grow-my-therapy-suryansh.pages.dev/original/) | Verified public HTTP 200, direct refresh, images, and noindex header on September 12, 2026. |
-| Public GitHub repository | [View the source](https://github.com/suryanshishere/grow-my-therapy) | Verified PUBLIC visibility and source on the main branch on September 12, 2026. |
+| Live redesign | [Open Maya's redesign](https://grow-my-therapy-suryansh.pages.dev/) | September 13, 2026: published corrected layouts; HTTP 200; HTML matches the tested export; public browser checks passed. |
+| Reference clone | [Open the reference clone](https://grow-my-therapy-suryansh.pages.dev/original/) | September 13, 2026: actual reference fonts and corrected spacing published; HTTP 200; matching export; noindex header confirmed. |
+| Public GitHub repository | [View the source](https://github.com/suryanshishere/grow-my-therapy) | September 13, 2026: corrected source pushed to main; implementation commit 683448f, followed by release documentation. |
 | Five-minute Loom walkthrough | `PENDING — candidate to record and paste share URL` | Confirm access without an account or access request. |
 
 ## Content and design review
@@ -39,7 +39,7 @@ Results and remaining contrast limitations are recorded in [validation.md](valid
 - [x] Run lint, TypeScript checks, and the production build; record any remaining limitations in the README.
 - [x] Serve the exported site locally and test both routes, direct refreshes, image/font loading, and 404 handling.
 - [x] Review mobile loading and layout stability; resolve material delays or layout shifts.
-- [ ] Repeat public smoke checks against the final live URLs and update the deliverable table above.
+- [x] Repeat public smoke checks against the final live URLs and update the deliverable table above.
 
 ## Recording and submission
 
