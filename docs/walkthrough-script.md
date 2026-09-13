@@ -1,56 +1,56 @@
 # Five-minute client walkthrough
 
-Present this as a first-draft website demonstration to Dr. Maya. Open the [published redesign](https://grow-my-therapy-suryansh.pages.dev/). The script contains approximately 588 spoken words. Aim for about 135 words per minute, leaving the remaining time for the screen actions and short pauses. Rehearse once with a timer; the timestamps are checkpoints, not a guarantee of duration at every speaking pace.
+Present this as a first-draft website demonstration to Dr. Maya. Open the [published redesign](https://grow-my-therapy-suryansh.pages.dev/). The spoken text is about 600 words; at roughly 135 words per minute that leaves time for scrolling and short pauses. Rehearse once with a timer. The time labels are checkpoints.
 
-Read only the normal paragraphs aloud. The italic screen directions and time labels are not spoken. Keep the recording focused on Maya's website; the evaluator can inspect the clone and repository separately.
+Read only the normal paragraphs aloud. Italic lines are screen directions.
 
-## 0:00-0:35
+## 0:00-0:30
 
-*Screen: Show the desktop homepage at the top. Keep the cursor still during the introduction.*
+*Screen: Desktop at 1440px, top of the homepage. Keep the cursor still.*
 
-Hi Dr. Maya, here's the first draft of your website. I'll walk you through how it introduces your practice, helps visitors understand your services, and gives them a clear next step. I've kept the reference homepage's layout and section order, while tailoring the colors, copy, and photography to your profile. We'll begin on desktop, then look at the phone experience.
+Hi Dr. Maya, here's the first draft of your website. I'll show you how it introduces your practice, helps visitors find the support that fits them, and makes booking a clear next step. I kept the reference site's section order, then redesigned every section around your profile, with new colors, copy, and photography. We'll start on desktop and then look at a phone.
 
-## 0:35-1:20
+## 0:30-1:10
 
-*Screen: Point briefly to the headline and office photograph. Scroll slowly toward the introduction.*
+*Screen: Point to the headline and office photograph, then scroll slowly into the introduction.*
 
-The opening headline makes the essentials clear: therapy for anxiety, trauma, and burnout in Santa Monica. Visitors can immediately see what you help with, where you're based, and that you work with adults. The supporting text introduces your credentials and secure telehealth across California. For the visual theme, I chose deep olive, warm stone, and muted plum. The colors work with the natural light in your supplied office photograph. Clear body text and softer, expressive headings keep the page readable and welcoming. Mentioning Santa Monica naturally also gives search engines useful location context.
+The headline says who you help, what you help with, and where: therapy for anxiety, trauma, and burnout in Santa Monica. That clarity also gives search engines useful local context. The supporting text introduces your credentials and secure telehealth across California. The palette is deep olive, warm stone, and muted plum, chosen to sit comfortably with the natural light in your office. The introduction then speaks to someone who looks capable on the outside, while inside, worry keeps circling.
 
-## 1:20-2:05
+## 1:10-1:50
 
-*Screen: Show the introduction, then pause on each service. Continue briefly to the photographic statement and concern links.*
+*Screen: Pause on each service row, continue through the photographic statement, then click the "Panic" tag.*
 
-The introduction speaks to someone who appears capable on the outside but feels worried, exhausted, or under pressure inside. From there, the three services give those experiences a clearer focus. Anxiety and panic addresses concerns such as overthinking, physical tension, and difficulty sleeping. Trauma reflects your work with single incidents and longstanding experiences, with careful pacing and attention to safety. Burnout and perfectionism speaks to professional pressure, exhaustion, and disconnection. The photographs support a quieter mood, and the concern links below help visitors return to the service that feels relevant to them.
+Your three areas of focus follow: anxiety and panic, trauma, and burnout with perfectionism. Each description uses the language from your profile, and each photograph was chosen to match its topic, from soft shadows for anxiety to a sheltered path for trauma. The full-width statement gives the page a quiet pause. Below it, "What brings you here?" lets visitors tap a concern they recognize, like panic, and go straight to the support it relates to.
 
-## 2:05-2:50
+## 1:50-2:35
 
-*Screen: Pause on Maya's portrait and biography. Scroll to Our Office and keep both supplied photographs visible in turn.*
+*Screen: Scroll to the biography and hold on the portrait. Continue to Our Office and keep both photographs and the details band visible.*
 
-Next, visitors meet you through your supplied portrait and biography. Your PsyD and Licensed Clinical Psychologist credentials are visible, alongside your warm, collaborative approach. The copy explains your balance of practical tools and space for deeper reflection. Immediately afterward is the new Our Office section. Both photographs come from your supplied profile assets, giving visitors a look at the actual setting. The supporting copy highlights natural light, comfort, and privacy. It also states Santa Monica, California, 90401, with in-person sessions and secure telehealth for adults located in California. The aim is to make the experience easier to picture.
+Next, visitors meet you. Your supplied portrait carries a small card with your PsyD and Licensed Clinical Psychologist credentials, beside copy that describes your warm, grounded, collaborative approach. Right after that is the new Our Office section. Both photographs come from your supplied assets, so visitors see the real space. The copy highlights natural light, comfort, and privacy, and the details band confirms Santa Monica, 90401, in-person sessions, and secure telehealth for adults in California, with a booking button alongside.
 
-## 2:50-3:30
+## 2:35-3:15
 
-*Screen: Show the four approach blocks. Use a 'Questions about...' link to open FAQs, expand 'Where can we meet?', then close the dialog.*
+*Screen: Show the bridge and the four methods. Click "Questions about trauma work", expand "How is trauma work paced?", then close the dialog.*
 
-The next section introduces the four approaches from your profile: cognitive-behavioral therapy, EMDR, mindfulness-based practices, and body-oriented techniques. Each explanation stays brief and connects the method with your collaborative way of working. Visitors can also open the frequently asked questions. Here, they can check who you work with, where sessions take place, what the work may involve, and how trauma work is paced. This answer explains the in-person and online options. The wording stays within your profile, without adding fees, availability, or promises about results.
+The ways of working section introduces the four approaches in your profile: cognitive-behavioral therapy, EMDR, mindfulness-based practices, and body-oriented techniques. Each one stays brief and connects to your collaborative style. Visitors can open the frequently asked questions from here. This answer explains that trauma work moves carefully, with safety and stabilization guiding the pace. Nothing here adds fees, availability, or promises about results.
 
-## 3:30-4:25
+## 3:15-4:10
 
-*Screen: Switch to a prepared 390px phone view. Open the menu, choose Services then Trauma, and show the stacked cards. Use Ctrl+Home to return to the top, choose Our office from the menu, then open Explore session options. Pause on the demo notice before closing.*
+*Screen: Switch to the prepared 390px phone view. Open the menu, expand Services, choose Trauma. Then tap "Book an appointment", scroll the form, submit it once filled in, and pause on the notice.*
 
-On a phone, the same information remains easy to explore. The menu keeps the main destinations together, and choosing a service takes visitors directly to that section. The service cards stack vertically, with readable text and space between each topic. The office photographs also stack so both remain visible. Now, I'll open Explore session options. This explains the in-person and California telehealth formats. Because this is a demonstration for an imaginary practice, it clearly states that appointments cannot be booked here. It doesn't collect personal information. I'll close the dialog and return to the page.
+On a phone, everything stays easy to reach. The menu groups your services, and choosing Trauma jumps straight to that section, with photos and text stacked for comfortable reading. Every "Book an appointment" button leads to this booking page, styled to match the site. The form asks only what fits your practice: whether someone prefers your Santa Monica office or telehealth, what brings them to therapy, and which days and times suit them. Because this is a demonstration, submitting shows a notice that nothing was sent or stored.
 
-## 4:25-5:00
+## 4:10-5:00
 
-*Screen: Return to desktop and show the closing invitation and footer. Hold the final screen for a few seconds.*
+*Screen: Return to desktop. Show the closing section, the footer, and the floating "View the original clone" button. Hold the final screen.*
 
-The closing invitation, Begin with what you need, offers a clear next step. The footer keeps location details and useful links within reach. Across the site, the goal is to help people understand your practice and feel comfortable exploring support, using information grounded in your profile. Thank you, Dr. Maya. I'd welcome your feedback on the tone, imagery, and whether this draft reflects your practice.
+The closing section, "Begin with what you need", offers three simple first steps that mirror the booking form, with a button to book and a link to the FAQs. The footer keeps your location and key links within reach. For reviewers, a small button in the corner links to the original reference page. Thank you, Dr. Maya. I'd love your feedback on the tone, the imagery, and whether this draft feels like your practice.
 
 ## Before recording
 
-- Prepare a desktop tab at 1440px and a separate phone view at 390px. Open the site in both and load the images by scrolling through once, then return to the top.
-- Set browser zoom to 100%, hide unrelated tabs and notifications, and check microphone volume.
-- Practice the mobile menu, the FAQ dialog, and Explore session options so the demonstrations fit the marked intervals.
-- Speak at a steady conversational pace. Scroll while speaking, pause at section changes, and hold the closing screen until 5:00. If rehearsal runs long, shorten pauses or rerecord; avoid rushing the last paragraph.
-- Watch the finished recording for audio clarity, readable screen text, and a five-minute runtime.
-- Make the Loom link accessible without an access request, then add it to the submission checklist. This script does not mean the recording or submission is complete.
+- Deploy first, then confirm the live homepage, `/contact/`, and `/original/` all load.
+- Prepare a 1440px desktop tab and a 390px phone view. Scroll each page once so every image loads, then return to the top.
+- Set browser zoom to 100%, close unrelated tabs, silence notifications, and check the microphone.
+- Rehearse the concern tag, the FAQ dialog, the phone menu, and the booking form so each fits its time slot.
+- Speak at a steady pace, pause at section changes, and hold the final screen until 5:00.
+- Watch the recording back for audio, readable text, and runtime, then set the Loom link so anyone with it can view.
