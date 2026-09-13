@@ -13,6 +13,7 @@ export const mayaContent: MayaHomepageContent = {
     description: "I'm Dr. Maya Reynolds, PsyD, a Licensed Clinical Psychologist. I offer adults a warm, collaborative space to understand what they're carrying, in person in Santa Monica or through secure telehealth across California.",
     action: { label: "Explore session options", dialog: "consultation" },
     image: image("office-one", "Window light, a sofa, and an armchair in Maya's Santa Monica therapy office"),
+    sideImage: image("studio-statement", "A narrow detail of sunlight filtering through linen"),
   },
   intro: {
     title: [
@@ -129,6 +130,7 @@ export const mayaContent: MayaHomepageContent = {
     body: "Anxiety, past experiences, or the pressure to keep going may have brought you here. Therapy offers space to understand what's happening and reconnect with yourself, with practical support and room for reflection.",
     prompt: "Learn about in-person sessions and secure California telehealth.",
     action: { label: "Explore session options", dialog: "consultation" },
-    largeImage: image("studio-closing", "A ceramic cup and saucer in window light"),
+    smallImage: image("studio-closing", "A ceramic cup and saucer in window light"),
+    largeImage: image("studio-bridge", "An open window and sheer curtains in natural daylight"),
   },
 };

@@ -1,71 +1,33 @@
 # Validation record
 
-## Sunlit Studio revision — September 13, 2026
+## Assignment corrections - September 13, 2026
 
-The redesigned Maya homepage is verified locally at `http://127.0.0.1:8787/`, using the production static export served by Wrangler Pages. This revision has not been deployed; the public deployment notes below describe the preceding release.
+The production static export is served locally at `http://127.0.0.1:8787/`. This record supersedes the earlier independent-layout Sunlit revision and the preceding coastal redesign.
 
-- ESLint, strict TypeScript checking, and the final Next.js production build passed. An initial build exposed a malformed, automatically generated `.next/dev/types/validator.ts`; removing that generated cache file allowed a clean rebuild. No application type errors remained.
-- All **27 Playwright tests passed**, with no failures or skipped tests. Coverage includes both homepage routes at 320, 390, 768, 1024, and 1440px; the cloned contact form; image loading; text bounds; navigation; FAQ expansion; session information; keyboard focus; metadata; and static 404 behavior.
-- Automated axe checks passed on Maya's homepage and FAQ dialog and on the cloned contact page. The olive, stone, plum, and light text/button combinations were also checked for contrast. Automated checks are not a complete accessibility certification.
-- The suite verifies the original section order with Our Office as the only addition, three services, four modalities, the supplied portrait and both office photographs, and exclusion of the previous coastal photography from Maya's homepage.
-- A dedicated regression test covers direct and nested mobile-menu anchors with reduced motion enabled. Dialog closure now restores keyboard focus without scrolling away from the selected section. Normal menu, Escape, focus-containment, and focus-restoration behavior also pass.
-- Client navigation from the clone to Maya and back preserves the clone's colors, fonts, and geometry. The original homepage/content/routes and the pre-existing changes to homepage, shell, and contact CSS match the pre-redesign working-tree snapshot. The image preparation pass verified that all 45 original and supplied image files remained byte-identical.
-- Final desktop, tablet, and mobile screenshots were reviewed for type hierarchy, paragraph readability, image crops, and section rhythm. All five widths recorded zero horizontal overflow, clipped text, broken images, or browser errors. Desktop main prose is 17px; mobile main prose is 16px. The office compositions stack on phones.
-- Every factual claim in the homepage, FAQs, session dialog, footer, image descriptions, and metadata was checked against the provided profile. The malformed street address remains omitted. No fees, availability, testimonials, contact information, or treatment guarantees were added.
+## Layout and reference fidelity
 
-Final screenshots are stored as `.artifacts/sunlit-<width>.png`, with separate hero and section views. `.artifacts/sunlit-layout.json` contains the measured layout results, and the Playwright HTML report contains the 27-test run. The unfocused skip link was confirmed to remain above the viewport during ordinary scrolling and to become visible on keyboard focus; standalone section captures suppress its offscreen rendering artifact only while taking the screenshot.
+- Maya now renders the same nine template section compositions through `HomePage`: two hero images, the original introduction arrangement, three service features, a full-width photographic statement, expertise columns, biography, bridge, four specialties blocks, and two closing images.
+- Our Office is the only additional homepage section. Its custom stone panel, olive background, and two supplied office photographs remain immediately after the biography. FAQs and session information remain in dialogs.
+- The clone uses the reference's actual Beaufort Pro Light normal/italic, Printed Moments, and Muli fonts. Their sources are documented in [font-sources.md](font-sources.md).
+- Comparison with the live reference at 1000px viewport height found all nine section boundaries within rounding (less than 1px) at widths 768, 1024, and 1440px. At 320 and 390px, boundaries differ by about 3px or less. These are measured section boundaries, not a claim that every rendered pixel is identical.
+- Corrections use the source's viewport-relative section padding, per-section column gaps, service subgrids, and 24px minimum phone grid rows. They replace values previously tuned to a single phone width.
+- Maya keeps Instrument Sans, Newsreader, the olive/stone/plum palette, profile-based copy, and naturally colored replacement photography. Stock interiors are not described as the actual practice.
 
-The Lighthouse figures below belong to the previous redesign. No new Lighthouse score or public deployment verification is claimed for this local revision.
+## Production validation
 
-## Earlier release record
+- Next.js production build: passed, including TypeScript compilation and all static routes.
+- ESLint and standalone TypeScript: passed.
+- All **30 Playwright tests passed**, with no failures, skips, or flaky tests.
+- Final production screenshots at all five widths recorded no overflow, clipped text, broken images, or browser errors. Maya homepage and FAQ dialog axe checks passed; keyboard, reduced-motion, and cross-route navigation checks passed.
+- The browser suite covers both homepage routes at 320, 390, 768, 1024, and 1440px, plus the cloned contact page; image loading, text bounds, navigation, menus, FAQs, dialogs, focus containment/restoration, reduced motion, metadata, and 404 behavior.
+- New regressions compare the nine sections' image counts, desktop column geometry, and child grid placements between Maya and the clone at 768 and 1440px. Another checks successful local loading of the actual reference fonts.
+- Screenshot evidence is stored in ignored `.artifacts/criteria-maya-<width>.png` and the related section captures. Reference comparison measurements are in `.artifacts/clone-font-layout.json` and `.artifacts/clone-mobile-deltas.json`.
+- The profile audit covers credentials, adult audience, three services, four modalities, Santa Monica/California session formats, FAQs, metadata, and both supplied office photographs. No fees, availability, contact details, testimonials, or treatment guarantees are invented. The malformed street address remains omitted.
 
-Reviewed on September 12, 2026, using the production static export served by Cloudflare's local Pages preview.
+## Limits and release status
 
-## Build and browser checks
+The clone retains the source's pale teal accent, including its lower contrast. Maya has separate accessible color choices. Automated accessibility checks supplement visual and keyboard review; they are not a complete certification.
 
-- ESLint, strict TypeScript checking, and the production Next.js build passed.
-- Twenty-two Playwright checks cover both routes at 320, 390, 768, 1024, and 1440 pixels; image loading and text clipping; service-heading hierarchy; desktop dropdowns; mobile navigation; FAQ expansion; consultation demo behavior; focus containment, Escape, and focus restoration; reduced motion; metadata; and static 404 handling.
-- Automated axe checks passed on the Maya page and FAQ dialog for WCAG A/AA criteria. Automated checks do not constitute a complete accessibility certification.
-- The clone was compared manually with the reference at 390, 768, and 1440 pixels, including section proportions, image crops, mobile order, and the reference's 799px hamburger breakpoint.
-- Redesign copy, FAQ answers, dialog text, footer credentials, and location were checked against the supplied profile. The supplied portrait and both office photographs are included.
+The previously recorded Lighthouse scores belonged to an earlier design and are not presented as current measurements.
 
-A second spacing and layout pass measured section and content bounds at all five widths. Maya keeps 6vw mobile gutters (19.2px at 320 and 23.4px at 390), with no accidental section gaps, overlaps, or horizontal overflow. That pass corrected the mobile service-title cascade, contained the clone footer email at 768, and aligned the clone's approach and banner focal points with the reference. The clone's full-page height is within 0.1% of the reference at 390; at 1440, its individual section boundaries are within one pixel. Tablet height differences are caused primarily by the documented font substitutions changing line wraps.
-
-## Reference fidelity pass
-
-A third pass compared the clone with the live reference under scripted measurement rather than by eye: a text-keyed inventory of every visible node's computed styles and geometry, pixel sampling of the rendered full-page screenshots, and scripted hover and scroll probes at 390, 768, 1024, and 1440 pixels.
-
-That pass confirmed several things already correct and left alone: the 799px hamburger breakpoint, the non-sticky header, and the absence of scroll-triggered animation on both sides. The reference emits 36 `data-animation-role` attributes but no active animation nodes, and nothing below the fold is staged at reduced opacity.
-
-It corrected the following:
-
-- **Colour.** The colophon's text is white on the teal strip, not `#2B2B2B`. The approach band and service-card titles use pure black against the site's `#2B2B2B` body ink. The approach band's eyebrow stays at the body ink. `--color-sand` was one unit of blue off (`#E3D9CB` to `#E3D9CA`), and the rule under text links is `#515151` rather than the text colour.
-- **Motion.** The text-link rule now collapses its right edge inward over one second, matching the reference; it previously scaled away in the opposite direction over 0.6 seconds. Navigation links no longer underline on hover, service titles and expertise links no longer tint teal, and the oval button keeps its dark outline through the fill change and retimes to `background-color .1s linear, color .1s linear`.
-- **Typography.** Navigation links take the reference's weight, line height, and right alignment. Script accents are scaled so Allura matches the reference's measured word widths, which also restored the reference's line break in the expertise heading. The hero heading's measure is trimmed so its line breaks match the reference at 768, 820, 900, 1024, 1200, and 1440 pixels. The mobile booking link is 13.48px, and the three expertise items without a link were being left at 14px while their linked siblings rendered at 15px.
-- **Navigation and layout.** Desktop dropdowns hang off the right edge of their folder title rather than overflowing to the right across the hero. The mobile menu is rebuilt as the reference's stepping sheet. The colophon carries only the reference's own credits; the switch between the two assignment versions moved out of it.
-- **The booking page.** Every booking control previously left the site. `/original/contact/` now recreates the reference page and its intake form.
-
-After the pass, every background band matches the reference colour for colour at 390 and 1440, with boundaries within two pixels. Full-page height is within 0.03% at 1440 and 0.16% at 390. Remaining differences are the documented font substitutions and the element-versus-inline measurement artifacts they cause.
-
-## Public deployment checks
-
-The Pages deployment was verified at [the redesign](https://grow-my-therapy-suryansh.pages.dev/) and [the clone](https://grow-my-therapy-suryansh.pages.dev/original/) on September 12, 2026. Both returned HTTP 200 on direct requests and refreshes. All page images loaded; the clone returned its noindex header. All 13 visible desktop FAQ and consultation triggers opened the expected dialog and restored focus after Escape. Public mobile navigation, FAQ transitions, automated accessibility, metadata, and the missing-page route passed three additional Playwright checks. The favicon, robots file, sitemap, image response headers, and HTTP 404 were also verified.
-
-The [GitHub repository](https://github.com/suryanshishere/grow-my-therapy) is public and contains the source on `main`. Cloudflare uses Direct Upload; automatic deployments are not enabled.
-
-All 27 external links retained by the reference clone returned HTTP 200 during the final link audit.
-
-## Mobile performance
-
-Lighthouse 13.4.1, simulated mobile Slow 4G and 4× CPU slowdown, with an empty browser cache against the local production Pages preview:
-
-| Route | Performance | First contentful paint | Largest contentful paint | Total blocking time | Layout shift | Initial transfer |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Maya `/` | 92 | 1.38s | 1.46s | 345ms | 0.011 | 573 KiB |
-| Clone `/original/` | 84 | 1.62s | 3.88s | 164ms | 0.073 | 543 KiB |
-
-These are single local lab measurements, not field data or guarantees of visitor performance. The Windows host reported CPU variability during one audit. The redesign's score improved from 79 to 92 after enabling inline CSS; three blocking stylesheet requests were removed. Both routes have explicit image dimensions, responsive local WebP files, local fonts, and lazy loading below the hero.
-
-The clone's heading font swap remains a source of loading delay and minor layout movement. Approved font substitutions also change some line breaks. The clone retains the source's pale teal accent, which has lower contrast than the redesign. These fidelity tradeoffs are intentional and documented in the README.
-
-Raw Lighthouse reports and screenshots are kept in ignored `.artifacts/`; Playwright produces ignored HTML reports and failure traces. The reproducible browser and screenshot commands are in the README. Verified public route and repository links are recorded in the submission checklist.
+Public release verification is pending synchronization of GitHub and Cloudflare Pages. Cloudflare uses Direct Upload, so pushing source alone does not publish the export. The public links and remaining candidate deliverables are tracked in [submission-checklist.md](submission-checklist.md).

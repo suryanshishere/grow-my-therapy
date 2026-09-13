@@ -74,7 +74,7 @@ export const originalContent: HomepageContent = {
   },
   contact: {
     eyebrow: "Schedule an appointment",
-    title: [{ text: "Find a therapist who is the right fit for " }, { text: "you", accent: true }, { text: "." }],
+    title: [{ text: "Find a therapist who is the right fit for  " }, { text: "you", accent: true }, { text: "." }],
     body: "Coming to therapy is a courageous decision, and connecting with the right kind of therapist makes all the difference. We understand that your journey is personal, and we're here to support you with care and understanding every step of the way. Each member of our team brings dedicated expertise and a commitment to support you in your struggles. We want you to feel prioritized, understood, and empowered.",
     prompt: "Click the button below to schedule an appointment.",
     action: { label: "Book now", href: contactHref },

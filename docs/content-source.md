@@ -13,7 +13,7 @@ Dr. Maya Reynolds is the imaginary therapist specified in the assignment. Her [p
 | Single-incident and complex, longstanding trauma rooted in childhood, relationships, or chronic stress | Trauma service description and FAQ. |
 | Carefully paced trauma work emphasizing safety and stabilization | Trauma service, EMDR description, and trauma-pacing FAQ; no fixed timeline or promised result. |
 | Burnout, perfectionism, high internal pressure, and disconnection after years of pushing through stress | Burnout service and invitation to explore more sustainable living and working. |
-| Warm, grounded, collaborative work balancing structure, practical tools, reflection, and depth | Biography, bridge, four approach rows, FAQs, and closing invitation. |
+| Warm, grounded, collaborative work balancing structure, practical tools, reflection, and depth | Biography, bridge, four approach blocks, FAQs, and closing invitation. |
 | CBT, EMDR, mindfulness-based practices, and body-oriented techniques | Four distinct approach descriptions, preserving their order and navigation anchors. |
 | Quiet, private office with natural light and an uncluttered, comfortable setting | Our Office immediately after the biography. |
 | Supplied portrait and two supplied office photographs | Biography portrait, hero office photograph, and both photographs in Our Office. |
@@ -32,13 +32,13 @@ Dr. Maya Reynolds is the imaginary therapist specified in the assignment. Her [p
 
 ## Sunlit Studio visual direction
 
-- Maya's homepage uses its own content-driven composition while preserving the original section order. Our Office is the only additional homepage section; FAQs and session information remain in dialogs.
+- Maya's homepage uses the same nine section compositions, image counts, and desktop column placements as the reference clone. Our Office is the only additional homepage section; FAQs and session information remain in dialogs.
 - Deep olive `#303B32`, warm stone `#E5DED2`, muted plum `#725569`, light `#F7F4ED`, pale plum `#E5DAE1`, and body ink `#292D28` form the new palette.
 - Locally hosted Instrument Sans supports the H1, body, navigation, and controls. Locally hosted Newsreader is reserved for reflective headings. Desktop body text is 17–18px, mobile body text is 16px, navigation is 14px, and captions are at least 12px.
-- The signature hero composition combines a warm stone panel, a large supplied office photograph, an olive surround, and a narrow plum edge. Our Office repeats this relationship; mobile layouts stack the elements without overlaps.
+- Our Office introduces a warm stone panel beside the supplied office photographs, with an olive surround and a narrow plum edge. The hero retains the template's two-image composition. The office panel and photographs stack on phones.
 - The profile portrait and both office photographs are retained. New licensed photography of daylight, sheltered spaces, and everyday work or reflection replaces the previous coastal stock set. These atmospheric images do not depict Maya's premises and must not be labeled as doing so.
 - Asset source, license, and placement records are maintained in [image-sources.md](image-sources.md). Photography stays naturally colored, with responsive WebP variants served locally.
-- The completed clone retains its own content, images, geometry, and typography. Maya's content contract removes the clone's extra opening and closing photographs without changing the clone contract.
+- The clone retains the reference content, photographs, and actual fonts. Maya extends the same homepage content contract with a required office section; both versions provide two opening and two closing photographs.
 
 ## Source and acceptance checks
 

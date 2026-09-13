@@ -1,6 +1,6 @@
 # Grow My Therapy — Dr. Maya Reynolds
 
-A responsive reference clone and independently composed **Sunlit Studio** therapist redesign, built for Grow My Therapy’s frontend internship assignment. Maya’s homepage preserves the reference section sequence and adds Our Office, with its own layout, typography, imagery, and content.
+A responsive reference clone and **Sunlit Studio** therapist redesign, built for Grow My Therapy's frontend internship assignment. Both homepages share the reference section layouts. Maya adds Our Office and uses a new palette, typography, profile-based copy, and photography.
 
 ## View the project
 
@@ -9,7 +9,7 @@ A responsive reference clone and independently composed **Sunlit Studio** therap
 - [Public GitHub repository](https://github.com/suryanshishere/grow-my-therapy)
 - Verified submission links are recorded in [the submission checklist](docs/submission-checklist.md).
 
-The Sunlit Studio revision is local until explicitly deployed. The published links may show the preceding design; building or pushing to GitHub does not update the live site.
+Release verification is recorded in [validation.md](docs/validation.md). Cloudflare Pages uses Direct Upload: building or pushing to GitHub does not automatically update the live site.
 
 Dr. Maya Reynolds is fictional. Consultation controls open an informational demo dialog, and the cloned booking form validates in the browser and then states that nothing was sent. This website does not collect personal information, book appointments, or send messages.
 
@@ -35,8 +35,8 @@ The production export is written to `out/`. The preview serves it on `http://loc
 
 ## Structure and behavior
 
-- `src/components/homepage.tsx` preserves the reference layout and `HomepageContent` contract. `src/components/maya-homepage.tsx` renders Maya’s independent layout using `MayaHomepageContent`, with one hero image, one closing image, and a required office section.
-- Maya’s content-driven grids and spacing live in `src/styles/maya-homepage.module.css`. Theme-scoped shared chrome lives in `maya.css`; the clone’s reference geometry remains in `homepage.css`.
+- `src/components/homepage.tsx` renders the nine reference section layouts for both homepages. `MayaHomePage` supplies Maya's content, theme styles, and the custom Our Office section. Both versions retain two hero images, a full-width photographic statement, the specialties grid, and two closing images.
+- Shared template geometry lives in `homepage.css`. Maya's CSS Module supplies theme styling and the additional office composition. Theme-scoped header, footer, and dialog styles live in `maya.css`.
 - `src/components/interactions.tsx` handles desktop dropdowns, both mobile menus, FAQs, and consultation dialogs. Native dialogs include explicit Tab cycling, Escape dismissal, backdrop dismissal, scroll locking, and focus restoration.
 - The two routes use different mobile menus on purpose. Maya opens a native dialog with an accordion. The clone reproduces the reference's full-screen sheet: a three-bar burger that morphs into a close control in place, a sheet that fades in beneath the header so the logo stays put, and folders that step sideways to a panel headed by **Back** rather than expanding inline. Because a modal `<dialog>` is promoted to the top layer and would cover the header, the clone's sheet is an ordinary fixed panel that reuses the same focus trap, Escape handling, scroll lock, and focus restoration, and marks the rest of the page `inert` while open.
 - `/original/contact/` recreates the reference booking page, including its two-column layout and all eleven intake controls. The form has no `action`, makes no network request, and stores nothing; submitting a valid form replaces it with a notice explaining that it is a demonstration.
@@ -49,7 +49,7 @@ Next.js's experimental `inlineCss` option serves CSS with the initial HTML. A co
 
 ## Design and sources
 
-Sunlit Studio combines deep olive surrounds, warm stone text panels, muted plum accents, and naturally colored photography. Its signature composition places a text panel across the edge of a large office photograph in the hero and repeats that relationship in **Our Office**, immediately after Maya’s biography. Mobile layouts stack these elements. Filled plum buttons, readable text, and content-driven spacing connect the sections; FAQs remain in a dialog so Our Office is the only added homepage section.
+Sunlit Studio combines deep olive, warm stone, muted plum, and naturally colored photography. The original section compositions remain recognizable, including the offset hero photographs and four-block specialties grid. **Our Office**, immediately after Maya's biography, introduces the custom overlapping stone panel and two supplied office photographs. Mobile layouts retain the template's reading order. Filled plum buttons and locally hosted Instrument Sans and Newsreader complete Maya's theme; FAQs remain in a dialog so Our Office is the only added section.
 
 | Token | Color | Use |
 | --- | --- | --- |
@@ -64,7 +64,7 @@ The clone reproduces the reference's interaction layer as well as its compositio
 
 Locally hosted **Instrument Sans** supports Maya’s H1, body, navigation, and controls; **Newsreader** gives reflective headings their expressive character. A brief opening reveal and subtle control transitions respect reduced-motion preferences.
 
-The clone uses **Cormorant Garamond, Allura, and Mulish** as the approved open-font substitutes for Beaufort Pro, Printed Moments, and Muli. Font families are the documented exception to exact visual matching; letterforms differ. Because Allura sets far narrower than the reference's Printed Moments, the clone scales its script accents up so the words match the reference's measured widths, and trims the hero heading's measure so its line breaks match at every width. The clone intentionally retains the original pale teal accent, whose text contrast is lower than the redesign’s. Fonts are bundled through Fontsource under their included open licenses.
+The clone uses the reference's actual **Beaufort Pro Light**, **Printed Moments**, and **Muli** fonts. The first two are served locally from the reference's public font files, with provenance recorded in [font-sources.md](docs/font-sources.md). Maya uses Fontsource's locally hosted Instrument Sans and Newsreader. The clone retains the source's pale teal accent, including its lower contrast; Maya's palette has separate contrast checks.
 
 - [Reference homepage](https://www.conejovalleycounseling.com/home)
 - [Dr. Maya Reynolds’ supplied profile](https://docs.google.com/document/d/1-IJVKEjuqV9CTd9QH16UNHJ7SQfdiweS4oAIZ8vmgHU/edit)
@@ -86,7 +86,7 @@ Tests use installed Google Chrome. They cover both routes at 320, 390, 768, 1024
 
 See the [validation record](docs/validation.md) for current checks. The previously recorded local mobile Lighthouse scores of 92 for the redesign and 84 for the clone belong to the preceding revision.
 
-`node scripts/capture-site.mjs http://localhost:8787` captures desktop/mobile screenshots into ignored `.artifacts/` for visual review. Screenshot comparisons are manual because the approved font substitutes have different letterforms. Test traces and reports remain in ignored output directories.
+`node scripts/capture-site.mjs http://localhost:8787` captures desktop/mobile screenshots into ignored `.artifacts/` for visual review. Visual comparisons check the live reference with fonts fully loaded. Browser tests also verify matching template grid placements and successful local reference-font loading. Test traces and reports remain in ignored output directories.
 
 ## Publish on Cloudflare Pages
 

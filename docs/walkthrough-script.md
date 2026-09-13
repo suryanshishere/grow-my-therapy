@@ -12,7 +12,7 @@ Hi Dr. Maya, here's the first draft of your new website. I'll walk you through h
 
 *Screen: Show the opening headline, then scroll slowly into the introduction.*
 
-The opening tells visitors what you help with and where you're based: anxiety and trauma therapy in Santa Monica. It also introduces your work with adults and the option of online sessions across California. The ocean blues, sandy backgrounds, and coastal photographs give the page a calm, consistent feeling. Large headings and plenty of breathing room make it easier to take in. The introduction speaks to people who keep functioning while feeling overwhelmed, overthinking, or putting pressure on themselves.
+The opening tells visitors what you help with and where you're based: therapy for anxiety, trauma, and burnout in Santa Monica. It also introduces your work with adults and the option of online sessions across California. Deep olive, warm stone, and muted plum give the page a calm, consistent feeling. Natural light connects the photography, beginning with your supplied office photograph. Large headings and plenty of breathing room make it easier to take in. The introduction speaks to people who keep functioning while feeling overwhelmed, overthinking, or putting pressure on themselves.
 
 ## 1:15–2:00 — Services and the visitor's experience
 
@@ -36,7 +36,7 @@ This section introduces CBT, EMDR, mindfulness, and body-oriented techniques in 
 
 *Screen: Switch to a prepared 390px-wide phone view. Show the opening, open the mobile menu, visit services, then scroll to the office. Open the consultation dialog and close it.*
 
-Now let's look at the same experience on a phone. The navigation opens into an easy-to-read menu, and the text has room to breathe on the smaller screen. The service cards stack vertically, so each topic gets its own space. Your portrait and the office photographs also adapt to the narrower view while keeping the story in the same order. The buttons are easy to reach as someone moves through the page. Here, the consultation button opens an explanation of in-person and online session options. Because this is an assignment preview for a fictional practice, it clearly says that appointments cannot be booked here. That makes the interaction understandable without collecting anyone's personal information. I'll close it and return to the page.
+Now let's look at the same experience on a phone. The navigation opens into an easy-to-read menu, and the text has room to breathe on the smaller screen. The service cards stack vertically, so each topic gets its own space. Your portrait and the office photographs also adapt to the narrower view while keeping the story in the same order. The buttons are easy to reach as someone moves through the page. Here, the Explore session options button opens an explanation of in-person and online session options. Because this is an assignment preview for a fictional practice, it clearly says that appointments cannot be booked here. That makes the interaction understandable without collecting anyone's personal information. I'll close it and return to the page.
 
 ## 4:25–5:00 — Close the presentation
 

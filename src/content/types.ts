@@ -82,9 +82,7 @@ export interface HomepageContent {
   };
 }
 
-/** Maya has its own composition, with one opening image and one closing image. */
-export type MayaHomepageContent = Omit<HomepageContent, "hero" | "contact" | "office"> & {
-  hero: Omit<HomepageContent["hero"], "sideImage">;
-  contact: Omit<HomepageContent["contact"], "smallImage">;
+/** The redesign shares the reference layout; only Our Office adds a new composition. */
+export type MayaHomepageContent = HomepageContent & {
   office: NonNullable<HomepageContent["office"]>;
 };

@@ -364,3 +364,58 @@
 .theme-original .homepage--original :is(.action-link, .action-oval) { font-size: var(--button-size); line-height: normal; }
 /* Card titles are links wearing their heading's type, not buttons. */
 .theme-original .homepage--original .service-title-link { font-size: inherit; line-height: inherit; }
+
+/* Match the reference's responsive units and per-section column gaps. Squarespace
+   uses the larger viewport dimension for section padding, including on tablets. */
+.theme-original .homepage--original :is(h1, h2, h3) { white-space: pre-wrap; }
+@media (min-width: 768px) {
+  .homepage--original :is(.intro-section, .services-section, .approach-section) {
+    --grid-gutter: calc(5vw - 20px);
+    column-gap: 20px;
+    grid-template-columns: minmax(var(--grid-gutter), 1fr) repeat(24, minmax(0, 55.83333px)) minmax(var(--grid-gutter), 1fr);
+  }
+  .homepage--original .intro-section { padding-block: 7vmax; min-height: 70vh; }
+  .homepage--original :is(.services-section, .statement-section, .bridge-section, .contact-section) { padding-block: 6.6vmax; }
+  .homepage--original .hero-copy > p { margin-top: 30px; }
+  .homepage--original .service-card { display: grid; grid-template-rows: subgrid; }
+  .homepage--original .service-image { grid-row: 1 / 12; height: auto; }
+  .homepage--original .service-copy { grid-row: 13 / -1; padding-top: 0; }
+  .homepage--original .service-card--1 .service-copy { grid-row-end: 18; }
+  .homepage--original .service-copy > p, .homepage--original .specialty-card p { margin-top: 30px; }
+  .homepage--original .approach-primary-copy, .homepage--original .approach-secondary-copy { padding-bottom: 0; }
+  .homepage--original .specialty-card > .action-link { margin-top: 11px; min-height: calc(2 * var(--grid-row) + var(--grid-gap)); }
+}
+@media (max-width: 767px) {
+  .homepage--original .intro-section { padding-block: 7vmax; }
+  .homepage--original :is(.services-section, .contact-section) { padding-block: 6.6vmax; }
+  .homepage--original .statement-section { min-height: 66vh; }
+  .homepage--original .expertise-section { padding-block: 8vmax; }
+  .homepage--original .bridge-section { min-height: 66vh; padding-block: 6.6vmax; justify-content: center; }
+  /* The source's phone grid has 24px minimum rows and 11px row gaps.
+     Photo heights therefore stay constant when the phone width changes. */
+  .homepage--original :is(.intro-section, .services-section, .approach-section) { padding-inline: max(6vw, 20px); }
+  .homepage--original .hero-section {
+    padding: var(--header-height) 0 0;
+    grid-template-columns: calc(6vw - 11px) repeat(8, minmax(0, 1fr)) calc(6vw - 11px);
+    grid-template-rows: repeat(24, minmax(24px, auto));
+    gap: 11px;
+  }
+  .homepage--original .hero-eyebrow { grid-area: 2 / 2 / 5 / 10; align-self: center; padding: 0; margin: 0 !important; }
+  .homepage--original .hero-copy { grid-area: 5 / 2 / 12 / 10; }
+  .homepage--original .hero-action { grid-area: 12 / 2 / 14 / 10; margin: 0; }
+  .homepage--original .hero-image { grid-area: 15 / 1 / 24 / 8; height: auto; margin: 0; }
+  .homepage--original .hero-side-image { grid-area: 18 / 9 / 24 / 11; height: auto; margin: 0; align-self: stretch; }
+  .homepage--original .intro-image { height: 234px; }
+  .homepage--original .service-image, .homepage--original .bridge-image { height: 304px; }
+  .homepage--original .approach-image, .homepage--original .contact-large-image { height: 269px; }
+  .homepage--original .approach-heading { width: calc(87.5% - 2.5px); max-width: none; }
+  .homepage--original .expertise-section > h2 { padding-top: 0; align-content: center; margin-bottom: 46px !important; }
+  .homepage--original .expertise-list li { align-items: flex-start; }
+  .homepage--original .expertise-list li:last-child { min-height: 59px; }
+  .homepage--original .expertise-list li > span, .homepage--original .expertise-link { padding: 0; }
+  .homepage--original .specialties-section > h2 { min-height: 59px; align-content: center; margin-bottom: 46px; }
+  .homepage--original .contact-small-image { height: 199px; margin-bottom: 46px; }
+  .homepage--original .contact-eyebrow { min-height: 59px; display: flex; align-items: center; margin-bottom: 11px !important; }
+  .homepage--original .contact-section h2 { margin-bottom: 11px; }
+  .homepage--original .contact-action { display: flex; align-items: center; min-height: 59px; margin-top: 11px; }
+}

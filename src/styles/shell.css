@@ -211,10 +211,8 @@
 .theme-original .site-colophon { min-height: 50px; padding: 11px 6.8vw; font-size: calc(var(--normal-size) * .9); font-weight: 300; line-height: var(--body-line-height); }
 .theme-original .site-colophon > a { font-size: 11px; }
 .theme-original .homepage .eyebrow { font-size: var(--large-size); font-weight: 400; letter-spacing: .12em; }
-/* The source sets its script accent at 1em of the surrounding heading. Petit Formal
-   Script runs a measured 2.6% wide against Printed Moments across the six accent words,
-   so it needs only that trim rather than a scale-up. */
-.theme-original .script-accent { font-size: .975em; }
+/* Printed Moments uses the surrounding heading's full size in the reference. */
+.theme-original .script-accent { font-size: 1em; }
 .theme-original .homepage .service-title-link { font: inherit; text-transform: none; letter-spacing: inherit; padding: 0; text-align: left; }
 .theme-original .homepage .expertise-link { font-size: var(--large-size); text-align: left; }
 
@@ -256,7 +254,7 @@
   .theme-original .site-header { height: var(--header-height); }
 }
 @media (max-width: 799px) {
-  .theme-original { --header-height: calc(12vw + min(75px, 17.94vw)); }
+  .theme-original { --header-height: max(106px, calc(12vw + min(75px, 17.94vw))); }
   .theme-original .site-header { height: var(--header-height); }
   .theme-original .header-inner { padding-inline: 6vw; }
   .theme-original .site-header .original-brand { width: min(257px, 61.45vw); }

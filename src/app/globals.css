@@ -21,8 +21,8 @@ img { display: block; max-width: 100%; }
 :focus-visible { outline: 2px solid currentColor; outline-offset: 7px; }
 .site-shell { min-height: 100vh; overflow: clip; }
 .theme-original {
-  --font-display: "Faustina Variable", Georgia, serif;
-  --font-script: "Petit Formal Script", cursive;
+  --font-display: "Beaufort Pro", Georgia, serif;
+  --font-script: "Printed Moments", cursive;
   --font-body: "Muli", sans-serif;
   --color-background: #f6f4ee;
   --color-paper: #fff;

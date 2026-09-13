@@ -2,7 +2,7 @@
 
 This file records the final handoff. An unchecked item has not been confirmed by this checklist. The candidate records the video and submits all three deliverables through the assignment's provided form.
 
-The Sunlit Studio redesign was validated locally on September 13, 2026. It has not been deployed or pushed as part of this revision; the public links and checked public-release items below refer to the September 12 release. See [the current validation record](validation.md) for the local build and 27 passing browser tests.
+The layout and font corrections are complete. Final production and public release checks are recorded in [validation.md](validation.md); the deliverable table is updated after those checks.
 
 ## Deliverable links
 
@@ -15,11 +15,11 @@ The Sunlit Studio redesign was validated locally on September 13, 2026. It has n
 
 ## Content and design review
 
-Results and known font/contrast limitations are recorded in [validation.md](validation.md).
+Results and remaining contrast limitations are recorded in [validation.md](validation.md).
 
 - [x] Compare the clone with the reference at 390px, 768px, and 1440px: section order, grid proportions, spacing, image crops, and mobile placement.
-- [x] Record the approved clone font substitutions: Cormorant Garamond, Allura, and Mulish. Exact font matching is the intentional exception.
-- [x] Confirm the redesign keeps the reference section order and adds one new Our Office section immediately after Maya's biography.
+- [x] Match Beaufort Pro, Printed Moments, and Muli to the reference; record their provenance in `font-sources.md`.
+- [x] Confirm the redesign keeps the reference section layouts and order and adds one new Our Office section immediately after Maya's biography.
 - [x] Confirm all redesign text is grounded in Maya's profile, with three services: anxiety and panic; trauma; burnout and perfectionism.
 - [x] Confirm Maya's supplied portrait and both office photographs are present; check that all other reference photography has been replaced.
 - [x] Review local image assets and source/license attribution in the README.
@@ -39,7 +39,7 @@ Results and known font/contrast limitations are recorded in [validation.md](vali
 - [x] Run lint, TypeScript checks, and the production build; record any remaining limitations in the README.
 - [x] Serve the exported site locally and test both routes, direct refreshes, image/font loading, and 404 handling.
 - [x] Review mobile loading and layout stability; resolve material delays or layout shifts.
-- [x] Repeat public smoke checks against the final live URLs and update the deliverable table above.
+- [ ] Repeat public smoke checks against the final live URLs and update the deliverable table above.
 
 ## Recording and submission
 

@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { Action } from "@/components/interactions";
 import { Photo } from "@/components/photo";
 import type { ActionContent, Copy, HomepageContent, ImageContent, RichText, Theme } from "@/content/types";
@@ -40,13 +40,15 @@ function ImageFrame({ image, className, sizes = "(max-width: 767px) 88vw, 40vw",
 }
 
 /** The same editorial section geometry serves both assignment versions. */
-export function HomePage({ content, theme }: { content: HomepageContent; theme: Theme }) {
+export function HomePage({ content, theme, className = "", officeSection }: {
+  content: HomepageContent; theme: Theme; className?: string; officeSection?: ReactNode;
+}) {
   const expertiseColumns = Math.ceil(content.expertise.items.length / 2);
   return (
-    <main id="main-content" className={`homepage homepage--${theme}`}>
+    <main id="main-content" className={`homepage homepage--${theme} ${className}`.trim()}>
       <section className="hero-section editorial-grid" aria-labelledby="hero-heading">
         <p className="hero-eyebrow eyebrow">{content.hero.eyebrow}</p>
-        <div className="hero-copy">
+        <div className="hero-copy" data-reveal={theme === "maya" ? "" : undefined}>
           <h1 id="hero-heading"><Rich text={content.hero.title} /></h1>
           <p>{content.hero.description}</p>
         </div>
@@ -111,7 +113,7 @@ export function HomePage({ content, theme }: { content: HomepageContent; theme: 
         <div className="approach-action"><ContentAction action={content.approach.action} /></div>
       </section>
 
-      {content.office && (
+      {officeSection ?? (content.office && (
         <section id="office" className="office-section editorial-grid" aria-labelledby="office-heading">
           <div className="office-heading-group">
             {content.office.eyebrow && <p className="eyebrow">{content.office.eyebrow}</p>}
@@ -125,7 +127,7 @@ export function HomePage({ content, theme }: { content: HomepageContent; theme: 
             {content.office.images.map((image, index) => <ImageFrame key={image.src} image={image} className={`office-image office-image--${index + 1}`} sizes="(max-width: 767px) 88vw, 46vw" />)}
           </div>
         </section>
-      )}
+      ))}
 
       <section className="bridge-section editorial-grid" aria-labelledby="bridge-heading">
         <ImageFrame image={content.bridge.image} className="bridge-image" sizes="(max-width: 767px) 94vw, 55vw" />

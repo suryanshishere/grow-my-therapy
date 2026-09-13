@@ -2,7 +2,7 @@
    Every selector is scoped so visiting Maya never restyles the reference clone. */
 .theme-maya ::selection { background: var(--color-pale-plum); color: var(--color-ink); }
 .theme-maya :focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
-.theme-maya .site-header { position: relative; height: 106px; background: var(--color-primary); color: var(--color-paper); }
+.theme-maya .site-header { position: absolute; height: 106px; background: var(--color-primary); color: var(--color-paper); }
 .theme-maya .header-inner { max-width: 1440px; padding-inline: 5%; gap: 28px; }
 .theme-maya .brand-name { font-family: var(--font-display); color: inherit; font-size: 31px; font-weight: 400; letter-spacing: -.025em; line-height: 1.1; }
 .theme-maya .brand-caption { font-family: var(--font-body); font-size: 12px; font-weight: 400; letter-spacing: .04em; text-transform: none; margin-top: 8px; }

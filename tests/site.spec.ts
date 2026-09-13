@@ -182,6 +182,29 @@ test("Maya uses the supplied portrait and both office photographs with new suppo
   expect(oldAssets).toEqual([]);
 });
 
+for (const width of [768, 1440]) {
+  test(`Maya retains the template image counts and grid placements at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 1000 });
+    const placements = () => page.locator("main > section:not(#office)").evaluateAll(sections => sections.map(section => ({
+      display: getComputedStyle(section).display,
+      columns: getComputedStyle(section).gridTemplateColumns,
+      columnGap: getComputedStyle(section).columnGap,
+      imageCount: section.querySelectorAll("img").length,
+      children: [...section.children].map(child => ({
+        area: getComputedStyle(child).gridArea,
+        position: getComputedStyle(child).position,
+      })),
+    })));
+    await page.goto("/original/");
+    const template = await placements();
+    await page.goto("/");
+    expect(await placements()).toEqual(template);
+    const band = page.locator(".statement-section");
+    const background = page.locator(".statement-image");
+    expect(await background.boundingBox()).toEqual(await band.boundingBox());
+  });
+}
+
 test("reduced motion keeps reveal content immediately visible without animation", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
@@ -223,6 +246,25 @@ test("client navigation between versions preserves each theme", async ({ page })
   expect(await page.evaluate(() => Reflect.get(window, "__redesignNavigationSentinel"))).toBe(marker);
   expect(await cloneAppearance()).toEqual(originalAppearance);
   await expect(page.locator("#office")).toHaveCount(0);
+});
+
+test("clone loads the reference heading, script, and body fonts locally", async ({ page }) => {
+  await page.goto("/original/");
+  await page.evaluate(() => document.fonts.ready);
+  const fonts = await page.evaluate(() => ({
+    heading: getComputedStyle(document.querySelector("h1")!).fontFamily,
+    script: getComputedStyle(document.querySelector(".script-accent")!).fontFamily,
+    body: getComputedStyle(document.querySelector("main")!).fontFamily,
+    loaded: document.fonts.check('300 30px "Beaufort Pro"') && document.fonts.check('400 30px "Printed Moments"'),
+  }));
+  expect(fonts.heading).toContain("Beaufort Pro");
+  expect(fonts.script).toContain("Printed Moments");
+  expect(fonts.body).toContain("Muli");
+  expect(fonts.loaded).toBe(true);
+  for (const path of ["beaufort-pro-light.woff2", "beaufort-pro-light-italic.woff2", "printed-moments.woff"]) {
+    const response = await page.request.get(`/fonts/original/${path}`);
+    expect(response.ok()).toBe(true);
+  }
 });
 
 test("clone burger morphs to a close control and steps through folder panels", async ({ page }) => {
