@@ -1,24 +1,27 @@
 import type { Theme } from "./types";
 
-export type NavigationItem = { label: string; href?: string; dialog?: "faq" | "consultation"; children?: NavigationItem[] };
+export type NavigationItem = { label: string; href?: string; dialog?: "faq"; children?: NavigationItem[] };
 const reference = "https://www.conejovalleycounseling.com";
 /** The clone hosts its own recreation of the reference booking page. */
 export const contactHref = "/original/contact/";
+/** Maya's own booking page, styled in the redesign's theme. */
+export const mayaContactHref = "/contact/";
 export const navigation: Record<Theme, NavigationItem[]> = {
   maya: [
-    { label: "Meet Maya", href: "#about" },
-    { label: "Services", href: "#services", children: [
-      { label: "Anxiety & panic", href: "#service-1" },
-      { label: "Trauma", href: "#service-2" },
-      { label: "Burnout & perfectionism", href: "#service-3" },
+    // Rooted at "/" so the same links work from the booking page.
+    { label: "Meet Maya", href: "/#about" },
+    { label: "Services", href: "/#services", children: [
+      { label: "Anxiety & panic", href: "/#service-1" },
+      { label: "Trauma", href: "/#service-2" },
+      { label: "Burnout & perfectionism", href: "/#service-3" },
     ] },
-    { label: "Approach", href: "#approach", children: [
-      { label: "CBT", href: "#method-1" },
-      { label: "EMDR", href: "#method-2" },
-      { label: "Mindfulness", href: "#method-3" },
-      { label: "Body-oriented techniques", href: "#method-4" },
+    { label: "Approach", href: "/#approach", children: [
+      { label: "CBT", href: "/#method-1" },
+      { label: "EMDR", href: "/#method-2" },
+      { label: "Mindfulness", href: "/#method-3" },
+      { label: "Body-oriented techniques", href: "/#method-4" },
     ] },
-    { label: "Our office", href: "#office" },
+    { label: "Our office", href: "/#office" },
     { label: "FAQs", dialog: "faq" },
   ],
   original: [

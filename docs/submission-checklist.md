@@ -33,7 +33,7 @@ Results and remaining contrast limitations are recorded in [validation.md](valid
 - [x] Check both routes at 320px, 390px, 768px, 1024px, and 1440px for horizontal overflow, clipped content, readable type, and appropriate image placement.
 - [x] Check navigation, dropdowns, service links, mobile menu open/close, and reference links that lead off the clone.
 - [x] Open FAQs from the header and footer; expand and collapse the answers.
-- [x] Open every consultation trigger and confirm the dialog clearly explains that this is a demo and appointments cannot be booked.
+- [ ] Follow every "Book an appointment" control to `/contact/` and confirm the page clearly explains that this is a demo and appointments cannot be booked.
 - [x] Check Escape dismissal, keyboard focus containment, visible focus, and restoration of focus after dialogs close.
 - [x] Review text/button contrast and behavior with reduced motion enabled.
 - [x] Run lint, TypeScript checks, and the production build; record any remaining limitations in the README.

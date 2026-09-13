@@ -90,3 +90,56 @@ export const contactFields: readonly ContactField[] = [
     required: true,
   },
 ];
+
+/**
+ * Maya's booking page. Same demonstration form, with the intake adapted to her adult
+ * practice: no reference clinicians, insurance or minor's age. Nothing is sent or stored.
+ */
+export const mayaContactTitle: readonly { text: string; italic?: boolean }[] = [
+  { text: "Book an " },
+  { text: "appointment", italic: true },
+  { text: "." },
+];
+
+export const mayaContactIntro = {
+  eyebrow: "Santa Monica & California telehealth",
+  body: "Tell me a little about what you're looking for and when you're usually free. We can meet in my Santa Monica office or through secure telehealth if you're located in California.",
+  details: ["Santa Monica, CA 90401", "In-person sessions", "Secure telehealth across California"],
+  note: "Dr. Maya Reynolds is a fictional therapist created for a design assignment. This form is a demonstration and does not send or store anything.",
+} as const;
+
+export const mayaContactFields: readonly ContactField[] = [
+  {
+    kind: "name",
+    id: "name",
+    label: "Name",
+    parts: [
+      { id: "first-name", label: "First Name", required: true },
+      { id: "last-name", label: "Last Name", required: true },
+    ],
+  },
+  { kind: "email", id: "email", label: "Email", required: true },
+  { kind: "tel", id: "phone", label: "Phone", required: true },
+  {
+    kind: "select",
+    id: "format",
+    label: "Would you like to meet in person or online?",
+    required: true,
+    options: ["In person in Santa Monica", "Telehealth within California", "Open to either"],
+  },
+  {
+    kind: "select",
+    id: "referral",
+    label: "How did you hear about Dr. Reynolds?",
+    required: true,
+    options: ["Search engine", "Psychology Today", "Friend or family", "Healthcare professional", "Other"],
+  },
+  {
+    kind: "textarea",
+    id: "issues",
+    label: "What brings you to therapy?",
+    required: true,
+    helper: "Please don't include personal or health details in this form.",
+  },
+  { kind: "text", id: "availability", label: "Which days and times usually work for you?", required: true },
+];

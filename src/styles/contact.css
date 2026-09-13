@@ -133,3 +133,50 @@
   .contact-page-details { margin-top: 34px; }
   .contact-page-form { margin-top: 40px; }
 }
+
+/* Maya's booking page reuses the two-column sheet in the redesign's palette and type.
+   The rules above read the reference's type tokens, which Maya's theme doesn't define. */
+.theme-maya .contact-page {
+  --header-height: 106px;
+  --normal-size: 17px;
+  --small-size: 14px;
+  --button-size: 14px;
+  --h1-size: clamp(44px, 5vw, 72px);
+  --h3-size: 34px;
+  --body-line-height: 1.75;
+  --h1-line-height: 1.1;
+  --h3-line-height: 1.2;
+  --contact-container: min(1296px, 90vw);
+  font-weight: 400;
+}
+.theme-maya .contact-page .eyebrow { margin: 0 0 22px; font-size: 12px; font-weight: 500; letter-spacing: .1em; }
+.theme-maya .contact-page h1 { font-weight: 400; letter-spacing: -.025em; color: var(--color-strong); }
+.theme-maya .contact-page h1 em { color: var(--color-accent); }
+.theme-maya .contact-page-rule { border-top-color: #303b3233; }
+.theme-maya .contact-page-note { margin: 30px 0 0; max-width: 30em; font-size: 14px; line-height: 1.7; color: var(--color-muted); }
+.theme-maya .field-label { font-weight: 500; }
+.theme-maya .field-label--sub { font-weight: 400; }
+.theme-maya :is(.field-required, .field-helper) { color: var(--color-muted); }
+.theme-maya .contact-form :where(input, select, textarea) { background-color: var(--color-paper); border-color: #303b3259; border-radius: 3px; font-weight: 400; }
+.theme-maya .contact-form :where(input, select, textarea):focus-visible { outline-color: var(--color-accent); }
+.theme-maya .contact-page .form-submit {
+  align-items: center;
+  min-height: 56px;
+  margin-top: 12px;
+  padding: 18px 22px;
+  border: 1px solid var(--color-accent);
+  border-radius: 3px;
+  background: var(--color-accent);
+  color: var(--color-paper);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  transition: background-color .2s, border-color .2s;
+}
+.theme-maya .contact-page .form-submit::after { display: none; }
+.theme-maya .contact-page .form-submit:hover { background: #604758; border-color: #604758; }
+.theme-maya .form-notice h2 { font-weight: 400; }
+@media (max-width: 767px) {
+  .theme-maya .contact-page { --header-height: 104px; --contact-container: 88vw; --h1-size: clamp(40px, 11vw, 52px); }
+}

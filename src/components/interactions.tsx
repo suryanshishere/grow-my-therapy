@@ -1,14 +1,14 @@
 "use client";
 
 import { createContext, useContext, useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
-import { contactHref, faqs, navigation, type NavigationItem } from "@/content/navigation";
+import { contactHref, faqs, mayaContactHref, navigation, type NavigationItem } from "@/content/navigation";
 import type { Theme } from "@/content/types";
 
-type DialogKind = "consultation" | "faq" | "menu";
+type DialogKind = "faq" | "menu";
 const DialogContext = createContext<{ open: (kind: DialogKind) => void; close: () => void } | null>(null);
 
 export function Action({ href, dialog, children, className = "", oval = false, ariaLabel }: {
-  href?: string; dialog?: "consultation" | "faq"; children: ReactNode;
+  href?: string; dialog?: "faq"; children: ReactNode;
   className?: string; oval?: boolean; ariaLabel?: string;
 }) {
   const context = useContext(DialogContext);
@@ -65,7 +65,7 @@ export function DialogProvider({ theme, children }: { theme: Theme; children: Re
               <div className="mobile-submenu">{item.children.map((child) => <MenuLink key={child.label} item={child} close={close} />)}</div>
             </details> : <MenuLink key={item.label} item={item} close={close} />)}
           </nav>
-          <Action dialog="consultation" oval>Explore session options</Action>
+          <Action href={mayaContactHref} oval>Book an appointment</Action>
           <p className="menu-location">Adult therapy in Santa Monica and online throughout California</p>
         </> : kind === "faq" ? <>
           <p className="eyebrow">Getting to know the process</p>
@@ -75,16 +75,6 @@ export function DialogProvider({ theme, children }: { theme: Theme; children: Re
             <p>{faq.answer}</p>
           </details>)}</div>
           <p className="dialog-note">Dr. Maya Reynolds is a fictional therapist presented as part of a design assignment.</p>
-        </> : kind === "consultation" ? <>
-          <p className="eyebrow">Ways to work together</p>
-          <h2 id="dialog-title">Explore session options</h2>
-          <p className="dialog-intro">I offer therapy for adults navigating anxiety, trauma, and burnout. Sessions combine practical tools with space for reflection, whether we meet in my office or online.</p>
-          <div className="session-options">
-            <div><h3>In Santa Monica</h3><p>A comfortable, private office with natural light.<br />Santa Monica, CA 90401.</p></div>
-            <div><h3>Across California</h3><p>Secure telehealth sessions for adults located in California.</p></div>
-          </div>
-          <div className="demo-notice"><strong>A note about this practice</strong><p>This is a design concept for Dr. Maya Reynolds, a fictional therapist. No personal information is collected, and appointments cannot be booked here.</p></div>
-          <button type="button" className="action-link" onClick={close}>Return to the page</button>
         </> : null}
       </div>
     </dialog>
@@ -206,7 +196,7 @@ export function HeaderNavigation({ theme }: { theme: Theme }) {
           {item.children.map((child) => <a key={child.label} href={child.href} onClick={() => setExpanded(null)}>{child.label}</a>)}
         </div>
       </div> : item.dialog ? <button key={item.label} type="button" aria-haspopup="dialog" onClick={() => context?.open(item.dialog!)}>{item.label}</button> : <a key={item.label} href={item.href}>{item.label}</a>)}
-      {original ? <Action href={contactHref} oval>Contact</Action> : <Action dialog="consultation" oval>Explore session options</Action>}
+      {original ? <Action href={contactHref} oval>Contact</Action> : <Action href={mayaContactHref} oval>Book an appointment</Action>}
     </nav>
     <button
       ref={burgerRef}

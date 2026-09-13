@@ -1,3 +1,4 @@
+import { mayaContactHref } from "./navigation";
 import type { MayaHomepageContent } from "./types";
 
 const image = (name: string, alt: string, position = "50% 50%") => ({
@@ -11,8 +12,8 @@ export const mayaContent: MayaHomepageContent = {
     eyebrow: "Adult therapy · Santa Monica & California telehealth",
     title: "Therapy for anxiety, trauma & burnout in Santa Monica.",
     description: "I'm Dr. Maya Reynolds, PsyD, a Licensed Clinical Psychologist. I offer adults a warm, collaborative space to understand what they're carrying, in person in Santa Monica or through secure telehealth across California.",
-    action: { label: "Explore session options", dialog: "consultation" },
-    image: image("office-one", "Window light, a sofa, and an armchair in Maya's Santa Monica therapy office"),
+    action: { label: "Book an appointment", href: mayaContactHref },
+    image: image("office-one", "Window light, a sofa, and an armchair in Maya's Santa Monica therapy office", "35% 50%"),
     sideImage: image("studio-statement", "A narrow detail of sunlight filtering through linen"),
   },
   intro: {
@@ -23,7 +24,7 @@ export const mayaContent: MayaHomepageContent = {
     lead: "When keeping up takes everything",
     body: "You may be getting through the day, meeting expectations, and looking like you have it together. Inside, worry keeps circling. Your body feels tense, rest is difficult, or the pressure to keep going leaves you exhausted.",
     secondaryBody: "I work with adults who know this experience, including professionals, entrepreneurs, and creatives. Therapy offers room to slow down, understand the patterns beneath the pressure, and explore more sustainable ways of living and working.",
-    image: image("studio-intro", "An unoccupied work desk beside a sunlit window"),
+    image: image("studio-intro", "An unoccupied work desk beside a sunlit window", "72% 50%"),
   },
   services: {
     title: "Support for what you're carrying",
@@ -32,19 +33,19 @@ export const mayaContent: MayaHomepageContent = {
         title: "Anxiety & panic",
         body: "Constant worry, overthinking, or panic can make it hard to feel at ease, even when life looks manageable from the outside. You might notice physical tension, difficulty sleeping, or a sense of being on edge. Together, we'll explore those patterns and bring practical tools to the emotional and physical experience of anxiety.",
         image: image("studio-anxiety", "Soft sunlight and shadows crossing a warm wall", "50% 35%"),
-        action: { label: "Explore session options", dialog: "consultation" },
+        action: { label: "Book an appointment", href: mayaContactHref },
       },
       {
         title: "Trauma",
         body: "A single event or longstanding experiences can continue to affect your relationships, confidence, and sense of safety. I work with both single-incident and more complex trauma, including experiences rooted in childhood, relationships, or chronic stress. Our work is carefully paced, with safety and stabilization guiding the process and room for your experience throughout.",
         image: image("studio-trauma", "An ivy-lined stone doorway opening onto a sheltered path", "50% 58%"),
-        action: { label: "Explore session options", dialog: "consultation" },
+        action: { label: "Book an appointment", href: mayaContactHref },
       },
       {
         title: "Burnout & perfectionism",
         body: "Years of pushing through stress can leave you exhausted, disconnected, and unsure what you need. For professionals, entrepreneurs, and creatives, high internal standards can make slowing down especially difficult. Therapy offers space to explore the pressure to keep performing, reconnect with yourself, and develop more sustainable ways of living and working.",
         image: image("studio-burnout", "A closed muted-plum notebook beside a ceramic cup", "50% 55%"),
-        action: { label: "Explore session options", dialog: "consultation" },
+        action: { label: "Book an appointment", href: mayaContactHref },
       },
     ],
   },
@@ -129,8 +130,8 @@ export const mayaContent: MayaHomepageContent = {
     title: "Begin with what you need.",
     body: "Anxiety, past experiences, or the pressure to keep going may have brought you here. Therapy offers space to understand what's happening and reconnect with yourself, with practical support and room for reflection.",
     prompt: "Learn about in-person sessions and secure California telehealth.",
-    action: { label: "Explore session options", dialog: "consultation" },
-    smallImage: image("studio-closing", "A ceramic cup and saucer in window light"),
+    action: { label: "Book an appointment", href: mayaContactHref },
+    smallImage: image("studio-closing", "A ceramic cup and saucer in window light", "30% 55%"),
     largeImage: image("studio-bridge", "An open window and sheer curtains in natural daylight"),
   },
 };

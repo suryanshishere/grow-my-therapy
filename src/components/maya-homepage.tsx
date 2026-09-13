@@ -1,6 +1,7 @@
 import { HomePage } from "@/components/homepage";
 import { Action } from "@/components/interactions";
 import { Photo } from "@/components/photo";
+import { mayaContactHref } from "@/content/navigation";
 import type { Copy, ImageContent, MayaHomepageContent, RichText } from "@/content/types";
 import styles from "@/styles/maya-homepage.module.css";
 
@@ -48,7 +49,7 @@ export function MayaHomePage({ content }: { content: MayaHomepageContent }) {
         <div className={styles.officeDetails}>
           <p className={styles.eyebrow}>A space that meets you where you are</p>
           <ul>{content.office.details?.map(detail => <li key={detail}>{detail}</li>)}</ul>
-          <Action dialog="consultation" className={styles.officeLink}>Explore session options<Arrow /></Action>
+          <Action href={mayaContactHref} className={styles.officeLink}>Book an appointment<Arrow /></Action>
         </div>
       </div>
     </section>

@@ -11,7 +11,7 @@ A responsive reference clone and **Sunlit Studio** therapist redesign, built for
 
 Release verification is recorded in [validation.md](docs/validation.md). Cloudflare Pages uses Direct Upload: building or pushing to GitHub does not automatically update the live site.
 
-Dr. Maya Reynolds is fictional. Consultation controls open an informational demo dialog, and the cloned booking form validates in the browser and then states that nothing was sent. This website does not collect personal information, book appointments, or send messages.
+Dr. Maya Reynolds is fictional. Maya's "Book an appointment" controls lead to a themed demonstration form at `/contact/`; it and the cloned booking form validate in the browser and then state that nothing was sent. This website does not collect personal information, book appointments, or send messages.
 
 ## Run locally
 
@@ -37,9 +37,10 @@ The production export is written to `out/`. The preview serves it on `http://loc
 
 - `src/components/homepage.tsx` renders the nine reference section layouts for both homepages. `MayaHomePage` supplies Maya's content, theme styles, and the custom Our Office section. Both versions retain two hero images, a full-width photographic statement, the specialties grid, and two closing images.
 - Shared template geometry lives in `homepage.css`. Maya's CSS Module supplies theme styling and the additional office composition. Theme-scoped header, footer, and dialog styles live in `maya.css`.
-- `src/components/interactions.tsx` handles desktop dropdowns, both mobile menus, FAQs, and consultation dialogs. Native dialogs include explicit Tab cycling, Escape dismissal, backdrop dismissal, scroll locking, and focus restoration.
+- `src/components/interactions.tsx` handles desktop dropdowns, both mobile menus, and the FAQ dialog. Native dialogs include explicit Tab cycling, Escape dismissal, backdrop dismissal, scroll locking, and focus restoration.
 - The two routes use different mobile menus on purpose. Maya opens a native dialog with an accordion. The clone reproduces the reference's full-screen sheet: a three-bar burger that morphs into a close control in place, a sheet that fades in beneath the header so the logo stays put, and folders that step sideways to a panel headed by **Back** rather than expanding inline. Because a modal `<dialog>` is promoted to the top layer and would cover the header, the clone's sheet is an ordinary fixed panel that reuses the same focus trap, Escape handling, scroll lock, and focus restoration, and marks the rest of the page `inert` while open.
 - `/original/contact/` recreates the reference booking page, including its two-column layout and all eleven intake controls. The form has no `action`, makes no network request, and stores nothing; submitting a valid form replaces it with a notice explaining that it is a demonstration.
+- `/contact/` is Maya's booking page. It reuses the same inert form in her palette and type, with an intake adapted to her adult practice: name, email, phone, meeting format, referral source, what brings you to therapy, and availability. There are no clinician, insurance, or minor's-age questions.
 - `Photo` uses a checked-in image manifest to choose real responsive image variants, with lazy loading and explicit dimensions. Above-the-fold photography loads eagerly.
 - Section links navigate to services, Maya’s biography, modalities, and office. Links outside the reference clone point to the original website.
 
@@ -49,7 +50,7 @@ Next.js's experimental `inlineCss` option serves CSS with the initial HTML. A co
 
 ## Design and sources
 
-Sunlit Studio combines deep olive, warm stone, muted plum, and naturally colored photography. The original section compositions remain recognizable, including the offset hero photographs and four-block specialties grid. **Our Office**, immediately after Maya's biography, introduces the custom overlapping stone panel and two supplied office photographs. Mobile layouts retain the template's reading order. Filled plum buttons and locally hosted Instrument Sans and Newsreader complete Maya's theme; FAQs remain in a dialog so Our Office is the only added section.
+Sunlit Studio combines deep olive, warm stone, muted plum, and naturally colored photography. The original section compositions remain recognizable, including the offset hero photographs and four-block specialties grid. **Our Office**, immediately after Maya's biography, introduces the custom overlapping stone panel and two supplied office photographs. Mobile layouts retain the template's reading order. Filled plum buttons and locally hosted Instrument Sans and Newsreader complete Maya's theme; FAQs remain in a dialog and booking lives on its own page, so Our Office is the only added homepage section.
 
 | Token | Color | Use |
 | --- | --- | --- |
@@ -82,7 +83,7 @@ Optimized WebP assets and their size manifest are included, so builds need no so
 npm run test:e2e
 ```
 
-Tests use installed Google Chrome. They cover both routes at 320, 390, 768, 1024, and 1440 pixels; missing images and clipped text; menu and dropdown navigation; dialog focus, dismissal and demo behavior; FAQ expansion; WCAG AA automated checks on the redesign and the cloned contact page; metadata; reduced motion; and static 404 handling. Clone-specific checks cover the burger morph and folder stepping, dropdown right alignment, the absence of hover tinting, the white colophon, every booking control resolving to `/original/contact/`, and a form submission that produces no POST, PUT, or PATCH request. The original’s known accent contrast is documented above rather than represented as WCAG compliant.
+Tests use installed Google Chrome. They cover both homepages and Maya's booking page at 320, 390, 768, 1024, and 1440 pixels; missing images and clipped text; menu and dropdown navigation; dialog focus and dismissal; FAQ expansion; every Maya booking control resolving to `/contact/` and its adapted form producing no POST, PUT, or PATCH request; WCAG AA automated checks on the redesign, Maya's booking page, and the cloned contact page; metadata; reduced motion; and static 404 handling. Clone-specific checks cover the burger morph and folder stepping, dropdown right alignment, the absence of hover tinting, the white colophon, every booking control resolving to `/original/contact/`, and a form submission that produces no POST, PUT, or PATCH request. The original’s known accent contrast is documented above rather than represented as WCAG compliant.
 
 See the [validation record](docs/validation.md) for current checks. The previously recorded local mobile Lighthouse scores of 92 for the redesign and 84 for the clone belong to the preceding revision.
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useRef, useState } from "react";
+import { useId, useRef, useState, type ReactNode } from "react";
 import { contactFields, selectPlaceholder, type ContactField } from "@/content/contact";
 
 function RequiredMark({ required }: { required: boolean }) {
@@ -12,7 +12,9 @@ function RequiredMark({ required }: { required: boolean }) {
  * reports that nothing was sent: there is no action, no fetch, and no storage, because this
  * clone must never collect information on behalf of the real practice.
  */
-export function ContactForm() {
+export function ContactForm({ fields = contactFields, notice, submitLabel = "Submit" }: {
+  fields?: readonly ContactField[]; notice?: ReactNode; submitLabel?: string;
+}) {
   const prefix = useId();
   const formRef = useRef<HTMLFormElement>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -31,7 +33,7 @@ export function ContactForm() {
         next[id] = "Enter an email address so we can reply.";
       }
     };
-    for (const field of contactFields) {
+    for (const field of fields) {
       if (field.kind === "name") field.parts.forEach((part) => check(part.id, part.label, part.required));
       else check(field.id, field.label, field.required);
     }
@@ -53,9 +55,11 @@ export function ContactForm() {
 
   if (sent) {
     return <div className="form-notice" role="status">
-      <h2>This is a demonstration form.</h2>
-      <p>Nothing was sent and no information was stored. This page is a front-end study of an existing website, built for a development assignment.</p>
-      <p>To contact the real practice, visit <a href="https://www.conejovalleycounseling.com/contact">conejovalleycounseling.com/contact</a>.</p>
+      {notice ?? <>
+        <h2>This is a demonstration form.</h2>
+        <p>Nothing was sent and no information was stored. This page is a front-end study of an existing website, built for a development assignment.</p>
+        <p>To contact the real practice, visit <a href="https://www.conejovalleycounseling.com/contact">conejovalleycounseling.com/contact</a>.</p>
+      </>}
       <button type="button" className="action-link" onClick={() => { setSent(false); formRef.current?.reset(); }}>Back to the form</button>
     </div>;
   }
@@ -84,7 +88,7 @@ export function ContactForm() {
   };
 
   return <form ref={formRef} className="contact-form" noValidate onSubmit={onSubmit} aria-label="Appointment request">
-    {contactFields.map((field) => field.kind === "name"
+    {fields.map((field) => field.kind === "name"
       ? <fieldset key={field.id} className="form-field form-field--name">
           <legend className="field-label">{field.label}</legend>
           <div className="name-row">
@@ -108,6 +112,6 @@ export function ContactForm() {
           {control(field)}
           {errors[field.id] && <p className="field-error" id={`${fieldId(field.id)}-error`}>{errors[field.id]}</p>}
         </div>)}
-    <button type="submit" className="action-link form-submit">Submit</button>
+    <button type="submit" className="action-link form-submit">{submitLabel}</button>
   </form>;
 }

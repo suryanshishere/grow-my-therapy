@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Action, DialogProvider, HeaderNavigation } from "./interactions";
-import { contactHref } from "@/content/navigation";
+import { contactHref, mayaContactHref } from "@/content/navigation";
 import { Photo } from "./photo";
 import type { Theme } from "@/content/types";
 
@@ -38,14 +38,14 @@ export function SiteShell({ theme, children }: { theme: Theme; children: ReactNo
             {!original && <p className="footer-credential">Dr. Maya Reynolds, PsyD<br />Licensed Clinical Psychologist</p>}
           </div>
           <div className="footer-links"><h2>{original ? "Navigate" : "Find your way"}</h2>
-            {original ? <><Link href="/original/">Home</Link><a href="https://www.conejovalleycounseling.com/therapists-newbury-park">About</a><a href="https://www.conejovalleycounseling.com/faqs">FAQs</a><Link href={contactHref}>Contact</Link></> : <><a href="#about">Meet Maya</a><a href="#services">Services</a><a href="#office">Our office</a><Action dialog="faq" className="footer-action">FAQs</Action></>}
+            {original ? <><Link href="/original/">Home</Link><a href="https://www.conejovalleycounseling.com/therapists-newbury-park">About</a><a href="https://www.conejovalleycounseling.com/faqs">FAQs</a><Link href={contactHref}>Contact</Link></> : <><Link href="/#about">Meet Maya</Link><Link href="/#services">Services</Link><Link href="/#office">Our office</Link><Action dialog="faq" className="footer-action">FAQs</Action></>}
           </div>
           <div className="footer-links footer-methods"><h2>{original ? "Our Team" : "Ways of working"}</h2>
-            {original ? originalFooterTeam.map(([name, path]) => <a key={path} href={`https://www.conejovalleycounseling.com/${path}`}>{name}</a>) : <><a href="#method-1">CBT</a><a href="#method-2">EMDR</a><a href="#method-3">Mindfulness</a><a href="#method-4">Body-oriented techniques</a></>}
+            {original ? originalFooterTeam.map(([name, path]) => <a key={path} href={`https://www.conejovalleycounseling.com/${path}`}>{name}</a>) : <><Link href="/#method-1">CBT</Link><Link href="/#method-2">EMDR</Link><Link href="/#method-3">Mindfulness</Link><Link href="/#method-4">Body-oriented techniques</Link></>}
           </div>
           <div className="footer-location"><h2>{original ? "Contact" : "Where we meet"}</h2>
             <p>{original ? <>925 Broadbeck Dr<br />Suites 200 and 225<br />Newbury Park, CA 91320<br /><a href="mailto:info@conejovalleycounseling.com">info@conejovalleycounseling.com</a><br /><a href="tel:8052423120">805.242.3120</a></> : <>Santa Monica, CA 90401<br />In person & online across California</>}</p>
-            {original ? <p className="original-service-area">Serving Thousand Oaks, Westlake Village, Camarillo, Moorpark, &amp; Simi Valley</p> : <Action dialog="consultation">Explore session options</Action>}
+            {original ? <p className="original-service-area">Serving Thousand Oaks, Westlake Village, Camarillo, Moorpark, &amp; Simi Valley</p> : <Action href={mayaContactHref}>Book an appointment</Action>}
           </div>
         </div>
       </footer>

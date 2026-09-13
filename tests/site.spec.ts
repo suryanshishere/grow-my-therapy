@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-for (const route of ["/", "/original/"]) {
+for (const route of ["/", "/original/", "/contact/"]) {
   for (const width of [320, 390, 768, 1024, 1440]) {
     test(`${route} renders without overflow or missing images at ${width}px`, async ({ page }) => {
       await page.setViewportSize({ width, height: 900 });
@@ -34,22 +34,50 @@ for (const route of ["/", "/original/"]) {
   }
 }
 
-test("consultation is an accessible informational demo and restores focus", async ({ page }) => {
+test("Maya booking controls lead to the themed booking page", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/");
-  const trigger = page.getByRole("navigation", { name: "Main navigation" }).getByRole("button", { name: "Explore session options" });
-  await trigger.click();
-  const dialog = page.getByRole("dialog");
-  await expect(dialog).toBeVisible();
-  await expect(dialog).toContainText("appointments cannot be booked here");
-  await expect(dialog.locator("input, textarea, form")).toHaveCount(0);
-  for (let i = 0; i < 6; i++) {
-    await page.keyboard.press("Tab");
-    expect(await dialog.evaluate(element => element.contains(document.activeElement))).toBe(true);
-  }
-  await page.keyboard.press("Escape");
-  await expect(dialog).not.toBeVisible();
-  await expect(trigger).toBeFocused();
+  await expect(page.getByText("Explore session options")).toHaveCount(0);
+  const bookingLinks = page.getByRole("link", { name: "Book an appointment" });
+  // Header, hero, office, contact band and footer.
+  expect(await bookingLinks.count()).toBeGreaterThanOrEqual(5);
+  expect(new Set(await bookingLinks.evaluateAll(links => links.map(link => link.getAttribute("href"))))).toEqual(new Set(["/contact/"]));
+  await page.getByRole("navigation", { name: "Main navigation" }).getByRole("link", { name: "Book an appointment" }).click();
+  await expect(page).toHaveURL(/\/contact\/$/);
+  await expect(page.locator(".theme-maya")).toBeVisible();
+  await expect(page.locator("h1")).toHaveText("Book an appointment.");
+});
+
+test("Maya booking form adapts the intake and never transmits a submission", async ({ page }) => {
+  const sent: string[] = [];
+  page.on("request", request => {
+    if (["POST", "PUT", "PATCH"].includes(request.method())) sent.push(`${request.method()} ${request.url()}`);
+  });
+  await page.setViewportSize({ width: 1440, height: 1200 });
+  await page.goto("/contact/");
+  const form = page.locator("form.contact-form");
+  expect(await form.getAttribute("action")).toBeNull();
+  await expect(form.locator("input, select, textarea")).toHaveCount(8);
+  await expect(form).not.toContainText(/clinician|insurance|minor/i);
+
+  const submit = form.getByRole("button", { name: "Request appointment" });
+  await submit.click();
+  await expect(form.getByText("First Name is required.")).toBeVisible();
+  await expect(form.locator('input[name="first-name"]')).toBeFocused();
+
+  await form.locator('input[name="first-name"]').fill("Sam");
+  await form.locator('input[name="last-name"]').fill("Rivera");
+  await form.locator('input[name="email"]').fill("sam@example.com");
+  await form.locator('input[name="phone"]').fill("310 555 0100");
+  await form.locator('select[name="format"]').selectOption("Telehealth within California");
+  await form.locator('select[name="referral"]').selectOption("Search engine");
+  await form.locator('textarea[name="issues"]').fill("Looking for support with stress.");
+  await form.locator('input[name="availability"]').fill("Tuesday mornings");
+  await submit.click();
+
+  const notice = page.getByRole("status");
+  await expect(notice).toContainText("Nothing was sent and no information was stored.");
+  expect(sent).toEqual([]);
 });
 
 test("profile-based FAQs expand and the dialog closes on the backdrop", async ({ page }) => {
@@ -124,7 +152,10 @@ test("desktop dropdowns and every redesign anchor lead to existing content", asy
   await expect(page.locator("#nav-services")).toBeVisible();
   await page.locator("#nav-services").getByRole("link", { name: "Anxiety & panic" }).click();
   await expect(page).toHaveURL(/#service-1$/);
-  const broken = await page.locator('a[href^="#"]').evaluateAll(anchors => anchors.map(anchor => anchor.getAttribute("href")!).filter(href => href.length < 2 || !document.getElementById(decodeURIComponent(href.slice(1)))));
+  const broken = await page.locator('a[href^="#"], a[href^="/#"]').evaluateAll(anchors => anchors.map(anchor => anchor.getAttribute("href")!).filter(href => {
+    const id = href.slice(href.indexOf("#") + 1);
+    return !id || !document.getElementById(decodeURIComponent(id));
+  }));
   expect(broken).toEqual([]);
 });
 
@@ -135,6 +166,10 @@ test("Maya page and dialogs meet automated WCAG AA checks", async ({ page }) => 
   const scan = () => new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
   expect((await scan()).violations).toEqual([]);
   await page.getByRole("navigation", { name: "Main navigation" }).getByRole("button", { name: "FAQs" }).click();
+  expect((await scan()).violations).toEqual([]);
+  await page.keyboard.press("Escape");
+  await page.goto("/contact/");
+  await page.evaluate(() => document.fonts.ready);
   expect((await scan()).violations).toEqual([]);
 });
 

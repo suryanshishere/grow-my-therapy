@@ -17,7 +17,7 @@ Dr. Maya Reynolds is the imaginary therapist specified in the assignment. Her [p
 | CBT, EMDR, mindfulness-based practices, and body-oriented techniques | Four distinct approach descriptions, preserving their order and navigation anchors. |
 | Quiet, private office with natural light and an uncluttered, comfortable setting | Our Office immediately after the biography. |
 | Supplied portrait and two supplied office photographs | Biography portrait, hero office photograph, and both photographs in Our Office. |
-| Santa Monica, CA 90401; in-person sessions and secure telehealth for clients located in California | Hero, office details, FAQs, session-options dialog, footer, and metadata. |
+| Santa Monica, CA 90401; in-person sessions and secure telehealth for clients located in California | Hero, office details, FAQs, booking page, footer, and metadata. |
 
 ## Editorial choices and factual boundaries
 
@@ -27,12 +27,12 @@ Dr. Maya Reynolds is the imaginary therapist specified in the assignment. Her [p
 - Introduction, biography, supporting statements, navigation, actions, FAQs, dialogs, footer, image descriptions, and metadata are written for Maya. No reference-practice names or service claims are inherited.
 - Supportive language describes the work without promising recovery, guaranteeing outcomes, or prescribing a number of sessions. Statements about clinical techniques remain within the profile's stated approach.
 - The four FAQs address client fit, meeting formats, the collaborative approach, and trauma pacing. No fees, hours, current availability, insurance arrangements, testimonials, or contact details are invented.
-- “Explore session options” opens an informational dialog describing in-person and secure California telehealth formats. The dialog discloses the fictional practice and does not collect information or book sessions.
+- “Book an appointment” leads to `/contact/`, a demonstration form in Maya's theme covering in-person and secure California telehealth formats. The page discloses the fictional practice; the form sends and stores nothing and cannot book sessions.
 - The footer also identifies the fictional assignment practice. The preview does not present itself as an operating therapy service.
 
 ## Sunlit Studio visual direction
 
-- Maya's homepage uses the same nine section compositions, image counts, and desktop column placements as the reference clone. Our Office is the only additional homepage section; FAQs and session information remain in dialogs.
+- Maya's homepage uses the same nine section compositions, image counts, and desktop column placements as the reference clone. Our Office is the only additional homepage section; FAQs remain in a dialog and booking has its own page.
 - Deep olive `#303B32`, warm stone `#E5DED2`, muted plum `#725569`, light `#F7F4ED`, pale plum `#E5DAE1`, and body ink `#292D28` form the new palette.
 - Locally hosted Instrument Sans supports the H1, body, navigation, and controls. Locally hosted Newsreader is reserved for reflective headings. Desktop body text is 17–18px, mobile body text is 16px, navigation is 14px, and captions are at least 12px.
 - Our Office introduces a warm stone panel beside the supplied office photographs, with an olive surround and a narrow plum edge. The hero retains the template's two-image composition. The office panel and photographs stack on phones.

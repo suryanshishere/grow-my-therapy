@@ -15,7 +15,7 @@ export interface ImageContent {
 export interface ActionContent {
   label: string;
   href?: string;
-  dialog?: "consultation" | "faq";
+  dialog?: "faq";
   ariaLabel?: string;
 }
 
@@ -48,7 +48,7 @@ export interface HomepageContent {
   statement: { title: RichText; image: ImageContent };
   expertise: {
     title: RichText;
-    items: readonly { label: string; href?: string; dialog?: "consultation" | "faq" }[];
+    items: readonly { label: string; href?: string; dialog?: "faq" }[];
   };
   approach: {
     eyebrow: string;
