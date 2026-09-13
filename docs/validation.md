@@ -6,8 +6,8 @@ The production static export is served locally at `http://127.0.0.1:8787/`. This
 
 ## Layout and reference fidelity
 
-- Maya now renders the same nine template section compositions through `HomePage`: two hero images, the original introduction arrangement, three service features, a full-width photographic statement, expertise columns, biography, bridge, four specialties blocks, and two closing images.
-- Our Office is the only additional homepage section. Its custom stone panel, olive background, and two supplied office photographs remain immediately after the biography. FAQs and session information remain in dialogs.
+- Maya keeps the clone's nine sections in the same order with the same image count in each: two hero images, one introduction photograph, three service photographs, a full-width statement, a biography portrait, a bridge photograph, and two closing images. Each section's layout is redesigned; this supersedes the template-geometry revision, and the browser test now checks section order and image counts rather than grid placements.
+- Our Office is the only additional homepage section. Its olive background, two supplied office photographs, and stone details band remain immediately after the biography. FAQs remain in a dialog; booking has its own page at `/contact/`.
 - The clone uses the reference's actual Beaufort Pro Light normal/italic, Printed Moments, and Muli fonts. Their sources are documented in [font-sources.md](font-sources.md).
 - Comparison with the live reference at 1000px viewport height found all nine section boundaries within rounding (less than 1px) at widths 768, 1024, and 1440px. At 320 and 390px, boundaries differ by about 3px or less. These are measured section boundaries, not a claim that every rendered pixel is identical.
 - Corrections use the source's viewport-relative section padding, per-section column gaps, service subgrids, and 24px minimum phone grid rows. They replace values previously tuned to a single phone width.
@@ -20,7 +20,7 @@ The production static export is served locally at `http://127.0.0.1:8787/`. This
 - All **30 Playwright tests passed**, with no failures, skips, or flaky tests.
 - Final production screenshots at all five widths recorded no overflow, clipped text, broken images, or browser errors. Maya homepage and FAQ dialog axe checks passed; keyboard, reduced-motion, and cross-route navigation checks passed.
 - The browser suite covers both homepage routes at 320, 390, 768, 1024, and 1440px, plus the cloned contact page; image loading, text bounds, navigation, menus, FAQs, dialogs, focus containment/restoration, reduced motion, metadata, and 404 behavior.
-- New regressions compare the nine sections' image counts, desktop column geometry, and child grid placements between Maya and the clone at 768 and 1440px. Another checks successful local loading of the actual reference fonts.
+- Regressions compare the nine sections' order and image counts between Maya and the clone at 768 and 1440px, and check that Maya's photographs stay inside the page margin at five widths without repeats. Another checks successful local loading of the actual reference fonts.
 - Screenshot evidence is stored in ignored `.artifacts/criteria-maya-<width>.png` and the related section captures. Reference comparison measurements are in `.artifacts/clone-font-layout.json` and `.artifacts/clone-mobile-deltas.json`.
 - The profile audit covers credentials, adult audience, three services, four modalities, Santa Monica/California session formats, FAQs, metadata, and both supplied office photographs. No fees, availability, contact details, testimonials, or treatment guarantees are invented. The malformed street address remains omitted.
 

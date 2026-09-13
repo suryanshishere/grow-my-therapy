@@ -19,7 +19,7 @@ Results and remaining contrast limitations are recorded in [validation.md](valid
 
 - [x] Compare the clone with the reference at 390px, 768px, and 1440px: section order, grid proportions, spacing, image crops, and mobile placement.
 - [x] Match Beaufort Pro, Printed Moments, and Muli to the reference; record their provenance in `font-sources.md`.
-- [x] Confirm the redesign keeps the reference section layouts and order and adds one new Our Office section immediately after Maya's biography.
+- [ ] Confirm the redesign keeps the reference section order and image counts, with redesigned layouts, and adds one new Our Office section immediately after Maya's biography.
 - [x] Confirm all redesign text is grounded in Maya's profile, with three services: anxiety and panic; trauma; burnout and perfectionism.
 - [x] Confirm Maya's supplied portrait and both office photographs are present; check that all other reference photography has been replaced.
 - [x] Review local image assets and source/license attribution in the README.

@@ -574,5 +574,37 @@
         "width": 960
       }
     ]
+  },
+  "/images/maya-studio-hero-detail.webp": {
+    "width": 960,
+    "height": 1440,
+    "sources": [
+      {
+        "src": "/images/maya-studio-hero-detail-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/images/maya-studio-hero-detail.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/images/maya-studio-begin.webp": {
+    "width": 1200,
+    "height": 1799,
+    "sources": [
+      {
+        "src": "/images/maya-studio-begin-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/images/maya-studio-begin-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/images/maya-studio-begin.webp",
+        "width": 1200
+      }
+    ]
   }
 }

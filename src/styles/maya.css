@@ -4,7 +4,7 @@
 .theme-maya :focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
 .theme-maya .site-header { position: absolute; height: 106px; background: var(--color-primary); color: var(--color-paper); }
 /* Header and footer share the sections' 5vw gutter and 1800px content cap. */
-.theme-maya .header-inner { max-width: calc(1800px + 10vw); padding-inline: 5%; gap: 28px; }
+.theme-maya .header-inner { max-width: calc(1296px + 10vw); padding-inline: 5%; gap: 28px; }
 .theme-maya .brand-name { font-family: var(--font-display); color: inherit; font-size: 31px; font-weight: 400; letter-spacing: -.025em; line-height: 1.1; }
 .theme-maya .brand-caption { font-family: var(--font-body); font-size: 12px; font-weight: 400; letter-spacing: .04em; text-transform: none; margin-top: 8px; }
 .theme-maya .desktop-navigation { font-size: 14px; gap: 25px; }
@@ -17,7 +17,7 @@
 .theme-maya .action-oval { border-radius: 3px; border: 1px solid var(--color-accent); background: var(--color-accent); color: var(--color-paper); font-size: 14px; font-weight: 500; letter-spacing: 0; text-transform: none; padding: 17px 22px; }
 .theme-maya .action-oval:hover { background: #604758; border-color: #604758; }
 .theme-maya .practice-footer { padding: 80px 5%; }
-.theme-maya .footer-grid { max-width: 1800px; grid-template-columns: 1.5fr .75fr 1fr 1fr; gap: 48px; }
+.theme-maya .footer-grid { max-width: 1296px; grid-template-columns: 1.5fr .75fr 1fr 1fr; gap: 48px; }
 .theme-maya .footer-grid h2 { font-size: 12px; font-weight: 500; letter-spacing: .09em; margin: 5px 0 22px; }
 .theme-maya .footer-grid p, .theme-maya .footer-links > a, .theme-maya .footer-links > button { font-size: 14px; line-height: 1.8; }
 .theme-maya .footer-brand-column > p { max-width: 270px; margin-top: 25px; }

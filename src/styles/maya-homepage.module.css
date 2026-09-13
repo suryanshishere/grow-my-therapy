@@ -1,97 +1,223 @@
-/* Theme and typography only: the nine template sections use homepage.css geometry. */
-.homepage { font-size: 17px; line-height: 1.75; font-weight: 400; background: var(--color-paper); }
-.homepage h1 { font-family: var(--font-body); font-weight: 450; letter-spacing: -.045em; line-height: 1.12; }
-.homepage h2 { letter-spacing: -.025em; line-height: 1.15; }
-.homepage h3 { letter-spacing: -.02em; line-height: 1.25; }
-.homepage :global(.eyebrow) { font-size: 12px; font-weight: 500; letter-spacing: .1em; }
-.homepage :where(section, article) { scroll-margin-top: 32px; }
-.homepage :global(.hero-section), .homepage :global(.contact-section) { background: var(--color-primary); color: var(--color-paper); }
-.homepage :global(.intro-section) { background: var(--color-background); }
-.homepage :global(.approach-section) { background: var(--color-pale-plum); }
-.homepage :global(.statement-section) { color: var(--color-paper); background: var(--color-primary); }
-.homepage :global(.statement-shade) { background: rgb(25 34 27 / 66%); }
-.homepage :global(.hero-action) > :global(.action-link),
-.homepage :global(.contact-action) > :global(.action-oval) {
-  background: var(--color-accent); color: var(--color-paper); border: 1px solid var(--color-pale-plum);
-  border-radius: 3px; padding: 18px 22px; min-height: 56px;
-  font-size: 14px; letter-spacing: 0; text-transform: none; font-weight: 500;
+/* Maya's homepage. One container and vertical rhythm; each section hands its ground to the
+   next; photographs sit in aspect-ratio frames inside the gutter, and only the statement
+   band runs full bleed. */
+.page {
+  --gutter: 5vw;
+  --section-space: clamp(72px, 10vw, 144px);
+  --column-gap: clamp(20px, 3vw, 48px);
+  --hero-drop: 64px;
+  font-size: 17px;
+  line-height: 1.75;
+  font-weight: 400;
+  color: var(--color-ink);
+  background: var(--color-paper);
 }
-.homepage :global(.hero-action) > :global(.action-link)::after { display: none; }
-.homepage :global(.hero-action) > :global(.action-link):hover,
-.homepage :global(.contact-action) > :global(.action-oval):hover { background: #604758; }
-.homepage :global(.expertise-link) { font-size: 14px; letter-spacing: .035em; }
-.homepage :global(.specialty-card) > :global(.action-link),
-.homepage :global(.approach-action) > :global(.action-link) { color: var(--color-accent); font-size: 14px; letter-spacing: 0; text-transform: none; text-align: left; }
-.homepage :global(.contact-copy) p + p { font-size: 14px; }
-@media (min-width: 768px) {
-  .homepage :global(.hero-copy) { grid-column-end: 24; }
-  .homepage :global(.hero-eyebrow) { grid-column-end: 20; }
-  .homepage :is(:global(.intro-section), :global(.services-section), :global(.approach-section)) {
-    --grid-gutter: calc(5vw - 20px);
-    column-gap: 20px;
-    grid-template-columns: minmax(var(--grid-gutter), 1fr) repeat(24, minmax(0, 55.83333px)) minmax(var(--grid-gutter), 1fr);
-  }
-  .homepage :global(.intro-section) { padding-block: 7vmax; min-height: 70vh; }
-  .homepage :is(:global(.services-section), :global(.statement-section), :global(.bridge-section), :global(.contact-section)) { padding-block: 6.6vmax; }
-}
+.page :where(h1, h2, h3, p, figure, blockquote, ul, ol) { margin: 0; }
+.page :where(section, article) { position: relative; scroll-margin-top: 32px; }
+.page :where(h2, h3) { font-family: var(--font-display); font-weight: 400; text-wrap: balance; }
+.page h2 { font-size: clamp(34px, 4vw, 58px); line-height: 1.1; letter-spacing: -.025em; }
+.page h3 { font-size: clamp(24px, 2.2vw, 32px); line-height: 1.2; letter-spacing: -.015em; }
+.page :where(h1, h2) em { font-style: italic; }
+
+.container { width: min(1296px, 100% - 2 * var(--gutter)); margin-inline: auto; }
+.frame { position: relative; overflow: hidden; background: #cfc6b6; }
+.eyebrow { font-family: var(--font-body); font-size: 12px; font-weight: 500; line-height: 1.6; letter-spacing: .12em; text-transform: uppercase; }
+.prose { max-width: 36em; }
+.prose p + p { margin-top: 18px; }
+.numeral { font-family: var(--font-display); font-size: 20px; font-style: italic; line-height: 1; color: var(--color-accent); }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 30px; margin-top: 36px; }
+.page .textLink { font-size: 15px; font-weight: 500; letter-spacing: 0; text-transform: none; }
+
+/* Scroll reveals: hidden only once the observer has marked the page ready. */
 @media (prefers-reduced-motion: no-preference) {
-  .homepage :global([data-reveal]) { animation: arrival .65s ease-out both; }
+  .page:global(.reveal-ready) [data-reveal] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .9s cubic-bezier(.2, .65, .3, 1), transform .9s cubic-bezier(.2, .65, .3, 1);
+  }
+  .page:global(.reveal-ready) [data-reveal][data-visible] { opacity: 1; transform: none; }
+  .page:global(.reveal-ready) .statementPhoto[data-reveal] { transform: none; }
+  .page:global(.reveal-ready) .statementPhoto img { transform: scale(1.06); transition: transform 2.4s cubic-bezier(.2, .65, .3, 1); }
+  .page:global(.reveal-ready) .statementPhoto[data-visible] img { transform: none; }
 }
-@keyframes arrival { from { opacity: .3; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
-/* The additional office retains the Sunlit Studio panel and offset photographs. */
-/* Matches the shared editorial grid: 5vw gutters around at most 1800px of content. */
-.officeGrid { width: min(1800px, 90%); margin-inline: auto; }
-.office :where(figure, ul) { margin: 0; }
-.office .eyebrow { font-size: 12px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; }
-.photo { position: relative; overflow: hidden; background: var(--color-background); }
-.prose p + p { margin-top: 20px; }
-.homepage .officeLink { display: inline-flex; gap: 22px; font-size: 14px; letter-spacing: 0; text-transform: none; }
-.officeLink svg { width: 23px; height: 23px; }
-.office { padding-block: 104px 96px; background: var(--color-primary); color: var(--color-paper); }
-.officeGrid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: start; row-gap: 56px; }
-.officePanel { position: relative; z-index: 2; grid-area: 1 / 1 / 2 / 7; align-self: center; margin-block: 36px; padding: 44px; background: var(--color-background); color: var(--color-ink); border-left: 4px solid var(--color-accent); }
-.officePanel h2 { font-size: clamp(38px, 3.8vw, 58px); margin-block: 24px; }
-.officePanel .prose { font-size: 17px; max-width: 40em; }
-.officeFirst { grid-area: 1 / 6 / 2 / 13; }
-.officeSecond { grid-area: 2 / 2 / 3 / 8; }
+/* 1. Hero: copy beside a tall office photograph that drops into the introduction. */
+.hero { padding-top: calc(104px + clamp(36px, 6vw, 88px)); background: var(--color-primary); color: var(--color-paper); }
+.heroGrid { display: grid; gap: 48px; }
+.hero h1 { margin-top: 20px; max-width: 13ch; font-family: var(--font-body); font-size: clamp(40px, 5.4vw, 78px); font-weight: 450; line-height: 1.06; letter-spacing: -.045em; }
+.heroLead { margin-top: 26px; max-width: 34em; font-size: clamp(16px, 1.3vw, 19px); color: #f7f4ede0; }
+.hero .textLink { color: var(--color-paper); }
+.heroMedia { position: relative; z-index: 1; margin-bottom: calc(-1 * var(--hero-drop)); }
+.heroPhoto { aspect-ratio: 4 / 5; }
+.heroDetail { position: absolute; right: 16px; bottom: 16px; width: 36%; aspect-ratio: 1; border: 6px solid var(--color-background); }
+
+/* 2. Introduction: a statement heading, the workspace photograph and a pull quote. */
+.intro { padding-block: calc(var(--hero-drop) + var(--section-space) * .6) var(--section-space); background: var(--color-background); }
+.introHeading.introHeading { max-width: 18ch; font-size: clamp(36px, 4.6vw, 66px); }
+.introGrid { display: grid; gap: 40px; margin-top: clamp(40px, 5vw, 72px); }
+.introPhoto { aspect-ratio: 3 / 2; }
+.introCopy .prose { margin-top: 18px; }
+.pullQuote { margin-block: 28px; padding-left: 22px; border-left: 3px solid var(--color-accent); font-family: var(--font-display); font-size: clamp(24px, 2.4vw, 34px); font-style: italic; line-height: 1.25; color: var(--color-strong); }
+
+/* 3. Services: alternating editorial rows. */
+.services { padding-block: var(--section-space); background: var(--color-paper); }
+.sectionHeader { display: grid; gap: 20px; margin-bottom: clamp(48px, 6vw, 96px); }
+.sectionHeader p { max-width: 34em; font-size: 18px; color: var(--color-muted); }
+.serviceList { display: grid; gap: clamp(64px, 8vw, 120px); }
+.service { display: grid; gap: 28px; }
+.servicePhoto { aspect-ratio: 1; }
+.serviceCopy h3 { margin-top: 12px; }
+.serviceCopy > p:not(.numeral) { margin-top: 18px; max-width: 34em; }
+.serviceCopy .textLink { margin-top: 22px; color: var(--color-accent); }
+
+/* 4. Statement: the one full-bleed photograph, fading into the olive band below. */
+.statement { display: grid; align-items: end; min-height: 78svh; padding-block: var(--section-space) clamp(48px, 6vw, 88px); overflow: hidden; isolation: isolate; background: var(--color-primary); color: var(--color-paper); }
+.statementPhoto { position: absolute; inset: 0; z-index: -2; }
+.statement::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to bottom, rgb(48 59 50 / 15%) 0%, rgb(48 59 50 / 40%) 50%, #303b32 100%); }
+.statementCopy { text-align: center; }
+.statement h2 { max-width: 16ch; margin-inline: auto; font-size: clamp(38px, 5.6vw, 84px); text-shadow: 0 2px 28px rgb(0 0 0 / 22%); }
+.statementCopy p { max-width: 32em; margin: 22px auto 0; font-size: 18px; }
+
+/* 5. Expertise: concerns grouped under the support they lead to. */
+.expertise { padding-block: clamp(24px, 4vw, 48px) var(--section-space); background: var(--color-primary); color: var(--color-paper); }
+.expertiseGrid { display: grid; gap: 48px; }
+.expertiseHeader p { max-width: 30em; margin-top: 18px; color: #f7f4edd9; }
+.concernGroups { display: grid; gap: 36px; }
+.concernGroup { padding-top: 22px; border-top: 1px solid #e5ded247; }
+.concernLabel { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; font-family: var(--font-display); font-size: clamp(22px, 2vw, 28px); color: var(--color-paper); text-decoration: none; }
+.concernLabel svg { width: 20px; height: 20px; transition: transform .25s; }
+.concernLabel:hover svg { transform: translateX(4px); }
+.chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; padding: 0; list-style: none; }
+.chips a { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 18px; border: 1px solid #e5ded273; border-radius: 999px; font-size: 15px; color: var(--color-paper); text-decoration: none; transition: background-color .2s, border-color .2s; }
+.chips a:hover { background: var(--color-accent); border-color: var(--color-accent); }
+
+/* 6. Biography: portrait with a credential card beside the introduction. */
+.about { padding-block: var(--section-space); background: var(--color-pale-plum); }
+.aboutGrid { display: grid; gap: 72px; }
+.portrait { position: relative; max-width: 460px; }
+.portraitPhoto { aspect-ratio: 4 / 5; }
+.credential { position: absolute; left: 20px; right: 20px; bottom: -36px; display: grid; gap: 2px; padding: 14px 20px; border-left: 3px solid var(--color-accent); background: var(--color-background); font-size: 14px; line-height: 1.5; }
+.credential strong { font-family: var(--font-display); font-size: 20px; font-weight: 400; }
+.aboutCopy h2 { margin-top: 18px; }
+.aboutQuote { margin-top: 24px; font-family: var(--font-display); font-size: clamp(26px, 2.6vw, 38px); font-style: italic; line-height: 1.2; color: var(--color-accent); }
+.aboutCopy .prose { margin-top: 24px; }
+.aboutCopy .textLink { margin-top: 30px; color: var(--color-accent); }
+
+/* 7. Our Office: an introduction, the two supplied photographs side by side at one height,
+   and a stone band with the practical details and the booking action. */
+.office { padding-block: var(--section-space); background: var(--color-primary); color: var(--color-paper); }
+.officeHeader { display: grid; gap: 24px; }
+.officeHeader h2 { margin-top: 18px; max-width: 14ch; font-size: clamp(38px, 4.8vw, 68px); }
+.officeHeader .prose { color: #f7f4ede0; }
+.officeGallery { display: grid; gap: 32px; margin-top: clamp(40px, 5vw, 72px); }
+.officeGallery figure { display: flex; flex-direction: column; }
 .officePhoto { aspect-ratio: 4 / 3; }
-.officeFirst .officePhoto { margin-left: 44px; }
-.office figure figcaption { margin-top: 16px; font-size: 12px; line-height: 1.6; }
-.officeFirst figcaption { text-align: right; }
-.officeDetails { grid-area: 2 / 9 / 3 / 13; align-self: center; }
-.officeDetails .eyebrow { max-width: 230px; color: var(--color-background); }
-.officeDetails ul { list-style: none; padding: 0; margin-top: 26px; }
-.officeDetails li { padding-block: 16px; border-top: 1px solid #e5ded24d; font-size: 16px; }
-.homepage .officeLink { color: var(--color-paper); margin-top: 16px; }
+.officeGallery figcaption { margin-top: 14px; font-size: 13px; line-height: 1.6; color: #f7f4edcc; }
+.officeFacts { display: grid; gap: 28px; margin-top: clamp(40px, 5vw, 64px); padding: clamp(24px, 3vw, 40px); border-left: 4px solid var(--color-accent); background: var(--color-background); color: var(--color-ink); }
+.officeFacts dl { display: grid; gap: 18px; margin: 0; }
+.officeFacts dl > div + div { padding-top: 18px; border-top: 1px solid #292d2826; }
+.officeFacts dt { font-size: 12px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--color-muted); }
+.officeFacts dd { margin: 6px 0 0; font-family: var(--font-display); font-size: clamp(20px, 1.7vw, 24px); line-height: 1.3; }
+.officeFacts :global(.action-oval) { justify-self: start; }
 
-/* Tablet: the offset panel is too narrow beside the photo, so the rows stack. */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .officeGrid { row-gap: 40px; }
-  .officePanel { grid-area: 1 / 1 / 2 / 11; margin-block: 0; padding: 36px; }
-  .officePanel h2 { font-size: clamp(34px, 4.6vw, 44px); }
-  .officeFirst { grid-area: 2 / 3 / 3 / 13; }
-  .officeFirst .officePhoto { margin-left: 0; }
-  .officeSecond { grid-area: 3 / 1 / 4 / 7; }
-  .officeDetails { grid-area: 3 / 8 / 4 / 13; }
-}
+/* 8. Bridge: the window photograph drops into the ways of working below. */
+.bridge { padding-block: var(--section-space); background: var(--color-background); }
+.bridgeGrid { display: grid; gap: 36px; }
+.bridgePhoto { position: relative; z-index: 1; width: 100%; max-width: 480px; aspect-ratio: 3 / 4; }
+.bridge h2 { max-width: 14ch; font-size: clamp(36px, 4.4vw, 64px); }
+.bridgeCopy p { max-width: 32em; margin-top: 22px; font-size: 18px; }
+
+/* 9. Ways of working: a sticky introduction beside four numbered methods. */
+.specialties { padding-block: var(--section-space); background: var(--color-paper); }
+.specialtiesGrid { display: grid; gap: 48px; }
+.specialtiesHeader p { max-width: 26em; margin-top: 18px; color: var(--color-muted); }
+.methods { display: grid; gap: 40px; }
+.method { padding-top: 22px; border-top: 1px solid #292d2829; }
+/* Balanced wrapping splits "Cognitive-behavioral" at its hyphen; ordinary wrapping keeps it whole. */
+.method h3 { margin-top: 12px; text-wrap: pretty; }
+.method > p:not(.numeral) { margin-top: 14px; }
+.method .textLink { margin-top: 18px; color: var(--color-accent); }
+
+/* 10. Closing invitation: the path forward and three first steps. */
+.contact { padding-block: var(--section-space); background: var(--color-primary); color: var(--color-paper); }
+.contactGrid { display: grid; gap: 56px; }
+.contactMedia { position: relative; max-width: 560px; }
+.contactPhoto { width: 84%; aspect-ratio: 4 / 5; }
+.contactDetail { position: absolute; top: 14%; right: 0; width: 40%; aspect-ratio: 1; border: 6px solid var(--color-background); }
+.contactCopy h2 { margin-top: 18px; }
+.contactCopy .prose { margin-top: 22px; color: #f7f4ede0; }
+.steps { margin-top: 32px; padding: 0; list-style: none; }
+.steps li { display: grid; grid-template-columns: 36px 1fr; gap: 12px; padding-block: 14px; border-top: 1px solid #e5ded23d; font-size: 16px; line-height: 1.6; }
+.steps li:last-child { border-bottom: 1px solid #e5ded23d; }
+.steps span { font-family: var(--font-display); font-size: 22px; font-style: italic; line-height: 1.1; color: var(--color-background); }
+.contact .textLink { color: var(--color-paper); }
 
 @media (max-width: 767px) {
-  .homepage { font-size: 16px; }
-  .homepage :global(.approach-image) { height: auto; aspect-ratio: 2 / 3; max-height: none; width: 88%; }
-  .office { padding-block: 64px; }
-  .officeGrid { width: 88%; display: flex; flex-direction: column; gap: 28px; }
-  .officePanel { padding: 30px 25px; margin: 0; width: 100%; border-left-width: 3px; }
-  .officePanel h2 { font-size: 40px; margin-block: 20px; }
-  .officePanel .prose { font-size: 16px; }
-  .officeFirst, .officeSecond { width: 100%; }
-  .officeFirst .officePhoto { margin-left: 0; }
-  .office figure figcaption { text-align: left; font-size: 12px; margin-top: 12px; }
-  .officeDetails { width: 100%; margin-top: 8px; align-self: stretch; }
-  .officeDetails .eyebrow { max-width: none; }
-  .officeDetails ul { margin-top: 22px; }
-  .officeDetails li { padding-block: 14px; }
+  .page { --gutter: 6vw; font-size: 16px; }
 }
-@media (max-width: 359px) {
-  .officePanel { padding-inline: 20px; }
+
+@media (min-width: 768px) {
+  .servicePhoto { aspect-ratio: 4 / 5; }
+  .service { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--column-gap); align-items: center; }
+  .servicePhoto { grid-column: 1 / 6; grid-row: 1; }
+  .serviceCopy { grid-column: 7 / 13; grid-row: 1; }
+  .service:nth-child(even) .servicePhoto { grid-column: 8 / 13; }
+  .service:nth-child(even) .serviceCopy { grid-column: 1 / 7; }
+  .methods { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--column-gap); row-gap: 56px; }
+  .hero h1 { max-width: 16ch; }
+  .heroMedia { width: min(560px, 78%); margin-left: auto; }
+  .heroDetail { right: auto; left: -18%; bottom: 48px; width: 40%; }
+
+  /* The side photograph stretches to the main photograph's height, so tops and captions align. */
+  .officeGallery { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: var(--column-gap); }
+  .officeSide .officePhoto { flex: 1; min-height: 240px; aspect-ratio: auto; }
+  .officeFacts dl { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 28px; }
+  .officeFacts dl > div + div { padding-top: 0; padding-left: 28px; border-top: 0; border-left: 1px solid #292d2826; }
+}
+
+@media (min-width: 1024px) {
+  .page { --hero-drop: 96px; }
+  .heroGrid { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--column-gap); align-items: center; }
+  .heroCopy { grid-column: 1 / 7; padding-bottom: calc(var(--hero-drop) + 24px); }
+  .heroMedia { grid-column: 8 / 13; width: auto; margin-left: 0; }
+
+  .introGrid { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--column-gap); align-items: start; }
+  .introPhoto { grid-column: 1 / 7; }
+  .introCopy { grid-column: 8 / 13; }
+
+  .sectionHeader { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--column-gap); align-items: end; }
+  .sectionHeader h2 { grid-column: 1 / 7; }
+  .sectionHeader p { grid-column: 8 / 13; }
+  .servicePhoto { grid-column: 2 / 6; }
+  .serviceCopy { grid-column: 7 / 12; }
+  .service:nth-child(even) .servicePhoto { grid-column: 8 / 12; }
+  .service:nth-child(even) .serviceCopy { grid-column: 2 / 7; }
+
+  .expertiseGrid { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--column-gap); }
+  .expertiseHeader { grid-column: 1 / 5; }
+  .concernGroups { grid-column: 6 / 13; }
+
+  .aboutGrid { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--column-gap); align-items: center; }
+  .portrait { grid-column: 1 / 6; max-width: none; }
+  .aboutCopy { grid-column: 7 / 13; }
+  .credential { left: auto; right: -32px; bottom: 40px; max-width: 290px; }
+
+  .officeHeader { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--column-gap); align-items: end; }
+  .officeHeader > div:first-child { grid-column: 1 / 7; }
+  .officeHeader .prose { grid-column: 8 / 13; }
+  .officeFacts { grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 48px; }
+
+  .bridge { padding-bottom: 0; }
+  .bridgeGrid { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--column-gap); align-items: end; }
+  .bridgePhoto { grid-column: 1 / 6; max-width: none; margin-bottom: -120px; }
+  .bridgeCopy { grid-column: 7 / 13; padding-bottom: clamp(48px, 6vw, 96px); }
+  .specialties { padding-top: calc(120px + var(--section-space) * .6); }
+
+  .specialtiesGrid { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--column-gap); align-items: start; }
+  .specialtiesHeader { grid-column: 1 / 5; position: sticky; top: 48px; }
+  .methods { grid-column: 6 / 13; }
+
+  .contactGrid { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--column-gap); align-items: center; }
+  .contactMedia { grid-column: 1 / 7; max-width: none; }
+  .contactCopy { grid-column: 8 / 13; }
 }

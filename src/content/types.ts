@@ -82,7 +82,26 @@ export interface HomepageContent {
   };
 }
 
-/** The redesign shares the reference layout; only Our Office adds a new composition. */
-export type MayaHomepageContent = HomepageContent & {
-  office: NonNullable<HomepageContent["office"]>;
-};
+/**
+ * The redesign keeps the reference section order and image counts but composes each
+ * section itself, so it carries the extra copy those layouts present.
+ */
+export interface MayaHomepageContent {
+  hero: Omit<HomepageContent["hero"], "sideImage"> & { secondaryAction: ActionContent; detailImage: ImageContent };
+  intro: HomepageContent["intro"] & { pullQuote: string };
+  services: HomepageContent["services"] & { intro: string };
+  statement: HomepageContent["statement"] & { supporting: string };
+  expertise: {
+    title: RichText;
+    intro: string;
+    groups: readonly { label: string; href: string; items: readonly { label: string; href: string }[] }[];
+  };
+  approach: HomepageContent["approach"] & { quote: string };
+  office: Omit<NonNullable<HomepageContent["office"]>, "details"> & {
+    captions: readonly string[];
+    facts: readonly { label: string; value: string }[];
+  };
+  bridge: HomepageContent["bridge"] & { body: string };
+  specialties: HomepageContent["specialties"] & { intro: string };
+  contact: Omit<HomepageContent["contact"], "prompt"> & { steps: readonly string[]; secondaryAction: ActionContent };
+}

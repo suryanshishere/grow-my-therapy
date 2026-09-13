@@ -77,6 +77,28 @@
     "quality": 80
   },
   {
+    "file": "maya-studio-hero-detail-pexels-4207776.jpg",
+    "name": "maya-studio-hero-detail",
+    "author": "Karola G",
+    "source": "https://www.pexels.com/photo/shadow-of-home-plant-on-wall-4207776/",
+    "download": "https://images.pexels.com/photos/4207776/pexels-photo-4207776.jpeg?auto=compress&cs=tinysrgb&w=2200",
+    "license": "https://www.pexels.com/license/",
+    "purpose": "Houseplant leaf shadows on a soft beige wall give the hero a small, calm daylight detail beside the office photograph; atmospheric imagery, not the practice.",
+    "maxWidth": 960,
+    "quality": 80
+  },
+  {
+    "file": "maya-studio-begin-pexels-34396586.jpg",
+    "name": "maya-studio-begin",
+    "author": "Magda Ehlers",
+    "source": "https://www.pexels.com/photo/serene-pathway-through-a-lush-green-garden-34396586/",
+    "download": "https://images.pexels.com/photos/34396586/pexels-photo-34396586.jpeg?auto=compress&cs=tinysrgb&w=2200",
+    "license": "https://www.pexels.com/license/",
+    "purpose": "A brick path curving under trees in dappled light suggests a first step forward beside the closing invitation; atmospheric imagery, not the practice.",
+    "maxWidth": 1200,
+    "quality": 80
+  },
+  {
     "file": "maya-portrait.png",
     "name": "maya-portrait",
     "author": "Assignment-provided asset",

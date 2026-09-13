@@ -7,14 +7,17 @@ const image = (name: string, alt: string, position = "50% 50%") => ({
   position,
 });
 
+const book = { label: "Book an appointment", href: mayaContactHref };
+
 export const mayaContent: MayaHomepageContent = {
   hero: {
     eyebrow: "Adult therapy · Santa Monica & California telehealth",
     title: "Therapy for anxiety, trauma & burnout in Santa Monica.",
     description: "I'm Dr. Maya Reynolds, PsyD, a Licensed Clinical Psychologist. I offer adults a warm, collaborative space to understand what they're carrying, in person in Santa Monica or through secure telehealth across California.",
-    action: { label: "Book an appointment", href: mayaContactHref },
-    image: image("office-one", "Window light, a sofa, and an armchair in Maya's Santa Monica therapy office", "35% 50%"),
-    sideImage: image("studio-statement", "A narrow detail of sunlight filtering through linen"),
+    action: book,
+    secondaryAction: { label: "Meet Dr. Reynolds", href: "#about" },
+    image: image("office-one", "Window light, a sofa, and an armchair in Maya's Santa Monica therapy office", "32% 50%"),
+    detailImage: image("studio-hero-detail", "Shadows of houseplant leaves on a soft beige wall", "62% 40%"),
   },
   intro: {
     title: [
@@ -22,30 +25,35 @@ export const mayaContent: MayaHomepageContent = {
       { text: "and still need support.", italic: true },
     ],
     lead: "When keeping up takes everything",
-    body: "You may be getting through the day, meeting expectations, and looking like you have it together. Inside, worry keeps circling. Your body feels tense, rest is difficult, or the pressure to keep going leaves you exhausted.",
-    secondaryBody: "I work with adults who know this experience, including professionals, entrepreneurs, and creatives. Therapy offers room to slow down, understand the patterns beneath the pressure, and explore more sustainable ways of living and working.",
-    image: image("studio-intro", "An unoccupied work desk beside a sunlit window", "72% 50%"),
+    body: "You may be getting through the day, meeting expectations, and looking like you have it together.",
+    pullQuote: "Inside, worry keeps circling.",
+    secondaryBody: [
+      "Your body feels tense, rest is difficult, or the pressure to keep going leaves you exhausted.",
+      "I work with adults who know this experience, including professionals, entrepreneurs, and creatives. Therapy offers room to slow down, understand the patterns beneath the pressure, and explore more sustainable ways of living and working.",
+    ],
+    image: image("studio-intro", "An unoccupied work desk beside a sunlit window"),
   },
   services: {
     title: "Support for what you're carrying",
+    intro: "My work focuses on three experiences that often travel together: anxiety and panic, trauma, and burnout with perfectionism.",
     cards: [
       {
         title: "Anxiety & panic",
         body: "Constant worry, overthinking, or panic can make it hard to feel at ease, even when life looks manageable from the outside. You might notice physical tension, difficulty sleeping, or a sense of being on edge. Together, we'll explore those patterns and bring practical tools to the emotional and physical experience of anxiety.",
-        image: image("studio-anxiety", "Soft sunlight and shadows crossing a warm wall", "50% 35%"),
-        action: { label: "Book an appointment", href: mayaContactHref },
+        image: image("studio-anxiety", "Soft sunlight and shadows crossing a warm wall", "50% 40%"),
+        action: book,
       },
       {
         title: "Trauma",
         body: "A single event or longstanding experiences can continue to affect your relationships, confidence, and sense of safety. I work with both single-incident and more complex trauma, including experiences rooted in childhood, relationships, or chronic stress. Our work is carefully paced, with safety and stabilization guiding the process and room for your experience throughout.",
-        image: image("studio-trauma", "An ivy-lined stone doorway opening onto a sheltered path", "50% 58%"),
-        action: { label: "Book an appointment", href: mayaContactHref },
+        image: image("studio-trauma", "An ivy-lined stone doorway opening onto a sheltered path", "50% 60%"),
+        action: book,
       },
       {
         title: "Burnout & perfectionism",
         body: "Years of pushing through stress can leave you exhausted, disconnected, and unsure what you need. For professionals, entrepreneurs, and creatives, high internal standards can make slowing down especially difficult. Therapy offers space to explore the pressure to keep performing, reconnect with yourself, and develop more sustainable ways of living and working.",
         image: image("studio-burnout", "A closed muted-plum notebook beside a ceramic cup", "50% 55%"),
-        action: { label: "Book an appointment", href: mayaContactHref },
+        action: book,
       },
     ],
   },
@@ -54,40 +62,69 @@ export const mayaContent: MayaHomepageContent = {
       { text: "Room to slow down. " },
       { text: "Space to reconnect.", italic: true },
     ],
+    supporting: "Sessions balance practical tools with reflection and depth, at a pace that makes room for you.",
     image: image("studio-statement", "Leaf shadows falling across translucent linen"),
   },
   expertise: {
     title: "What brings you here?",
-    items: [
-      { label: "Constant worry", href: "#service-1" },
-      { label: "Panic", href: "#service-1" },
-      { label: "Overthinking", href: "#service-1" },
-      { label: "Feeling on edge", href: "#service-1" },
-      { label: "Past experiences", href: "#service-2" },
-      { label: "Sense of safety", href: "#service-2" },
-      { label: "Exhaustion", href: "#service-3" },
-      { label: "Perfectionism", href: "#service-3" },
-      { label: "Internal pressure", href: "#service-3" },
-      { label: "Disconnection", href: "#service-3" },
+    intro: "Naming what you're noticing can be a first step. Each concern leads to the support it relates to.",
+    groups: [
+      {
+        label: "Anxiety & panic",
+        href: "#service-1",
+        items: [
+          { label: "Constant worry", href: "#service-1" },
+          { label: "Panic", href: "#service-1" },
+          { label: "Overthinking", href: "#service-1" },
+          { label: "Feeling on edge", href: "#service-1" },
+        ],
+      },
+      {
+        label: "Trauma",
+        href: "#service-2",
+        items: [
+          { label: "Past experiences", href: "#service-2" },
+          { label: "Sense of safety", href: "#service-2" },
+        ],
+      },
+      {
+        label: "Burnout & perfectionism",
+        href: "#service-3",
+        items: [
+          { label: "Exhaustion", href: "#service-3" },
+          { label: "Perfectionism", href: "#service-3" },
+          { label: "Internal pressure", href: "#service-3" },
+          { label: "Disconnection", href: "#service-3" },
+        ],
+      },
     ],
   },
   approach: {
     eyebrow: "Meet your therapist",
     title: "I'm Dr. Maya Reynolds.",
     lead: "PsyD · Licensed Clinical Psychologist",
-    body: "I work with adults navigating anxiety, trauma, and burnout, including thoughtful, capable people who feel stretched thin beneath the surface. My approach is warm, grounded, and collaborative. We make room for what feels difficult today and the experiences that have shaped it.",
+    quote: "Warm, grounded, and collaborative.",
+    body: "I work with adults navigating anxiety, trauma, and burnout, including thoughtful, capable people who feel stretched thin beneath the surface. We make room for what feels difficult today and the experiences that have shaped it.",
     secondaryBody: "Our sessions balance structure and practical tools with reflection and depth. I want you to feel respected, understood, and actively involved as we explore both the emotional and physical sides of your experience, at a pace that makes room for you.",
-    image: image("portrait", "Dr. Maya Reynolds, PsyD, Licensed Clinical Psychologist", "50% 35%"),
+    image: image("portrait", "Dr. Maya Reynolds, PsyD, Licensed Clinical Psychologist", "50% 30%"),
     action: { label: "Discover my approach", href: "#approach" },
   },
   office: {
-    eyebrow: "Santa Monica, CA 90401",
-    title: "Our Office — a quieter place to begin.",
+    eyebrow: "Our office",
+    title: [
+      { text: "A quieter place " },
+      { text: "to begin.", italic: true },
+    ],
     body: [
       "A quiet, private setting with natural light, comfortable seating, and an uncluttered feel. My Santa Monica office offers space to settle in, slow down, and turn your attention to yourself.",
       "We can meet here in person or through secure telehealth if you're located in California. Both formats make room for thoughtful, collaborative work.",
     ],
-    details: ["Santa Monica, CA 90401", "In-person sessions", "Secure telehealth for adults in California"],
+    facts: [
+      { label: "Location", value: "Santa Monica, CA 90401" },
+      { label: "In person", value: "A quiet, private office with natural light" },
+      { label: "Online", value: "Secure telehealth for adults in California" },
+    ],
+    captions: ["Natural light and room to settle in.", "A private space for in-person sessions."],
     images: [
       image("office-one", "Natural light and comfortable seating in Maya's Santa Monica therapy office"),
       image("office-two", "Seating and bookshelves in Maya's quiet, private counseling space"),
@@ -96,12 +133,14 @@ export const mayaContent: MayaHomepageContent = {
   bridge: {
     title: [
       { text: "Practical tools. " },
-      { text: "Space for deeper understanding." },
+      { text: "Space for deeper understanding.", italic: true },
     ],
+    body: "Our work draws on four approaches, combined around what you need: cognitive-behavioral therapy, EMDR, mindfulness-based practices, and body-oriented techniques.",
     image: image("studio-bridge", "Daylight through an open window and sheer curtains"),
   },
   specialties: {
     title: "An approach we shape together",
+    intro: "You're an active participant in the process. These are the methods we may draw on together.",
     items: [
       {
         title: "Cognitive-behavioral therapy",
@@ -129,9 +168,14 @@ export const mayaContent: MayaHomepageContent = {
     eyebrow: "In Santa Monica & online across California",
     title: "Begin with what you need.",
     body: "Anxiety, past experiences, or the pressure to keep going may have brought you here. Therapy offers space to understand what's happening and reconnect with yourself, with practical support and room for reflection.",
-    prompt: "Learn about in-person sessions and secure California telehealth.",
-    action: { label: "Book an appointment", href: mayaContactHref },
-    smallImage: image("studio-closing", "A ceramic cup and saucer in window light", "30% 55%"),
-    largeImage: image("studio-bridge", "An open window and sheer curtains in natural daylight"),
+    steps: [
+      "Tell me a little about what brings you to therapy.",
+      "Choose to meet in Santa Monica or through secure telehealth in California.",
+      "Share the days and times that usually work for you.",
+    ],
+    action: book,
+    secondaryAction: { label: "Read the FAQs", dialog: "faq" },
+    smallImage: image("studio-closing", "A ceramic cup and saucer in window light", "45% 55%"),
+    largeImage: image("studio-begin", "A brick path curving through a shaded green garden in dappled sunlight", "50% 60%"),
   },
 };

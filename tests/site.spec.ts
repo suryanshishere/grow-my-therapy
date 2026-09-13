@@ -218,27 +218,37 @@ test("Maya uses the supplied portrait and both office photographs with new suppo
 });
 
 for (const width of [768, 1440]) {
-  test(`Maya retains the template image counts and grid placements at ${width}px`, async ({ page }) => {
+  test(`Maya keeps the reference section sequence and image counts at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 1000 });
-    const placements = () => page.locator("main > section:not(#office)").evaluateAll(sections => sections.map(section => ({
-      display: getComputedStyle(section).display,
-      columns: getComputedStyle(section).gridTemplateColumns,
-      columnGap: getComputedStyle(section).columnGap,
-      imageCount: section.querySelectorAll("img").length,
-      children: [...section.children].map(child => ({
-        area: getComputedStyle(child).gridArea,
-        position: getComputedStyle(child).position,
-      })),
-    })));
+    const counts = () => page.locator("main > section:not(#office)").evaluateAll(sections => sections.map(section => [section.getAttribute("aria-labelledby"), section.querySelectorAll("img").length]));
     await page.goto("/original/");
-    const template = await placements();
+    const template = await counts();
     await page.goto("/");
-    expect(await placements()).toEqual(template);
-    const band = page.locator(".statement-section");
-    const background = page.locator(".statement-image");
+    expect(await counts()).toEqual(template);
+    const band = page.locator('section[aria-labelledby="statement-heading"]');
+    const background = band.locator("img").locator("..");
     expect(await background.boundingBox()).toEqual(await band.boundingBox());
   });
 }
+
+for (const width of [320, 390, 768, 1024, 1440]) {
+  test(`Maya photographs stay inside the page gutter at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/");
+    // Only the statement band runs full bleed; every other frame sits inside the viewport.
+    const outside = await page.locator('main > section:not([aria-labelledby="statement-heading"]) img').evaluateAll(images => images
+      .map(image => ({ src: image.getAttribute("src"), box: image.parentElement!.getBoundingClientRect() }))
+      .filter(({ box }) => box.left < -0.5 || box.right > window.innerWidth + 0.5)
+      .map(({ src }) => src));
+    expect(outside).toEqual([]);
+  });
+}
+
+test("Maya does not repeat photographs beyond the supplied office image", async ({ page }) => {
+  await page.goto("/");
+  const sources = await page.locator("main img").evaluateAll(images => images.map(image => image.getAttribute("src")));
+  expect(sources.filter((source, index) => sources.indexOf(source) !== index && source !== "/images/maya-office-one.webp")).toEqual([]);
+});
 
 test("reduced motion keeps reveal content immediately visible without animation", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
@@ -274,7 +284,11 @@ test("client navigation between versions preserves each theme", async ({ page })
   expect(await page.evaluate(() => Reflect.get(window, "__redesignNavigationSentinel"))).toBe(marker);
   const mayaPrimary = await page.locator(".theme-maya").evaluate(element => getComputedStyle(element).getPropertyValue("--color-primary").trim());
   expect(mayaPrimary).not.toBe("#2b2b2b");
-  await page.getByRole("link", { name: /View the original clone/i }).click();
+  // The floating switch mirrors the clone's, so reviewers can reach either version from any scroll position.
+  const originalSwitch = page.locator(".version-switch");
+  await expect(originalSwitch).toBeVisible();
+  await expect(originalSwitch).toHaveAttribute("href", "/original/");
+  await originalSwitch.click();
   await expect(page).toHaveURL(/\/original\/$/);
   await expect(page.locator(".theme-original")).toBeVisible();
   await expect(page.locator(".theme-maya")).toHaveCount(0);

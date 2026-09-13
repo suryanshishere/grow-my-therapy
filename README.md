@@ -1,6 +1,6 @@
 # Grow My Therapy — Dr. Maya Reynolds
 
-A responsive reference clone and **Sunlit Studio** therapist redesign, built for Grow My Therapy's frontend internship assignment. Both homepages share the reference section layouts. Maya adds Our Office and uses a new palette, typography, profile-based copy, and photography.
+A responsive reference clone and **Sunlit Studio** therapist redesign, built for Grow My Therapy's frontend internship assignment. Maya keeps the reference section order and image counts, redesigns each section's layout, adds Our Office, and uses a new palette, typography, profile-based copy, and photography.
 
 ## View the project
 
@@ -35,8 +35,8 @@ The production export is written to `out/`. The preview serves it on `http://loc
 
 ## Structure and behavior
 
-- `src/components/homepage.tsx` renders the nine reference section layouts for both homepages. `MayaHomePage` supplies Maya's content, theme styles, and the custom Our Office section. Both versions retain two hero images, a full-width photographic statement, the specialties grid, and two closing images.
-- Shared template geometry lives in `homepage.css`. Maya's CSS Module supplies theme styling and the additional office composition. Theme-scoped header, footer, and dialog styles live in `maya.css`.
+- `src/components/homepage.tsx` renders the clone's nine reference section layouts. `src/components/maya-homepage.tsx` composes Maya's own versions of the same nine sections in the same order, plus Our Office, with the same image count in each section. A small `ScrollReveal` client component fades content in as it scrolls into view and does nothing under reduced motion or without JavaScript.
+- The clone's template geometry lives in `homepage.css`. Maya's layouts live in `maya-homepage.module.css`, built on one 1296px container, a 12-column grid, and a shared section rhythm. Theme-scoped header, footer, and dialog styles live in `maya.css`.
 - `src/components/interactions.tsx` handles desktop dropdowns, both mobile menus, and the FAQ dialog. Native dialogs include explicit Tab cycling, Escape dismissal, backdrop dismissal, scroll locking, and focus restoration.
 - The two routes use different mobile menus on purpose. Maya opens a native dialog with an accordion. The clone reproduces the reference's full-screen sheet: a three-bar burger that morphs into a close control in place, a sheet that fades in beneath the header so the logo stays put, and folders that step sideways to a panel headed by **Back** rather than expanding inline. Because a modal `<dialog>` is promoted to the top layer and would cover the header, the clone's sheet is an ordinary fixed panel that reuses the same focus trap, Escape handling, scroll lock, and focus restoration, and marks the rest of the page `inert` while open.
 - `/original/contact/` recreates the reference booking page, including its two-column layout and all eleven intake controls. The form has no `action`, makes no network request, and stores nothing; submitting a valid form replaces it with a notice explaining that it is a demonstration.
@@ -50,7 +50,7 @@ Next.js's experimental `inlineCss` option serves CSS with the initial HTML. A co
 
 ## Design and sources
 
-Sunlit Studio combines deep olive, warm stone, muted plum, and naturally colored photography. The original section compositions remain recognizable, including the offset hero photographs and four-block specialties grid. **Our Office**, immediately after Maya's biography, introduces the custom overlapping stone panel and two supplied office photographs. Mobile layouts retain the template's reading order. Filled plum buttons and locally hosted Instrument Sans and Newsreader complete Maya's theme; FAQs remain in a dialog and booking lives on its own page, so Our Office is the only added homepage section.
+Sunlit Studio combines deep olive, warm stone, muted plum, and naturally colored photography. Each section hands its background to the next, a few photographs overlap section edges to carry the eye down the page, and every photograph sits inside the page margin except the full-width statement band. **Our Office**, immediately after Maya's biography, pairs the two supplied office photographs at one height beneath its introduction, with a stone band listing the location, in-person and telehealth details beside the booking button. Filled plum buttons and locally hosted Instrument Sans and Newsreader complete Maya's theme; FAQs remain in a dialog and booking lives on its own page, so Our Office is the only added homepage section.
 
 | Token | Color | Use |
 | --- | --- | --- |
@@ -87,7 +87,7 @@ Tests use installed Google Chrome. They cover both homepages and Maya's booking 
 
 See the [validation record](docs/validation.md) for current checks. The previously recorded local mobile Lighthouse scores of 92 for the redesign and 84 for the clone belong to the preceding revision.
 
-`node scripts/capture-site.mjs http://localhost:8787` captures desktop/mobile screenshots into ignored `.artifacts/` for visual review. Visual comparisons check the live reference with fonts fully loaded. Browser tests also verify matching template grid placements and successful local reference-font loading. Test traces and reports remain in ignored output directories.
+`node scripts/capture-site.mjs http://localhost:8787` captures desktop/mobile screenshots into ignored `.artifacts/` for visual review. Visual comparisons check the live reference with fonts fully loaded. Browser tests also verify Maya's section order and image counts against the clone, that her photographs stay inside the page margin without repeats, and successful local reference-font loading. Test traces and reports remain in ignored output directories.
 
 ## Publish on Cloudflare Pages
 

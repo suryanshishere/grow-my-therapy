@@ -55,7 +55,9 @@ export function SiteShell({ theme, children }: { theme: Theme; children: ReactNo
       </div>
       {/* The reference strip carries nothing but its own credits, so the switch between the
           two assignment versions sits outside the cloned page chrome. */}
-      {original && <Link href="/" className="version-switch">View Maya’s redesign<span aria-hidden="true"> ↗</span></Link>}
+      {original
+        ? <Link href="/" className="version-switch">View Maya’s redesign<span aria-hidden="true"> ↗</span></Link>
+        : <Link href="/original/" className="version-switch">View the original clone<span aria-hidden="true"> ↗</span></Link>}
     </DialogProvider>
   </div>;
 }

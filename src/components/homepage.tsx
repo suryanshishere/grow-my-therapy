@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from "react";
+import type { CSSProperties } from "react";
 import { Action } from "@/components/interactions";
 import { Photo } from "@/components/photo";
 import type { ActionContent, Copy, HomepageContent, ImageContent, RichText, Theme } from "@/content/types";
@@ -40,15 +40,13 @@ function ImageFrame({ image, className, sizes = "(max-width: 767px) 88vw, 40vw",
 }
 
 /** The same editorial section geometry serves both assignment versions. */
-export function HomePage({ content, theme, className = "", officeSection }: {
-  content: HomepageContent; theme: Theme; className?: string; officeSection?: ReactNode;
-}) {
+export function HomePage({ content, theme }: { content: HomepageContent; theme: Theme }) {
   const expertiseColumns = Math.ceil(content.expertise.items.length / 2);
   return (
-    <main id="main-content" className={`homepage homepage--${theme} ${className}`.trim()}>
+    <main id="main-content" className={`homepage homepage--${theme}`}>
       <section className="hero-section editorial-grid" aria-labelledby="hero-heading">
         <p className="hero-eyebrow eyebrow">{content.hero.eyebrow}</p>
-        <div className="hero-copy" data-reveal={theme === "maya" ? "" : undefined}>
+        <div className="hero-copy">
           <h1 id="hero-heading"><Rich text={content.hero.title} /></h1>
           <p>{content.hero.description}</p>
         </div>
@@ -113,7 +111,7 @@ export function HomePage({ content, theme, className = "", officeSection }: {
         <div className="approach-action"><ContentAction action={content.approach.action} /></div>
       </section>
 
-      {officeSection ?? (content.office && (
+      {content.office && (
         <section id="office" className="office-section editorial-grid" aria-labelledby="office-heading">
           <div className="office-heading-group">
             {content.office.eyebrow && <p className="eyebrow">{content.office.eyebrow}</p>}
@@ -127,7 +125,7 @@ export function HomePage({ content, theme, className = "", officeSection }: {
             {content.office.images.map((image, index) => <ImageFrame key={image.src} image={image} className={`office-image office-image--${index + 1}`} sizes="(max-width: 767px) 88vw, 46vw" />)}
           </div>
         </section>
-      ))}
+      )}
 
       <section className="bridge-section editorial-grid" aria-labelledby="bridge-heading">
         <ImageFrame image={content.bridge.image} className="bridge-image" sizes="(max-width: 767px) 94vw, 55vw" />

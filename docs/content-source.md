@@ -32,10 +32,10 @@ Dr. Maya Reynolds is the imaginary therapist specified in the assignment. Her [p
 
 ## Sunlit Studio visual direction
 
-- Maya's homepage uses the same nine section compositions, image counts, and desktop column placements as the reference clone. Our Office is the only additional homepage section; FAQs remain in a dialog and booking has its own page.
+- Maya's homepage keeps the reference clone's nine sections in the same order, with the same image count in each, but redesigns every section's layout. Our Office is the only additional homepage section; FAQs remain in a dialog and booking has its own page.
 - Deep olive `#303B32`, warm stone `#E5DED2`, muted plum `#725569`, light `#F7F4ED`, pale plum `#E5DAE1`, and body ink `#292D28` form the new palette.
 - Locally hosted Instrument Sans supports the H1, body, navigation, and controls. Locally hosted Newsreader is reserved for reflective headings. Desktop body text is 17–18px, mobile body text is 16px, navigation is 14px, and captions are at least 12px.
-- Our Office introduces a warm stone panel beside the supplied office photographs, with an olive surround and a narrow plum edge. The hero retains the template's two-image composition. The office panel and photographs stack on phones.
+- Our Office sets its introduction above the two supplied office photographs, shown side by side at one height on an olive ground, followed by a warm stone band with a narrow plum edge that lists the location, in-person and telehealth details beside the booking button. The hero pairs the office photograph with a small leaf-shadow detail. The photographs and details stack on phones.
 - The profile portrait and both office photographs are retained. New licensed photography of daylight, sheltered spaces, and everyday work or reflection replaces the previous coastal stock set. These atmospheric images do not depict Maya's premises and must not be labeled as doing so.
 - Asset source, license, and placement records are maintained in [image-sources.md](image-sources.md). Photography stays naturally colored, with responsive WebP variants served locally.
 - The clone retains the reference content, photographs, and actual fonts. Maya extends the same homepage content contract with a required office section; both versions provide two opening and two closing photographs.
